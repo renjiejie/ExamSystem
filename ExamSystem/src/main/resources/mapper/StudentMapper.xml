@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.demo.dao.StudentMapper">
+
+	<select id="login" resultMap="student">
+		SELECT student_id, student_name, class_id
+		FROM student_table
+		WHERE student_id = #{id} AND student_password = #{password} 
+	</select>
+	<resultMap type="Student" id="student">
+		<id column="student_id" property="id"/>
+		<result column="student_name" property="name"/>
+		<result column="student_gender" property="gender"/>
+		<result column="class_id" property="class_id"/>
+	</resultMap>
+	
+</mapper>

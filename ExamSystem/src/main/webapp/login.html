@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生考试管理系统</title>
+<link href="/exam/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script src="/exam/js/jquery-3.2.1.js"></script>
+<script src="/exam/js/bootstrap.min.js"></script>
+<style> 
+body{text-align:center} 
+.divcss5{margin:0 auto;width:300px;height:200px} //;border:1px solid #000
+/* CSS注释：设置对象边框、宽度、高度 便于观察布局效果 */ 
+</style> 
+</head>
+<body>
+<div  class="divcss5">
+	<form action="" method="get" id="login">
+		<h2>登录</h2>
+		<div class="form-group">
+			<div class="input-group">
+		  		<span class="input-group-addon" style="width:100px">用户名</span>
+		  		<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" id="username" name="username" style="width:200px">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+		  		<span class="input-group-addon" style="width:100px">密码</span>
+		  		<input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="password" name="password" style="width:200px">
+			</div>
+		</div>
+		<div class="form-inline">
+			<div class="form-group">
+				<div class="input-group">
+				<span class="input-group-addon"style="width:100px">用户类型</span>
+			  		<select id="usertype" class="selectpicker form-control" style="width:100px">
+						<option value="0">学生  </option>
+						<option value="1">教师  </option>
+						<option value="2">管理员</option>
+					</select>
+				</div>
+			</div>
+			<input class="btn btn-default" type="button" value="登录" id="submitbutton"style="width:94px">
+		</div>
+	</form>
+</div>
+	<script>
+		$("#submitbutton").click(function(){
+			var type = $("#usertype").val();
+			var username = $("#username").val();
+			var password = $("#password").val();
+			if(username == null || username =="") {
+				alert("用户名不能为空");
+			} else if(password == null || password == "") {
+				//$("#myModal").modal("show");
+				alert("密码不能为空");
+			} else {
+				if(type == "0") {
+					document.getElementById("login").action = "/exam/student/login";
+					document.getElementById("login").submit();
+				} else if(type == "1") {
+					document.getElementById("login").action = "/exam/admin/login";
+					document.getElementById("login").submit();
+				} else {
+					
+				}
+			}
+		});
+	</script>
+</body>
+</html>
