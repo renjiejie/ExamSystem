@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>学生考试管理系统</title>
+		<link href="/exam/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="/exam/js/jquery-3.2.1.js"></script>
+		<script src="/exam/js/bootstrap.min.js"></script>
+		<style type="text/css">
+			body {
+				position: relative;
+				/* For scrollspy */
+			}
+
+			/*
+ * Examples
+ *
+ * Linked docs examples.
+ */
+			.bs-examples .thumbnail {
+				margin-bottom: 10px;
+			}
+
+			.bs-examples h4 {
+				margin-bottom: 5px;
+			}
+
+			.bs-examples p {
+				margin-bottom: 20px;
+			}
+
+			@media (max-width: 480px) {
+				.bs-examples {
+					margin-right: -10px;
+					margin-left: -10px;
+				}
+
+				.bs-examples>[class^="col-"] {
+					padding-right: 10px;
+					padding-left: 10px;
+				}
+			}
+
+
+
+			.bs-docs-section {
+				margin-bottom: 60px;
+			}
+
+			.bs-docs-section:last-child {
+				margin-bottom: 0;
+			}
+
+
+			.bs-example {
+				position: relative;
+				padding: 45px 15px 15px;
+				margin: 0 -15px 15px;
+				border-color: #e5e5e5 #eee #eee;
+				border-style: solid;
+				border-width: 1px 0;
+				-webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+				box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+			}
+
+			/* Echo out a label for the example */
+			.bs-example:after {
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				font-size: 12px;
+				font-weight: bold;
+				color: #959595;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				content: "题目管理";
+			}
+
+			.bs-example-padded-bottom {
+				padding-bottom: 24px;
+			}
+
+			/* Tweak display of the code snippets when following an example */
+			.bs-example+.highlight,
+			.bs-example+.zero-clipboard+.highlight {
+				margin: -15px -15px 15px;
+				border-width: 0 0 1px;
+				border-radius: 0;
+			}
+
+			/* Make the examples and snippets not full-width */
+			@media (min-width: 768px) {
+				.bs-example {
+					margin-right: 0;
+					margin-left: 0;
+					background-color: #fff;
+					border-color: #ddd;
+					border-width: 1px;
+					border-radius: 4px 4px 0 0;
+					-webkit-box-shadow: none;
+					box-shadow: none;
+				}
+
+				.bs-example+.highlight,
+				.bs-example+.zero-clipboard+.highlight {
+					margin-top: -16px;
+					margin-right: 0;
+					margin-left: 0;
+					border-width: 1px;
+					border-bottom-right-radius: 4px;
+					border-bottom-left-radius: 4px;
+				}
+
+				.bs-example-standalone {
+					border-radius: 4px;
+				}
+			}
+
+			/* Undo width of container */
+			.bs-example .container {
+				width: auto;
+			}
+
+			/* Tweak content of examples for optimum awesome */
+			.bs-example>p:last-child,
+			.bs-example>ul:last-child,
+			.bs-example>ol:last-child,
+			.bs-example>blockquote:last-child,
+			.bs-example>.form-control:last-child,
+			.bs-example>.table:last-child,
+			.bs-example>.navbar:last-child,
+			.bs-example>.jumbotron:last-child,
+			.bs-example>.alert:last-child,
+			.bs-example>.panel:last-child,
+			.bs-example>.list-group:last-child,
+			.bs-example>.well:last-child,
+			.bs-example>.progress:last-child,
+			.bs-example>.table-responsive:last-child>.table {
+				margin-bottom: 0;
+			}
+
+			.bs-example>p>.close {
+				float: none;
+			}
+
+			/* Typography */
+			.bs-example-type .table .type-info {
+				color: #767676;
+				vertical-align: middle;
+			}
+
+			.bs-example-type .table td {
+				padding: 15px 0;
+				border-color: #eee;
+			}
+
+			.bs-example-type .table tr:first-child td {
+				border-top: 0;
+			}
+
+
+			/* Images */
+			.bs-example>.img-circle,
+			.bs-example>.img-rounded,
+			.bs-example>.img-thumbnail {
+				margin: 5px;
+			}
+
+			/* Tables */
+			.bs-example>.table-responsive>.table {
+				background-color: #fff;
+			}
+
+			/* Buttons */
+			.bs-example>.btn,
+			.bs-example>.btn-group {
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+
+			.bs-example>.btn-toolbar+.btn-toolbar {
+				margin-top: 10px;
+			}
+
+			.bs-example>textarea.form-control {
+				resize: vertical;
+			}
+
+			/* List groups */
+			.bs-example>.list-group {
+				max-width: 400px;
+			}
+
+			/* Navbars */
+			.bs-example .navbar:last-child {
+				margin-bottom: 0;
+			}
+
+			/* Pagination */
+			.bs-example .pagination {
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+
+			/* Pager */
+			.bs-example>.pager {
+				margin-top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					 aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">教师主页</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">个人<span class="sr-only">(current)</span></a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">试题
+								<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">查询</a></li>
+								<li><a href="add_question.html">添加</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">试卷<span
+								 class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">生成试卷</a></li>
+								<li><a href="#">我的试卷</a></li>
+							</ul>
+						</li>
+						<li><a href="#">批改</a></li>
+						<li><a href="#">成绩分析</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		<div class="container bs-docs-container">
+			<div class="row">
+				<div class="col-md-9" role="main">
+					<div class="bs-docs-section">
+						<div class="bs-example">
+							<form>
+								<div class="form-group">
+									<div class="dropdown">
+										<label>课程：</label>
+										<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+										 aria-haspopup="true" aria-expanded="true">
+											课程
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											<li><a href="#">语文</a></li>
+											<li><a href="#">数学</a></li>
+											<li><a href="#">英语</a></li>
+											<li><a href="#">物理</a></li>
+											<li><a href="#">化学</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="dropdown">
+										<label>题目：</label>
+										<input type="text" class="form-control" id="question-name" placeholder="题目名">
+									</div>
+								</div>
+								<button type="submit" class="btn btn-default">查询</button>
+								<table class="table table-striped">
+								              <thead>
+								                <tr>
+								                  <th>题目名</th>
+								                  <th>题目类型</th>
+								                  <th>题目题干</th>
+								                  <th>题目分数</th>
+								                  <th>出题人</th>
+								                </tr>
+								              </thead>
+								              <tbody>
+								                <tr>
+								                  <td>sdfsf</td>
+								                  <td>Lorem</td>
+								                  <td>ipsum</td>
+								                  <td>sdfsf</td>
+								                  <td>Lorem</td>
+								                </tr>
+								                <tr>
+								                  <td>1,002</td>
+								                  <td>amet</td>
+								                  <td>consectetur</td>
+								                  <td>adipiscing</td>
+								                  <td>elit</td>
+								                </tr>
+								                <tr>
+								                  <td>1,003</td>
+								                  <td>Integer</td>
+								                  <td>nec</td>
+								                  <td>odio</td>
+								                  <td>Praesent</td>
+								                </tr>
+								                <tr>
+								                  <td>1,003</td>
+								                  <td>libero</td>
+								                  <td>Sed</td>
+								                  <td>cursus</td>
+								                  <td>ante</td>
+								                </tr>
+								                <tr>
+								                  <td>1,004</td>
+								                  <td>dapibus</td>
+								                  <td>diam</td>
+								                  <td>Sed</td>
+								                  <td>nisi</td>
+								                </tr>
+								                <tr>
+								                  <td>1,005</td>
+								                  <td>Nulla</td>
+								                  <td>quis</td>
+								                  <td>sdfsf</td>
+								                  <td>Lorem</td>
+								                </tr>
+								                <tr>
+								                  <td>1,006</td>
+								                  <td>nibh</td>
+								                  <td>elementum</td>
+								                  <td>imperdiet</td>
+								                  <td>Duis</td>
+								                </tr>
+								                <tr>
+								                  <td>1,007</td>
+								                  <td>sagittis</td>
+								                  <td>ipsum</td>
+								                  <td>Praesent</td>
+								                  <td>sdfsf</td>
+								                </tr>
+								              </tbody>
+								            </table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
