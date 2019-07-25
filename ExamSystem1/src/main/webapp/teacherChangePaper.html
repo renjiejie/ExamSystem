@@ -365,35 +365,97 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
-					<h3 class="title1">试题管理</h3>
+					<h3 class="title1">试卷修改</h3>
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 						<div class="bs-docs-section">
 							<div class="bs-example">
 								<form>
 									<div class="form-group">
 										<div class="dropdown">
-											<label>课程：</label>
-											<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-											 aria-haspopup="true" aria-expanded="true">
-												课程
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												<li><a href="#">语文</a></li>
-												<li><a href="#">数学</a></li>
-												<li><a href="#">英语</a></li>
-												<li><a href="#">物理</a></li>
-												<li><a href="#">化学</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="dropdown">
 											<label>题目：</label>
 											<input type="text" class="form-control" id="question-name" placeholder="题目名">
 										</div>
 									</div>
-									<button type="submit" class="btn btn-default">查询</button>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#searchModal">查询</button>
+									<!-- 修改信息模态框 -->
+									<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+														<h4 class="modal-title" id="myModalLabel">查询并添加题目</h4>
+													</div>
+													<div class="modal-body">
+										
+														<form>
+															<div class="form-group">
+																<div class="dropdown">
+																	<label>课程：</label>
+																	<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+																	 aria-haspopup="true" aria-expanded="true">
+																		语文
+																		<span class="caret"></span>
+																	</button>
+																	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																		<li><a href="#">语文</a></li>
+																		<li><a href="#">数学</a></li>
+																		<li><a href="#">英语</a></li>
+																		<li><a href="#">物理</a></li>
+																		<li><a href="#">化学</a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="dropdown">
+																	<label>类型：</label>
+																	<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+																	 aria-haspopup="true" aria-expanded="true">
+																		单选
+																		<span class="caret"></span>
+																	</button>
+																	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																		<li><a href="#">单选</a></li>
+																		<li><a href="#">多选</a></li>
+																		<li><a href="#">填空</a></li>
+																		<li><a href="#">简答</a></li>
+																	</ul>
+																</div>
+															</div>
+							
+															<div class="form-group">
+																
+																<label>题干：</label>
+																<input type="text" class="form-control" id="answer"
+																 name="answer" value="语文题干">
+															</div>
+															<div class="form-group">
+																<div class="input-group">
+																	<label>答案：</label>
+																	<input type="text" class="form-control" id="answer"
+																	 name="answer" value="语文答案">
+																</div>
+																
+															</div>
+															<div class="form-group">
+																<div class="input-group">
+																	<label>分数：</label>
+																	<input type="text" class="form-control" id="point"
+																	 name="point" value="4">
+																</div>
+																
+															</div>
+															
+										
+														</form>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+														<button type="button" class="btn btn-primary">添加到试卷中</button>
+													</div>
+												</div><!-- /.modal-content -->
+											</div><!-- /.modal -->
+										</div>
+									<!-- 修改信息模态框 -->
 									<table class="table table-striped">
 										<thead>
 											<tr>
@@ -401,6 +463,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<th>题目类型</th>
 												<th>题目题干</th>
 												<th>题目分数</th>
+												<th>答案</th>
 												<th>出题人</th>
 												<th>修改</th>
 												<th>删除</th>
@@ -411,6 +474,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>sdfsf</td>
 												<td>Lorem</td>
 												<td>ipsum</td>
+												<td>sdfsf</td>
 												<td>sdfsf</td>
 												<td>Lorem</td>
 												<td>
@@ -506,6 +570,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>amet</td>
 												<td>consectetur</td>
 												<td>adipiscing</td>
+												<td>sdfsf</td>
 												<td>elit</td>
 												<td>
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
@@ -523,6 +588,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>Integer</td>
 												<td>nec</td>
 												<td>odio</td>
+												<td>sdfsf</td>
 												<td>Praesent</td>
 												<td>
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
@@ -540,6 +606,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>libero</td>
 												<td>Sed</td>
 												<td>cursus</td>
+												<td>sdfsf</td>
 												<td>ante</td>
 												<td>
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
@@ -557,6 +624,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>dapibus</td>
 												<td>diam</td>
 												<td>Sed</td>
+												<td>sdfsf</td>
 												<td>nisi</td>
 												<td>
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
@@ -574,6 +642,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>Nulla</td>
 												<td>quis</td>
 												<td>sdfsf</td>
+												<td>sdfsf</td>
 												<td>Lorem</td>
 												<td>
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
@@ -590,6 +659,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>1,006</td>
 												<td>nibh</td>
 												<td>elementum</td>
+												<td>sdfsf</td>
 												<td>imperdiet</td>
 												<td>Duis</td>
 												<td>
@@ -607,6 +677,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												<td>1,007</td>
 												<td>sagittis</td>
 												<td>ipsum</td>
+												<td>sdfsf</td>
 												<td>Praesent</td>
 												<td>sdfsf</td>
 												<td>

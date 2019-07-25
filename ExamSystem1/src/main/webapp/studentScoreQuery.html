@@ -47,7 +47,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<div class="main-content">
 			<!--left-fixed -navigation-->
 			<div class=" sidebar" role="navigation">
-			    <div class="navbar-collapse">
+				<div class="navbar-collapse">
 					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 						<ul class="nav" id="side-menu">
 							<li>
@@ -70,7 +70,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							</li>
 							<li>
 								<a href="studentAppeal.html"><i class="fa fa-check-square-o nav_icon"></i>试卷答疑</a>
-							</li>					
+							</li>
 						</ul>
 						<div class="clearfix"> </div>
 						<!-- //sidebar-collapse -->
@@ -113,52 +113,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 							<li class="dropdown head-dpdn">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span
-									 class="badge blue1">15</span></a>
+									 class="badge blue1">1</span></a>
 								<ul class="dropdown-menu">
 									<li>
 										<div class="notification_header">
-											<h3>You have 8 pending task</h3>
-										</div>
-									</li>
-									<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Database update</span><span class="percentage">40%</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="progress progress-striped active">
-												<div class="bar yellow" style="width:40%;"></div>
-											</div>
-										</a></li>
-									<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="progress progress-striped active">
-												<div class="bar green" style="width:90%;"></div>
-											</div>
-										</a></li>
-									<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="progress progress-striped active">
-												<div class="bar red" style="width: 33%;"></div>
-											</div>
-										</a></li>
-									<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-												<div class="clearfix"></div>
-											</div>
-											<div class="progress progress-striped active">
-												<div class="bar  blue" style="width: 80%;"></div>
-											</div>
-										</a></li>
-									<li>
-										<div class="notification_bottom">
-											<a href="#">See all pending tasks</a>
+											<h3>有1次考试正在进行</h3>
 										</div>
 									</li>
 								</ul>
@@ -172,10 +131,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<li class="dropdown profile_details_drop">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
-										<span class="prfil-img"><img src="images/a.png" alt=""> </span>
 										<div class="user-name">
-											<p>Wikolia</p>
-											<span>Administrator</span>
+											<p>Arcane</p>
+											<span>Student</span>
 										</div>
 										<i class="fa fa-angle-down lnr"></i>
 										<i class="fa fa-angle-up lnr"></i>
@@ -183,9 +141,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									</div>
 								</a>
 								<ul class="dropdown-menu drp-mnu">
-									<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-									<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-									<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									<li> <a href="blankStudentPage.html"><i class="fa fa-user"></i> Profile</a> </li>
+									<li> <a href="login1.html"><i class="fa fa-sign-out"></i> Logout</a> </li>
 								</ul>
 							</li>
 						</ul>
@@ -205,69 +162,112 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<tr>
 									<th>考试</th>
 									<th>分数</th>
+									<th>详情</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1,001</td>
-									<td>Lorem</td>
+								<td>某次考试</td>
+								<td>82</td>
+								<td>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
+										<span class="glyphicon glyphicon-list"></span>
+									</button>
+									<!-- 详细信息模态框 -->
+									<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title" id="myModalLabel">答题卡</h4>
+												</div>
+												<div class="modal-body">
+													<table class="table">
+														<tbody>
+															<tr class="active">
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr>
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr class="success">
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr>
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr class="info">
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr>
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr class="danger">
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr>
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr class="warning">
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+															<tr>
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal -->
+									</div>
+									<!-- 详细信息模态框 -->
+								</td>
 								</tr>
 								<tr>
-									<td>1,002</td>
-									<td>amet</td>
+								<td>某次考试</td>
+								<td>90</td>
+								<td>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
+										<span class="glyphicon glyphicon-list"></span>
+									</button>
+								</td>
 								</tr>
 								<tr>
-									<td>1,003</td>
-									<td>Integer</td>
+								<td>某次考试</td>
+								<td>60</td>
+								<td>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
+										<span class="glyphicon glyphicon-list"></span>
+									</button>
+								</td>
 								</tr>
 								<tr>
-									<td>1,003</td>
-									<td>libero</td>
+								<td>某次考试</td>
+								<td>75</td>
+								<td>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
+										<span class="glyphicon glyphicon-list"></span>
+									</button>
+								</td>
 								</tr>
-								<tr>
-									<td>1,004</td>
-									<td>dapibus</td>
-								</tr>
-								<tr>
-									<td>1,005</td>
-									<td>Nulla</td>
-								</tr>
-								<tr>
-									<td>1,006</td>
-									<td>nibh</td>
-								</tr>
-								<tr>
-									<td>1,007</td>
-									<td>sagittis</td>
-								</tr>
-								<tr>
-									<td>1,008</td>
-									<td>Fusce</td>
-								</tr>
-								<tr>
-									<td>1,009</td>
-									<td>augue</td>
-								</tr>
-								<tr>
-									<td>1,010</td>
-									<td>massa</td>
-								</tr>
-								<tr>
-									<td>1,011</td>
-									<td>eget</td>
-								</tr>
-								<tr>
-									<td>1,012</td>
-									<td>taciti</td>
-								</tr>
-								<tr>
-									<td>1,013</td>
-									<td>torquent</td>
-								</tr>
-								
+
+
 							</tbody>
 						</table>
-						
+
 					</div>
 					<ul class="pagination pagination-lg">
 						<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
