@@ -37,38 +37,38 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <body class="cbp-spmenu-push">
 	<div class="main-content">
 				<!--left-fixed -navigation-->
-		<div class=" sidebar" role="navigation">
-		    <div class="navbar-collapse">
-				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-					<ul class="nav" id="side-menu">
-						<li>
-							<a href="blankStudentPage.html"><i class="fa fa-home nav_icon"></i>学生主页</a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-file-text-o nav_icon"></i>考试<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level collapse">
+				<div class=" sidebar" role="navigation">
+				    <div class="navbar-collapse">
+						<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+							<ul class="nav" id="side-menu">
 								<li>
-									<a href="joinExam.html">参加考试</a>
+									<a href="blankStudentPage.html"><i class="fa fa-home nav_icon"></i>学生主页</a>
 								</li>
 								<li>
-									<a href="studentScoreQuery.html">查看成绩</a>
+									<a href="#"><i class="fa fa-file-text-o nav_icon"></i>考试<span class="fa arrow"></span></a>
+									<ul class="nav nav-second-level collapse">
+										<li>
+											<a href="joinExam.html">参加考试</a>
+										</li>
+										<li>
+											<a href="studentScoreQuery.html">查看成绩</a>
+										</li>
+									</ul>
+									<!-- /nav-second-level -->
 								</li>
+								<li>
+									<a href="practiceTest.html"><i class="fa fa-book nav_icon"></i>模拟练习</a>
+								</li>
+								<li>
+									<a href="studentAppeal.html"><i class="fa fa-check-square-o nav_icon"></i>试卷答疑</a>
+								</li>					
 							</ul>
-							<!-- /nav-second-level -->
-						</li>
-						<li>
-							<a href="practiceTest.html"><i class="fa fa-book nav_icon"></i>模拟练习</a>
-						</li>
-						<li>
-							<a href="studentAppeal.html"><i class="fa fa-check-square-o nav_icon"></i>试卷答疑</a>
-						</li>					
-					</ul>
-					<div class="clearfix"> </div>
-					<!-- //sidebar-collapse -->
-				</nav>
-			</div>
-		</div>
-		<!--left-fixed -navigation-->
+							<div class="clearfix"> </div>
+							<!-- //sidebar-collapse -->
+						</nav>
+					</div>
+				</div>
+				<!--left-fixed -navigation-->
 		<!-- header-starts -->
 		<div class="sticky-header header-section ">
 			<div class="header-left">
@@ -186,11 +186,23 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
-				<h3 class="title1">Blank Page</h3>
+				<h3 class="title1">学生申诉</h3>
 				<div class="blank-page widget-shadow scroll" id="style-2 div1">
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
-						It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here.
-					</p>
+					<div class="panel-default">
+						<div class="panel-heading">
+							创建申诉信息
+						</div>
+						<div class="panel-body">
+							<div class="alert alert-info">
+								填写考试名以向审卷人发送申诉信息
+							</div>
+							<form class="com-mail">
+								<input type="text" class="form-control1 control3" placeholder="考试名">
+								<textarea rows="6" class="form-control1 control2" placeholder="申诉信息 :"></textarea>
+								<input type="submit" value="发送"> 
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
