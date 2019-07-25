@@ -35,7 +35,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<script src="js/wow.min.js"></script>
 		<script>
 			new WOW().init();
-		</script>
+	</script>
 		<!--//end-animate-->
 		<!-- Metis Menu -->
 		<script src="js/metisMenu.min.js"></script>
@@ -44,10 +44,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!--//Metis Menu -->
 
 		<style>
-			#dropdown1 {
-
+			#dropdown1{
+				
 				margin: 1.25rem;
 			}
+			
 		</style>
 	</head>
 	<body class="cbp-spmenu-push">
@@ -59,7 +60,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav" id="side-menu">
 
 							<li>
-								<a href="admin.html"><i class="fa fa-home nav_icon"></i>管理员主页</a>
+								<a href="/exam/admin.html"><i class="fa fa-home nav_icon"></i>管理员主页</a>
 							</li>
 							<li>
 								<a href="/exam/adminmanage2.html"><i class="fa fa-user nav_icon"></i>用户管理</a>
@@ -187,11 +188,55 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
+					<h3 class="title1">成绩分析</h3>
+					<div class="dropdown" id="dropdown1">
+
+						<label>课程：</label>
+						<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+						 aria-haspopup="true" aria-expanded="true">
+							课程
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#">语文</a></li>
+							<li><a href="#">数学</a></li>
+							<li><a href="#">英语</a></li>
+							<li><a href="#">物理</a></li>
+							<li><a href="#">化学</a></li>
+						</ul>
+
+
+					</div>
+
+
+
+					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>考试名称</th>
+									<th>考试人数</th>
+									<th>及格人数</th>
+									<th>及格率</th>
+									<th>平均分</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>10</td>
+									<td>10</td>
+									<td>20</td>
+									<td>30</td>
+									<td>40</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
 
 				</div>
-
 			</div>
-		</div>
 		</div>
 		<!--footer-->
 		<div class="footer">
