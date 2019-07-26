@@ -21,7 +21,7 @@ USE `examsystem`;
 DROP TABLE IF EXISTS `answer_table`;
 
 CREATE TABLE `answer_table` (
-  `answer_id` varchar(20) NOT NULL DEFAULT '',
+  `answer_id` int(11) NOT NULL AUTO_INCREMENT,
   `exam_id` varchar(20) DEFAULT NULL,
   `student_account` varchar(20) DEFAULT NULL,
   `answer_content` text NOT NULL,
@@ -34,9 +34,9 @@ CREATE TABLE `answer_table` (
   KEY `student_account` (`student_account`),
   KEY `teacher_account` (`teacher_account`),
   KEY `paper_id` (`paper_id`),
-  CONSTRAINT `answer_table_ibfk_3` FOREIGN KEY (`teacher_account`) REFERENCES `student_table` (`user_account`),
   CONSTRAINT `answer_table_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exam_table` (`exam_id`) ON DELETE SET NULL,
   CONSTRAINT `answer_table_ibfk_2` FOREIGN KEY (`student_account`) REFERENCES `student_table` (`user_account`) ON DELETE SET NULL,
+  CONSTRAINT `answer_table_ibfk_3` FOREIGN KEY (`teacher_account`) REFERENCES `student_table` (`user_account`),
   CONSTRAINT `paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper_table` (`paper_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,7 +69,6 @@ DROP TABLE IF EXISTS `course_table`;
 
 CREATE TABLE `course_table` (
   `course_id` varchar(20) NOT NULL DEFAULT '',
-  `course_name` varchar(20) NOT NULL,
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
