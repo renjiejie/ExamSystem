@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class UserInterceptor implements HandlerInterceptor{
+public class AdminInterceptor implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -16,13 +16,16 @@ public class UserInterceptor implements HandlerInterceptor{
 		/*System.out.println("preHandle");*/
 		HttpSession session = request.getSession();
 		String account = (String) session.getAttribute("account");
-		if(account!=null){
-			return true;
-		} else {
-			//response.sendRedirect("/");
-			request.getRequestDispatcher("/login1.html").forward(request, response);
-			return false;
+		String permission = (String) session.getAttribute("permission");
+		if(account != null && permission != "admin"){
+				if(permission=="teacher"){
+					request.getRequestDispatcher("/blankTeacherPage.html").forward(request, response);
+				} else {
+					request.getRequestDispatcher("/blankStudentPage.html").forward(request, response);
+				}
+				return false;
 		}
+		return true;
 	}
 
 	@Override
