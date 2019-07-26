@@ -17,7 +17,7 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String login(String account, String password) {
-		System.out.print("aaaa");
+		System.out.println("aaaa");
 		User a = userService.login(account, password);
 		
 		if(a != null) {
@@ -30,6 +30,6 @@ public class UserController {
 				return "/admin.html";
 			}
 		}
-		return "/login.html";
+		return "/login1.html";
 	}
 }
