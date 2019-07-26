@@ -5,10 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.neuedu.demo.dao.AdminMapper">
 
-	<select id="addStudent">
-		insert into user_table values(#{account},#{password},"学生")
-		insert into student_table (user_account) values(#{account})
-	</select>
+	<insert id="addStudent">
+ 		insert into user_table values(#{account},#{password},"学生");
+		insert into student_table(user_account) values("1"); 
+	</insert>
 	
 	
 </mapper>
