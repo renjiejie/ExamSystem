@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -5,43 +6,30 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-		<script type="application/x-javascript">
-			addEventListener("load", function() {
-				setTimeout(hideURLbar, 0);
-			}, false);
-
-			function hideURLbar() {
-				window.scrollTo(0, 1);
-			}
-		</script>
+		SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<!-- Bootstrap Core CSS -->
-		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
-		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
 		<!-- font CSS -->
 		<!-- font-awesome icons -->
-		<link href="css/font-awesome.css" rel="stylesheet">
+		<link href="/exam/css/font-awesome.css" rel="stylesheet"> 
 		<!-- //font-awesome icons -->
-		<!-- js-->
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/modernizr.custom.js"></script>
-		<!--webfonts-->
-		<link href='http://fonts.useso.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet'
-		 type='text/css'>
-		<!--//webfonts-->
+		 <!-- js-->
+		<script src="/exam/js/jquery-1.11.1.min.js"></script>
+		<script src="/exam/js/modernizr.custom.js"></script>
 		<!--animate-->
-		<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
-		<script src="js/wow.min.js"></script>
-		<script>
-			new WOW().init();
-	</script>
+		<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
+		<script src="/exam/js/wow.min.js"></script>
+			<script>
+				 new WOW().init();
+			</script>
 		<!--//end-animate-->
 		<!-- Metis Menu -->
-		<script src="js/metisMenu.min.js"></script>
-		<script src="js/custom.js"></script>
-		<link href="css/custom.css" rel="stylesheet">
-		<!--//Metis Menu -->
+		<script src="/exam/js/metisMenu.min.js"></script>
+		<script src="/exam/js/custom.js"></script>
+		<link href="/exam/css/custom.css" rel="stylesheet">
 
 		<style>
 			.middle{
@@ -143,20 +131,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- //header-ends -->
 			<!-- main content start-->
-
+			
 			<div id="page-wrapper">
 				<div class="main-page">
 					<!-- 修改模态框 -->
-					<form>
-						<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title" id="myModalLabel">修改用户</h4>
-									</div>
-									<div class="modal-body">
-
+					<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">修改用户</h4>
+								</div>
+								<div class="modal-body">
+									<form>
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">
@@ -187,15 +174,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 												</select>
 											</div>
 										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-										<button type="submit" class="btn btn-primary" id="submitbutton">提交更改</button>
-									</div>
-								</div><!-- /.modal-content -->
-							</div><!-- /.modal -->
-						</div>
-					</form>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary">提交更改</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal -->
+					</div>
 					<!-- 修改模态框 -->
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 						<div class="middle">
@@ -225,7 +212,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<h4 class="modal-title" id="myModalLabel">添加用户</h4>
 									</div>
 									<div class="modal-body">
-										<form action="/exam/admin/addUser">
+										<form>
 											<div class="form-group">
 												<div class="input-group">
 													<span class="input-group-addon">
@@ -260,7 +247,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-										<input type="submit" class="btn btn-primary"></input>
+										<button type="button" class="btn btn-primary">提交更改</button>
 									</div>
 								</div><!-- /.modal-content -->
 							</div><!-- /.modal -->
@@ -283,10 +270,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>Lorem</td>
 										<td>ipsum</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
-
+											
 										</td>
 										<td>
 											<button type="button" class="btn btn-default">
@@ -299,7 +286,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>amet</td>
 										<td>consectetur</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -314,7 +301,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>Integer</td>
 										<td>nec</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -329,7 +316,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>libero</td>
 										<td>Sed</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -344,7 +331,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>dapibus</td>
 										<td>diam</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -359,7 +346,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>Nulla</td>
 										<td>quis</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -374,7 +361,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>nibh</td>
 										<td>elementum</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -389,7 +376,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>sagittis</td>
 										<td>ipsum</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -404,7 +391,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>Fusce</td>
 										<td>nec</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -419,7 +406,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>augue</td>
 										<td>semper</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -434,7 +421,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>massa</td>
 										<td>Vestibulum</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -449,7 +436,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>eget</td>
 										<td>nulla</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -464,7 +451,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>taciti</td>
 										<td>sociosqu</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -479,7 +466,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>torquent</td>
 										<td>per</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -494,7 +481,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>per</td>
 										<td>inceptos</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -509,7 +496,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>sodales</td>
 										<td>ligula</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -524,7 +511,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>sodales</td>
 										<td>ligula</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -539,7 +526,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>sodales</td>
 										<td>ligula</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -554,7 +541,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<td>sodales</td>
 										<td>ligula</td>
 										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
+											<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
 										</td>
@@ -576,20 +563,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!--//footer-->
 		</div>
-		<!-- Classie -->
-		<script src="js/classie.js"></script>
+				<!-- Classie -->
+		<script src="/exam/js/classie.js"></script>
 		<script>
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
-
+		
 			showLeftPush.onclick = function() {
 				classie.toggle(this, 'active');
 				classie.toggle(body, 'cbp-spmenu-push-toright');
 				classie.toggle(menuLeft, 'cbp-spmenu-open');
 				disableOther('showLeftPush');
 			};
-
+		
 			function disableOther(button) {
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
@@ -597,13 +584,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			}
 		</script>
 		<!--scrolling js-->
-		<script src="js/jquery.nicescroll.js"></script>
-		<script src="js/scripts.js"></script>
+		<script src="/exam/js/jquery.nicescroll.js"></script>
+		<script src="/exam/js/scripts.js"></script>
 		<!--//scrolling js-->
 		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.js"> </script>
-
+		<script src="/exam/js/bootstrap.js"> </script>
 	</body>
+</html>
 =======
 <!DOCTYPE HTML>
 <html>
