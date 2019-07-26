@@ -8,5 +8,7 @@ import com.neuedu.demo.domain.Admin;
 @Mapper
 public interface AdminMapper {
 
-	public Admin login(@Param("id") String id, @Param("password") String password);
+	public void addStudent(@Param("account") String account, @Param("password") String password);
+	public void addAdmin(@Param("account") String account, @Param("password") String password);
+	public void addTeacher(@Param("account") String account, @Param("password") String password);
 }

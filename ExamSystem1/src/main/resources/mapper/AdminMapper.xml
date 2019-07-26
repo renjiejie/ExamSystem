@@ -5,13 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.neuedu.demo.dao.AdminMapper">
 
-	<select id="login" resultMap="admin">
-		SELECT admin_username
-		FROM admin_table
-		WHERE admin_username = #{id} AND admin_password = #{password} 
+	<select id="addStudent">
+		insert into user_table values(#{account},#{password},"学生")
+		insert into student_table (user_account) values(#{account})
 	</select>
-	<resultMap type="Admin" id="admin">
-		<id column="admin_username" property="username"/>
-	</resultMap>
+	
 	
 </mapper>

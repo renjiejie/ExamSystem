@@ -23,13 +23,14 @@ public class UserController {
 		if(a != null) {
 			String permission = a.getPermission();
 			if(permission.equals("学生")) {
-				return "/blankStudentPage.html";
+				return "../blankStudentPage.html";
 			} else if(permission.equals("老师")) {
-				return "/blankTeacherPage.html";
+				return "../blankTeacherPage.html";
 			} else if(permission.equals("管理员")){
-				return "/admin.html";
+				return "../admin.html";
 			}
 		}
-		return "/login1.html";
+		return "../login1.html";
 	}
+	
 }

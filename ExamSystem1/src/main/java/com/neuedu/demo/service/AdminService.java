@@ -6,5 +6,5 @@ import com.neuedu.demo.domain.Admin;
 
 public interface AdminService {
 
-	public Admin login(String id, String password);
+	public void addUser(String account,String password,String permission);
 }

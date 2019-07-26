@@ -15,12 +15,9 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@GetMapping("/login")
-	public String login(String username, String password) {
-		Admin a = adminService.login(username, password);
-		if(a != null) {
-			return "/success.html";
-		}
-		return "/login.html";
+	@GetMapping("/addUser")
+	public void addUser(String account, String password,String permission) {
+		System.out.println("aaaaa");
+		adminService.addUser(account, password, permission);
 	}
 }
