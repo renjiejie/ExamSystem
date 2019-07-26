@@ -34,21 +34,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<delete id="deleteStudent">
-		DELETE FROM TABLE student_table
-		WHERE user_account=#{account}
-		DELETE FROM TABLE user_table
+		DELETE FROM student_table 
+		WHERE user_account=#{account};
+		DELETE FROM user_table
 		WHERE user_account=#{account}
 	</delete>
 	
 	<delete id="deleteTeacher">
-		DELETE FROM TABLE teacher_table
-		WHERE user_account=#{account}
-		DELETE FROM TABLE user_table
+		DELETE FROM teacher_table
+		WHERE user_account=#{account};
+		DELETE FROM user_table
 		WHERE user_account=#{account}
 	</delete>
 	
 	<delete id="deleteAdmin">
-		DELETE FROM TABLE user_table
+		DELETE FROM user_table
 		WHERE user_account=#{account}
 	</delete>
 	

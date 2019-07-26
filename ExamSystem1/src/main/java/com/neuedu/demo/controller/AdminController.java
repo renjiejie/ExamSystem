@@ -39,7 +39,7 @@ public class AdminController {
 		}
 	}
 	
-	@RequestMapping(value="/delete/{account}/{permission}",method=RequestMethod.POST)
+	@RequestMapping(value="/delete/{account}/{permission}")
 	public String deleteUser(@PathVariable("account")String account, @PathVariable("permission")String permission) {
 		System.out.println("123");
 		adminService.deleteUser(account,permission);

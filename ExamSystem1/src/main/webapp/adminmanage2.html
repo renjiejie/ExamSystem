@@ -363,7 +363,7 @@ solid
 					res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal'>";
 					res = res + "<span class='glyphicon glyphicon-pencil'></span></button>" + "</td>";
 					res = res + "<td><button type='button' class='btn btn-default' id='delete" + e.account + "'>";
-					res = res + "<span class='glyphicon glyphicon-remove' onclick='Delete(this.parentNode.parentNode)'></span></button>" + "</td></tr>";
+					res = res + "<span class='glyphicon glyphicon-remove'></span></button>" + "</td></tr>";
 					res = res + "</tr>"
 					$("#delete" + e.account).click(function(){
 						localtion.href="/exam/admin/delete/" + e.account + "/" + e.permission;
