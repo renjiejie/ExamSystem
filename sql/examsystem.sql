@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.27)
-# Date: 2019-07-26 09:54:28
+# Date: 2019-07-26 10:00:07
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -52,9 +52,9 @@ DROP TABLE IF EXISTS `exam_table`;
 CREATE TABLE `exam_table` (
   `exam_id` varchar(20) NOT NULL DEFAULT '',
   `exam_name` varchar(20) NOT NULL,
-  `exam_begintime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `exam_begintime` varchar(50) NOT NULL DEFAULT '',
   `exam_period` int(11) NOT NULL DEFAULT '0',
-  `exam_endtime` datetime DEFAULT NULL,
+  `exam_endtime` varchar(50) NOT NULL DEFAULT '',
   `course_id` varchar(20) NOT NULL DEFAULT '',
   `exam_discript` text,
   `paper_ids` text NOT NULL,
