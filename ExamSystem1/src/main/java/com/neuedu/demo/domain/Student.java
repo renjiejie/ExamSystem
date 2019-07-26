@@ -2,16 +2,15 @@ package com.neuedu.demo.domain;
 
 public class Student {
 	
-	private String id;
+	private User user;
 	private String name;
-	private String gender;
-	private int class_id;
-	
-	public String getId() {
-		return id;
+	private String className;
+	private int telephone;
+	public User getUser() {
+		return user;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getName() {
 		return name;
@@ -19,36 +18,29 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getGender() {
-		return gender;
+	public String getClassName() {
+		return className;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setClassName(String className) {
+		this.className = className;
 	}
-	public int getClass_id() {
-		return class_id;
+	public int getTelephone() {
+		return telephone;
 	}
-	public void setClass_id(int class_id) {
-		this.class_id = class_id;
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
 	}
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Student(String id, String name, String gender, int class_id) {
+	public Student(User user, String name, String className, int telephone) {
 		super();
-		this.id = id;
+		this.user = user;
 		this.name = name;
-		this.gender = gender;
-		this.class_id = class_id;
+		this.className = className;
+		this.telephone = telephone;
 	}
-	
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", gender=" + gender + ", class_id=" + class_id + "]";
-	}
-	
 	
 	
 }

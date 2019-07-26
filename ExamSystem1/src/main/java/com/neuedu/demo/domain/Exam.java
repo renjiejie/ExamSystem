@@ -1,38 +1,34 @@
 package com.neuedu.demo.domain;
 
+import java.util.Date;
+import java.util.List;
+
 public class Exam {
 	private String id;
-	private String name;
-	private String begintime;
-	private String endtime;
+	private Date begintime;
+	private Date endtime;
 	private String courseId;
 	private int period;
 	private String discript;
-	private String supervisor;
+	private Teacher supervisor;
 	private String place;
-	private String paperId;
+	private List<Paper> papers;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getBegintime() {
+	public Date getBegintime() {
 		return begintime;
 	}
-	public void setBegintime(String begintime) {
+	public void setBegintime(Date begintime) {
 		this.begintime = begintime;
 	}
-	public String getEndtime() {
+	public Date getEndtime() {
 		return endtime;
 	}
-	public void setEndtime(String endtime) {
+	public void setEndtime(Date endtime) {
 		this.endtime = endtime;
 	}
 	public String getCourseId() {
@@ -53,10 +49,10 @@ public class Exam {
 	public void setDiscript(String discript) {
 		this.discript = discript;
 	}
-	public String getSupervisor() {
+	public Teacher getSupervisor() {
 		return supervisor;
 	}
-	public void setSupervisor(String supervisor) {
+	public void setSupervisor(Teacher supervisor) {
 		this.supervisor = supervisor;
 	}
 	public String getPlace() {
@@ -65,29 +61,28 @@ public class Exam {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public String getPaperId() {
-		return paperId;
+	public List<Paper> getPapers() {
+		return papers;
 	}
-	public void setPaperId(String paperId) {
-		this.paperId = paperId;
+	public void setPapers(List<Paper> papers) {
+		this.papers = papers;
 	}
-	public Exam(String id, String name, String begintime, String endtime, String courseId, int period, String discript,
-			String supervisor, String place, String paperId) {
+	public Exam(String id, Date begintime, Date endtime, String courseId, int period, Teacher supervisor, String place,
+			List<Paper> papers) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.begintime = begintime;
 		this.endtime = endtime;
 		this.courseId = courseId;
 		this.period = period;
-		this.discript = discript;
 		this.supervisor = supervisor;
 		this.place = place;
-		this.paperId = paperId;
+		this.papers = papers;
 	}
 	public Exam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 }
