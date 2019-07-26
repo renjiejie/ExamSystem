@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.27)
-# Date: 2019-07-26 09:15:03
+# Date: 2019-07-26 09:54:28
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -9,20 +9,18 @@
 
 DROP TABLE IF EXISTS `appeal_table`;
 CREATE TABLE `appeal_table` (
-  `paper_id` varchar(20) NOT NULL DEFAULT '',
-  `student_account` varchar(20) NOT NULL DEFAULT '',
-  `course_id` varchar(20) NOT NULL DEFAULT '',
-  `appeal_content` text NOT NULL,
-  `teacher_account` varchar(20) NOT NULL DEFAULT '',
+  `appeal_id` int(11) NOT NULL AUTO_INCREMENT,
+  `paper_id` varchar(20) DEFAULT NULL,
+  `course_id` varchar(20) DEFAULT NULL,
+  `student_account` varchar(20) DEFAULT NULL,
+  `teacher_account` varchar(20) DEFAULT NULL,
+  `appeal_content` text,
   `teacher_reply` text,
-  PRIMARY KEY (`paper_id`),
-  KEY `appeal_course_id` (`course_id`),
-  KEY `appeal_teacher_account` (`teacher_account`),
-  KEY `appeal_student_account` (`student_account`),
-  CONSTRAINT `appeal_student_account` FOREIGN KEY (`student_account`) REFERENCES `student_table` (`user_account`),
-  CONSTRAINT `appeal_course_id` FOREIGN KEY (`course_id`) REFERENCES `course_table` (`course_id`),
-  CONSTRAINT `appeal_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper_table` (`paper_id`),
-  CONSTRAINT `appeal_teacher_account` FOREIGN KEY (`teacher_account`) REFERENCES `teacher_table` (`user_account`)
+  PRIMARY KEY (`appeal_id`),
+  KEY `paper_id` (`paper_id`),
+  KEY `course_id` (`course_id`),
+  KEY `student_account` (`student_account`),
+  KEY `teacher_account` (`teacher_account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
@@ -155,6 +153,30 @@ CREATE TABLE `teacher_table` (
 
 
 #
+# Structure for table "paper_table"
+#
+
+DROP TABLE IF EXISTS `paper_table`;
+CREATE TABLE `paper_table` (
+  `paper_id` varchar(20) NOT NULL DEFAULT '',
+  `course_id` varchar(20) NOT NULL DEFAULT '',
+  `paper_questions` text NOT NULL,
+  `producer_id` varchar(20) DEFAULT NULL,
+  `paper_passpoints` int(11) NOT NULL DEFAULT '0',
+  `paper_fullpoint` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`paper_id`),
+  KEY `course_id` (`course_id`),
+  KEY `producer_id` (`producer_id`),
+  CONSTRAINT `paper_table_ibfk_2` FOREIGN KEY (`producer_id`) REFERENCES `teacher_table` (`user_account`),
+  CONSTRAINT `paper_table_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course_table` (`course_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "paper_table"
+#
+
+
+#
 # Structure for table "teacher_course_table"
 #
 
@@ -195,51 +217,6 @@ CREATE TABLE `student_table` (
 
 
 #
-# Structure for table "student_course_table"
-#
-
-DROP TABLE IF EXISTS `student_course_table`;
-CREATE TABLE `student_course_table` (
-  `relation_id` int(20) NOT NULL AUTO_INCREMENT,
-  `user_account` varchar(20) DEFAULT NULL,
-  `course_id` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`relation_id`),
-  KEY `course_id` (`course_id`),
-  KEY `student_course_table_ibfk_1` (`user_account`),
-  CONSTRAINT `student_course_table_ibfk_1` FOREIGN KEY (`user_account`) REFERENCES `student_table` (`user_account`),
-  CONSTRAINT `student_course_table_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course_table` (`course_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Data for table "student_course_table"
-#
-
-
-#
-# Structure for table "paper_table"
-#
-
-DROP TABLE IF EXISTS `paper_table`;
-CREATE TABLE `paper_table` (
-  `paper_id` varchar(20) NOT NULL DEFAULT '',
-  `course_id` varchar(20) NOT NULL DEFAULT '',
-  `paper_questions` text NOT NULL,
-  `producer_id` varchar(20) DEFAULT NULL,
-  `paper_passpoints` int(11) NOT NULL DEFAULT '0',
-  `paper_fullpoint` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`paper_id`),
-  KEY `course_id` (`course_id`),
-  KEY `producer_id` (`producer_id`),
-  CONSTRAINT `paper_table_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course_table` (`course_id`),
-  CONSTRAINT `paper_table_ibfk_2` FOREIGN KEY (`producer_id`) REFERENCES `user_table` (`user_account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Data for table "paper_table"
-#
-
-
-#
 # Structure for table "answer_table"
 #
 
@@ -258,13 +235,34 @@ CREATE TABLE `answer_table` (
   KEY `student_account` (`student_account`),
   KEY `teacher_account` (`teacher_account`),
   KEY `paper_id` (`paper_id`),
+  CONSTRAINT `answer_table_ibfk_3` FOREIGN KEY (`teacher_account`) REFERENCES `student_table` (`user_account`),
   CONSTRAINT `answer_table_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exam_table` (`exam_id`) ON DELETE SET NULL,
-  CONSTRAINT `answer_table_ibfk_2` FOREIGN KEY (`student_account`) REFERENCES `user_table` (`user_account`) ON DELETE SET NULL,
-  CONSTRAINT `answer_table_ibfk_3` FOREIGN KEY (`teacher_account`) REFERENCES `user_table` (`user_account`),
+  CONSTRAINT `answer_table_ibfk_2` FOREIGN KEY (`student_account`) REFERENCES `student_table` (`user_account`) ON DELETE SET NULL,
   CONSTRAINT `paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper_table` (`paper_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
 # Data for table "answer_table"
+#
+
+
+#
+# Structure for table "student_course_table"
+#
+
+DROP TABLE IF EXISTS `student_course_table`;
+CREATE TABLE `student_course_table` (
+  `relation_id` int(20) NOT NULL AUTO_INCREMENT,
+  `user_account` varchar(20) DEFAULT NULL,
+  `course_id` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`relation_id`),
+  KEY `course_id` (`course_id`),
+  KEY `student_course_table_ibfk_1` (`user_account`),
+  CONSTRAINT `student_course_table_ibfk_1` FOREIGN KEY (`user_account`) REFERENCES `student_table` (`user_account`),
+  CONSTRAINT `student_course_table_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course_table` (`course_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "student_course_table"
 #
 
