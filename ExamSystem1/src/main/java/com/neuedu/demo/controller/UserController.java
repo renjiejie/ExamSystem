@@ -17,7 +17,9 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String login(String account, String password) {
+		System.out.print("aaaa");
 		User a = userService.login(account, password);
+		
 		if(a != null) {
 			String permission = a.getPermission();
 			if(permission.equals("学生")) {
@@ -25,7 +27,7 @@ public class UserController {
 			} else if(permission.equals("老师")) {
 				return "/blankTeacherPage.html";
 			} else if(permission.equals("管理员")){
-				return "/blankAdminPage.html";
+				return "/admin.html";
 			}
 		}
 		return "/login.html";
