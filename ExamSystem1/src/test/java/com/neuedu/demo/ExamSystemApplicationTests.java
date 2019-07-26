@@ -15,7 +15,7 @@ public class ExamSystemApplicationTests {
 	private UserController uc;
 	@Test
 	public void contextLoads() {
-		uc.login("xie", "123");
+		uc.login(null, "xie", "123");
 	}
 
 }
