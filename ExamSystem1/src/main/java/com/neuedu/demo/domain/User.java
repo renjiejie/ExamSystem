@@ -35,4 +35,11 @@ public class User {
 		this.account = account;
 		this.permission = permission;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [account=" + account + ", password=" + password + ", permission=" + permission + "]";
+	}
+	
+	
 }
