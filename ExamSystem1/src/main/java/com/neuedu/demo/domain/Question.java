@@ -9,7 +9,7 @@ public class Question {
 	private String answer;
 	private String use;
 	private String pic;
-	private String maker;
+	private Teacher maker;
 	
 	public Question() {
 		super();
@@ -72,10 +72,10 @@ public class Question {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-	public String getMaker() {
+	public Teacher getMaker() {
 		return maker;
 	}
-	public void setMaker(String maker) {
+	public void setMaker(Teacher maker) {
 		this.maker = maker;
 	}
 

@@ -1,40 +1,34 @@
 package com.neuedu.demo.domain;
 
+import java.util.Date;
+import java.util.List;
+
 public class Exam {
 	private String id;
-	private String name;
-	private String begintime;
-	private int period;
-	private String endtime;
+	private Date begintime;
+	private Date endtime;
 	private String courseId;
+	private int period;
 	private String discript;
-	private String paperId;
+	private Teacher supervisor;
 	private String place;
-	private String supervisor;
-	
-	
+	private List<Paper> papers;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getBegintime() {
+	public Date getBegintime() {
 		return begintime;
 	}
-	public void setBegintime(String begintime) {
+	public void setBegintime(Date begintime) {
 		this.begintime = begintime;
 	}
-	public String getEndtime() {
+	public Date getEndtime() {
 		return endtime;
 	}
-	public void setEndtime(String endtime) {
+	public void setEndtime(Date endtime) {
 		this.endtime = endtime;
 	}
 	public String getCourseId() {
@@ -55,10 +49,10 @@ public class Exam {
 	public void setDiscript(String discript) {
 		this.discript = discript;
 	}
-	public String getSupervisor() {
+	public Teacher getSupervisor() {
 		return supervisor;
 	}
-	public void setSupervisor(String supervisor) {
+	public void setSupervisor(Teacher supervisor) {
 		this.supervisor = supervisor;
 	}
 	public String getPlace() {
@@ -67,25 +61,23 @@ public class Exam {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public String getPaperId() {
-		return paperId;
+	public List<Paper> getPapers() {
+		return papers;
 	}
-	public void setPaperId(String paperId) {
-		this.paperId = paperId;
+	public void setPapers(List<Paper> papers) {
+		this.papers = papers;
 	}
-	public Exam(String id, String name, String begintime, int period, String endtime, String courseId, String discript,
-			String paperId, String place, String supervisor) {
+	public Exam(String id, Date begintime, Date endtime, String courseId, int period, Teacher supervisor, String place,
+			List<Paper> papers) {
 		super();
 		this.id = id;
-		this.name = name;
 		this.begintime = begintime;
-		this.period = period;
 		this.endtime = endtime;
 		this.courseId = courseId;
-		this.discript = discript;
-		this.paperId = paperId;
-		this.place = place;
+		this.period = period;
 		this.supervisor = supervisor;
+		this.place = place;
+		this.papers = papers;
 	}
 	public Exam() {
 		super();
