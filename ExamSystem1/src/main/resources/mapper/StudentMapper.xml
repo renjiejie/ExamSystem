@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.neuedu.demo.dao.StudentMapper">
 
-	<select id="joinExam" resu>
- 		select exam_id id,exam_name name,exam_begintime begintime,exam_period period,
- 		exam_endtime endtime,exam_discript discript,paper_ids paperId,exam_place place,
- 		exam_supervisor supervisor 
- 		from exam_table 
-	</select>>
+<!-- 	<select id="joinExam" resu> -->
+<!--  		select exam_id id,exam_name name,exam_begintime begintime,exam_period period, -->
+<!--  		exam_endtime endtime,exam_discript discript,paper_ids paperId,exam_place place, -->
+<!--  		exam_supervisor supervisor  -->
+<!--  		from exam_table  -->
+<!-- 	</select>> -->
 	
 </mapper>
