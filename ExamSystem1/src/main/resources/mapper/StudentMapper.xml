@@ -4,37 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neuedu.demo.dao.StudentMapper">
 
-	 	<select id="getPaperId" parameterType="String" resultType="String">
-			select paper_id 
-			from exam_table
-			where exam_id = #{examId}
-		</select>
-		  <select id="getPaper" parameterType="String" resultMap="paper">
-			select * 
-			from paper_table
-			where paper_id = #{id}
-		</select>
-		<resultMap type="Paper" id="paper">
-			<id column="paper_id" property="id"/>
-			<result column="course_id" property="course"/>
-			<result column="paper_passpoint" property="passPoint"/>
-			<result column="papper_fullpoint" property="fullPoint"/>
-		</resultMap>
- 	<select id="joinExam" resultMap="exam">
- 		select * 
+
+<!-- 	<select id="joinExam" resu>
+ 		select exam_id id,exam_name name,exam_begintime begintime,exam_period period,
+ 		exam_endtime endtime,exam_discript discript,paper_ids paperId,exam_place place,
+ 		exam_supervisor supervisor 
  		from exam_table 
-	</select>
-	<resultMap type="Exam" id="exam">
-		<id column="exam_id" property="id"/>
-		<result column="exam_begintime" property="begintime"/>
-		<result column="exam_endtime" property="endtime"/>
-		<result column="exam_period" property="period"/>
-		<result column="paper_ids" property="ids"/>
-		<result column="exam_discript" property="discript"/>
-		<result column="exam_place" property="place"/>
-		<result column="course_id" property="courseId"/>
-		<result column="exam_supervisor" property="supervisor"/>
-		
-	
-	</resultMap>  
+	</select>> -->
 </mapper>
