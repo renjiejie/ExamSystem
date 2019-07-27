@@ -9,7 +9,7 @@ public class Question {
 	private String answer;
 	private String use;
 	private String pic;
-	private Teacher maker;
+	private String maker;
 	
 	public Question() {
 		super();
@@ -72,11 +72,16 @@ public class Question {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-	public Teacher getMaker() {
+	public String getMaker() {
 		return maker;
 	}
-	public void setMaker(Teacher maker) {
+	public void setMaker(String maker) {
 		this.maker = maker;
+	}
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", point=" + point + ", course=" + course + ", type=" + type + ", stem=" + stem
+				+ ", answer=" + answer + ", use=" + use + ", pic=" + pic + ", maker=" + maker + "]";
 	}
 
 }

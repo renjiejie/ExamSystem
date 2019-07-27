@@ -3,6 +3,7 @@ package com.neuedu.demo.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Student;
 
 @Mapper
