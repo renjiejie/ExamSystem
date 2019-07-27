@@ -20,9 +20,8 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String login(HttpServletRequest req,String account, String password) {
-		System.out.println("aaaa");
+		System.out.println(account + "\n" + password);
 		User a = userService.login(account, password);
-		
 		if(a != null) {
 			String permission = a.getPermission();
 			HttpSession session = req.getSession();

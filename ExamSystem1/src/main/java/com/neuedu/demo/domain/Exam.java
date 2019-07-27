@@ -10,9 +10,10 @@ public class Exam {
 	private String courseId;
 	private int period;
 	private String discript;
-	private Teacher supervisor;
+	private String supervisor;
 	private String place;
-	private List<Paper> papers;
+	private Paper papers;
+	private String ids;
 	public String getId() {
 		return id;
 	}
@@ -49,10 +50,10 @@ public class Exam {
 	public void setDiscript(String discript) {
 		this.discript = discript;
 	}
-	public Teacher getSupervisor() {
+	public String getSupervisor() {
 		return supervisor;
 	}
-	public void setSupervisor(Teacher supervisor) {
+	public void setSupervisor(String supervisor) {
 		this.supervisor = supervisor;
 	}
 	public String getPlace() {
@@ -61,28 +62,37 @@ public class Exam {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public List<Paper> getPapers() {
+	public Paper getPapers() {
 		return papers;
 	}
-	public void setPapers(List<Paper> papers) {
+	public void setPapers(Paper papers) {
 		this.papers = papers;
 	}
-	public Exam(String id, String begintime, String endtime, String courseId, int period, Teacher supervisor, String place,
-			List<Paper> papers) {
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+	public Exam(String id, String begintime, String endtime, String courseId, int period, String discript,
+			String supervisor, String place, Paper papers, String ids) {
 		super();
 		this.id = id;
 		this.begintime = begintime;
 		this.endtime = endtime;
 		this.courseId = courseId;
 		this.period = period;
+		this.discript = discript;
 		this.supervisor = supervisor;
 		this.place = place;
 		this.papers = papers;
+		this.ids = ids;
 	}
 	public Exam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 }
