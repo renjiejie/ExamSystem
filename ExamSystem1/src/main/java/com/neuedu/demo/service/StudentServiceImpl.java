@@ -2,6 +2,7 @@ package com.neuedu.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,14 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public  List<Exam> joinExam() {
 		// TODO Auto-generated method stub
-		List<Exam> exams = new ArrayList<Exam>();
+		List<Exam> exams = mapper.joinExam();
+		for(Exam exam:exams) {
+			Random r = new Random(1);
+			int paperLenth = getPaperId(exam.getId()).size();
+			int ran = r.nextInt(paperLenth);
+			Paper paper = getPaperId(exam.getId()).get(ran);
+			exam.setPapers(paper);
+		}
 		return exams;
 	}
 
