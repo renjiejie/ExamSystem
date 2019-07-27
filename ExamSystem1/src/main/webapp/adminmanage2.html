@@ -227,7 +227,6 @@ solid
 					<!-- 搜索框 -->
 					
 					<!-- 添加模态框 -->
-					<form action="/exam/admin/addUser">
 						<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
 							aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-sm">
@@ -244,7 +243,7 @@ solid
 													class="glyphicon glyphicon-user"></span>
 												</span> <input type="text" class="form-control"
 													placeholder="Username" aria-describedby="basic-addon1"
-													id="username" name="account">
+													id="account" name="account">
 											</div>
 										</div>
 										<div class="form-group">
@@ -253,14 +252,14 @@ solid
 													class="glyphicon glyphicon-lock"></span>
 												</span> <input type="password" class="form-control"
 													placeholder="Password" aria-describedby="basic-addon1"
-													id="password" name="password">
+													id="pw" name="pw">
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon"> <span
 													class="glyphicon glyphicon-list-alt"></span>
-												</span> <select class="form-control" name="permission">
+												</span> <select class="form-control" name="permission" id="permission">
 													<option>学生</option>
 													<option>教师</option>
 													<option>管理员</option>
@@ -271,7 +270,7 @@ solid
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default"
 											data-dismiss="modal">关闭</button>
-										<input type="submit" class="btn btn-primary"></input>
+										<button type="button" class="btn btn-primary" id="addButton">提交</button>
 									</div>
 								</div>
 								<!-- /.modal-content -->
@@ -279,7 +278,6 @@ solid
 							<!-- /.modal -->
 
 						</div>
-					</form>
 					<!-- 添加模态框 -->
 					
 					<!-- 列表 -->
@@ -339,8 +337,28 @@ solid
 	</script>
 
 	<script>
+		$("#addButton").click(function(){
+			var account = $("#account").val();
+			var password = $("#pw").val();
+			var permission = $("#permission").val();
+			var addURL = "/exam/admin/addUser/" + account + "/" + password + "/" + permission;
+			$.ajax({
+				url:addURL,
+				type:"GET",
+				dataType:"text",
+				contentType:"application/json;charset=UTF-8",
+				success:function(str){
+					alert(str);
+				},
+				error:function(){
+					
+				}
+			});
+		});
+		
 		$("#searchButton").click(function() {
 			var account = $("#searchAccount").val();
+			document.getElementById("searchAccount").value = "";
 			var queryURL;
 			if(account==null || account=="") {
 				queryURL = "/exam/admin/query/All";
@@ -352,33 +370,13 @@ solid
 				type:"GET",
 				dataType:"json",
 				success:function(str){
-				//str-----json-----SchoolClass
-				//清空id=first的所有兄弟节点
-				$("#first").siblings().remove();
-				var res="";
-				$(str).each(function(index,e){
-					res = res + "<tr>";
-					res = res + "<td>"+e.account+"</td>";
-					res = res + "<td>"+e.permission+"</td>";
-					res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal'>";
-					res = res + "<span class='glyphicon glyphicon-pencil'></span></button>" + "</td>";
-					res = res + "<td><button type='button' class='btn btn-default' id='delete" + e.account + "'>";
-					res = res + "<span class='glyphicon glyphicon-remove'></span></button>" + "</td></tr>";
-					res = res + "</tr>"
-					$("#delete" + e.account).click(function(){
-						localtion.href="/exam/admin/delete/" + e.account + "/" + e.permission;
-					});
-					
-				});
-				var app = $(res);
-				$("#first").after(app);
+					auto_list(str);
 				},
 				error:function(){
 				}
 			});
 		});
-	</script>
-	<script>
+		
 	$(document).ready(function(){
 		var queryURL = "/exam/admin/query/All";
 		$.ajax({
@@ -386,7 +384,14 @@ solid
 			type:"GET",
 			dataType:"json",
 			success:function(str){
-			//str-----json-----SchoolClass
+				auto_list(str);
+			},
+			error:function(){
+			}
+		});
+		});
+	
+		function auto_list(str) {
 			//清空id=first的所有兄弟节点
 			$("#first").siblings().remove();
 			var res="";
@@ -403,20 +408,9 @@ solid
 					localtion.href="/exam/admin/delete/" + e.account + "/" + e.permission;
 				});
 			});
-			
 			var app = $(res);
 			$("#first").after(app);
-			},
-			error:function(){
-			}
-		});
-		});
-	</script>
-	<script type="text/javascript">
-	function Delete(theRow)
-	{
-	   document.getElementById("tab").removeChild(theRow);
-	}
-	</script>
+		}
+	</script> 
 </body>
 </html>

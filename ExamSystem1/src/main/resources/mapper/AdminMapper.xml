@@ -6,17 +6,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.neuedu.demo.dao.AdminMapper">
 
 	<insert id="addStudent">
- 		insert into user_table values(#{account},#{password},"学生")
-		insert into student_table(user_account) values(#{account})
+ 		INSERT INTO user_table 
+ 		VALUES(#{account},#{password},"学生");
+		INSERT INTO student_table(user_account) 
+		VALUES(#{account})
 	</insert>
 	
 	<insert id="addTeacher">
- 		insert into user_table values(#{account},#{password},"教师")
-		insert into teacher_table(user_account) values(#{account})
+ 		INSERT INTO user_table 
+ 		VALUES(#{account},#{password},"教师");
+		INSERT INTO teacher_table(user_account) 
+		VALUES(#{account})
 	</insert>
 	
 	<insert id="addAdmin">
- 		insert into user_table values(#{account},#{password},"管理员")
+ 		INSERT INTO user_table 
+ 		VALUES(#{account},#{password},"管理员")
 	</insert>
 	
 	<select id="query" parameterType="String" resultMap="user">

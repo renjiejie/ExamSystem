@@ -22,10 +22,12 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@GetMapping("/addUser")
-	public String addUser(String account, String password,String permission) {
+	@RequestMapping(value="/addUser/{account}/{password}/{permission}",method=RequestMethod.GET)
+	@ResponseBody
+	public String addUser(@PathVariable("account")String account, @PathVariable("password")String password,@PathVariable("permission")String permission) {
+		System.out.println("123");
 		adminService.addUser(account, password, permission);
-		return "../adminmanage2.html";
+		return "success";
 	}
 	
 	@RequestMapping(value="/query/{account}",method=RequestMethod.GET)
