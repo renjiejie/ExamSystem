@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Exam {
 	private String id;
-	private Date begintime;
-	private Date endtime;
+	private String begintime;
+	private String endtime;
 	private String courseId;
 	private int period;
 	private String discript;
@@ -19,16 +19,16 @@ public class Exam {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getBegintime() {
+	public String getBegintime() {
 		return begintime;
 	}
-	public void setBegintime(Date begintime) {
+	public void setBegintime(String begintime) {
 		this.begintime = begintime;
 	}
-	public Date getEndtime() {
+	public String getEndtime() {
 		return endtime;
 	}
-	public void setEndtime(Date endtime) {
+	public void setEndtime(String endtime) {
 		this.endtime = endtime;
 	}
 	public String getCourseId() {
@@ -67,7 +67,7 @@ public class Exam {
 	public void setPapers(List<Paper> papers) {
 		this.papers = papers;
 	}
-	public Exam(String id, Date begintime, Date endtime, String courseId, int period, Teacher supervisor, String place,
+	public Exam(String id, String begintime, String endtime, String courseId, int period, Teacher supervisor, String place,
 			List<Paper> papers) {
 		super();
 		this.id = id;
