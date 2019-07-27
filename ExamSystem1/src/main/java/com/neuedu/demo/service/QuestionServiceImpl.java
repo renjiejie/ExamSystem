@@ -19,9 +19,16 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 
 	@Override
-	public List<Question> query(String questionId) {
-		return mapper.query(questionId);
+	public List<Question> query(String questionId,String courseId) {
+		return mapper.query(questionId,courseId);
 	}
+
+	@Override
+	public void deleteQuestion(String questionId) {
+		mapper.deleteQuestion(questionId);
+	}
+	
+	
 	
 	
 	

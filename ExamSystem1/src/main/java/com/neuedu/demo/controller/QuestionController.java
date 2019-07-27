@@ -24,16 +24,21 @@ public class QuestionController {
 		return "../addQuestions.html";
 	}
 	
-	@RequestMapping(value = "/query/{questionId}",method=RequestMethod.GET)
+	@RequestMapping(value = "/query/{questionId}/{courseId}",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Question> query(@PathVariable("questionId") String questionId){
+	public List<Question> query(@PathVariable("questionId") String questionId,@PathVariable("courseId") String courseId){
 		if(!questionId.equals("All")){
-			return questionService.query(questionId);
+			return questionService.query(questionId,courseId);
 		}
 		else{
-			return questionService.query(null);
+			return questionService.query(null,courseId);
 		}
-		
 	}
 
+	@RequestMapping(value="/delete/{questionId}")
+	public String deleteQuestion(@PathVariable("questionId")String questionId){
+		System.out.println("delete"+questionId);
+		questionService.deleteQuestion(questionId);
+		return "redirect:../../questionManage.html";
+	}
 }

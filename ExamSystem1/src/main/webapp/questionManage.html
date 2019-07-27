@@ -481,23 +481,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 											<tr id="first">
 												
 											</tr>
-											<tr>
-												<td>sdfsf</td>
-												<td>Lorem</td>
-												<td>ipsum</td>
-												<td>sdfsf</td>
-												<td>Lorem</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>	
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
 										</tbody>
 									</table>
 								</form>
@@ -537,9 +520,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				var courseId = $("#course").val();
 				var queryURL;
 				if(questionId==null || questionId=="") {
-					queryURL = "/exam/question/query/All";
+					queryURL = "/exam/question/query/All/"+courseId;
 				} else {
-					queryURL = "/exam/question/query/"+ questionId; 
+					queryURL = "/exam/question/query/"+ questionId+"/"+courseId; 
 				}
 				$.ajax({
 					url:queryURL,
@@ -569,6 +552,93 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					});
 					var app = $(res);
 					$("#first").after(app);
+					$(str).each(function(index,e){
+						$(document).on('click','#delete'+e.id,function(){
+							window.location.href="/exam/question/delete/"+e.id;
+						})
+						});
+					},
+					error:function(){
+					}
+				}); 
+			});
+			
+			$("#course").change(function() {
+				var questionId = $("#question-name").val();
+				var courseId = $("#course").val();
+				var queryURL = "/exam/question/query/All/"+courseId;;
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$(str).each(function(index,e){
+						res = res + "<tr>";
+						res = res + "<td>"+e.id+"</td>";
+						res = res + "<td>"+e.type+"</td>";
+						res = res + "<td>"+e.stem+"</td>";
+						res = res + "<td>"+e.point+"</td>";
+						res = res + "<td>"+e.maker+"</td>";
+						res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal'>"
+								  + "<span class='glyphicon glyphicon-pencil'></span></button></td>";
+						res = res + "<td><button type='button' class='btn btn-default' id = 'delete"+e.id+"'>"+
+									"<span class='glyphicon glyphicon-remove'></span></button></td>"
+						res = res + "</tr>"
+						
+						
+					});
+					var app = $(res);
+					$("#first").after(app);
+					$(str).each(function(index,e){
+						$(document).on('click','#delete'+e.id,function(){
+							window.location.href="/exam/question/delete/"+e.id;
+						})
+						});
+					},
+					error:function(){
+					}
+				}); 
+			});
+			
+			$(document).ready(function() {
+				var questionId = $("#question-name").val();
+				var courseId = $("#course").val();
+				var queryURL = "/exam/question/query/All/"+courseId;;
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$(str).each(function(index,e){
+						res = res + "<tr>";
+						res = res + "<td>"+e.id+"</td>";
+						res = res + "<td>"+e.type+"</td>";
+						res = res + "<td>"+e.stem+"</td>";
+						res = res + "<td>"+e.point+"</td>";
+						res = res + "<td>"+e.maker+"</td>";
+						res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal'>"
+								  + "<span class='glyphicon glyphicon-pencil'></span></button></td>";
+						res = res + "<td><button type='button' class='btn btn-default' id = 'delete"+e.id+"'>"+
+									"<span class='glyphicon glyphicon-remove'></span></button></td>"
+						res = res + "</tr>"
+						
+						
+					});
+					var app = $(res);
+					$("#first").after(app);
+					$(str).each(function(index,e){
+						$(document).on('click','#delete'+e.id,function(){
+							window.location.href="/exam/question/delete/"+e.id;
+						})
+						});
 					},
 					error:function(){
 					}
