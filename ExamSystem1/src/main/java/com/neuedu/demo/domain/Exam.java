@@ -4,13 +4,15 @@ public class Exam {
 	private String id;
 	private String name;
 	private String begintime;
+	private int period;
 	private String endtime;
 	private String courseId;
-	private int period;
 	private String discript;
-	private String supervisor;
-	private String place;
 	private String paperId;
+	private String place;
+	private String supervisor;
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -71,23 +73,24 @@ public class Exam {
 	public void setPaperId(String paperId) {
 		this.paperId = paperId;
 	}
-	public Exam(String id, String name, String begintime, String endtime, String courseId, int period, String discript,
-			String supervisor, String place, String paperId) {
+	public Exam(String id, String name, String begintime, int period, String endtime, String courseId, String discript,
+			String paperId, String place, String supervisor) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.begintime = begintime;
+		this.period = period;
 		this.endtime = endtime;
 		this.courseId = courseId;
-		this.period = period;
 		this.discript = discript;
-		this.supervisor = supervisor;
-		this.place = place;
 		this.paperId = paperId;
+		this.place = place;
+		this.supervisor = supervisor;
 	}
 	public Exam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 }

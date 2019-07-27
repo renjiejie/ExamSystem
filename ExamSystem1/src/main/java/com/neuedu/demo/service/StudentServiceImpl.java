@@ -12,9 +12,9 @@ public class StudentServiceImpl implements StudentService{
 	@Autowired
 	private StudentMapper mapper;
 	@Override
-	public Student login(String id, String password) {
-		System.out.println("Service");
-		return mapper.login(id, password);
+	public void joinExam() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

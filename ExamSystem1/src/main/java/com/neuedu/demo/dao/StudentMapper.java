@@ -8,5 +8,5 @@ import com.neuedu.demo.domain.Student;
 @Mapper
 public interface StudentMapper {
 
-	public Student login(@Param("id") String id, @Param("password") String password);
+	public Exam joinExam(@Param("id") String id, @Param("password") String password);
 }

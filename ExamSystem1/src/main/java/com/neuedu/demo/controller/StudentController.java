@@ -15,13 +15,6 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
-	@GetMapping("/login")
-	public String login(String username, String password) {
-		System.out.println("Controller");
-		Student s = studentService.login(username, password);
-		if(s != null) {
-			return "/success.html";
-		}
-		return "/login.html";
-	}
+	
+	
 }
