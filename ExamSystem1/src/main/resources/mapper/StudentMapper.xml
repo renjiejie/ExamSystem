@@ -3,13 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.neuedu.demo.dao.StudentMapper">
-
-	<select id="joinExam" resu>
- 		select exam_id id,exam_name name,exam_begintime begintime,exam_period period,
- 		exam_endtime endtime,exam_discript discript,paper_ids paperId,exam_place place,
- 		exam_supervisor supervisor 
+<!-- <mapper namespace="com.neuedu.demo.dao.StudentMapper">
+	<select id="joinExam" resultMap="exam">
+ 		select exam_id, exam_name, exam_begintime, exam_period,
+ 		exam_endtime , exam_discript ,paper_ids ,exam_place ,
+ 		exam_supervisor 
  		from exam_table 
 	</select>>
-	
-</mapper>
+	<resultMap type="Exam" id="exam">
+		
+		
+		
+	</resultMap>
+</mapper> -->
