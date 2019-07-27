@@ -7,12 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addStudent">
  		insert into user_table values(#{account},#{password},"学生")
-		insert into student_table(user_account) values(#{account}) 
+		insert into student_table(user_account) values(#{account})
 	</insert>
 	
 	<insert id="addTeacher">
  		insert into user_table values(#{account},#{password},"教师")
-		insert into teacher_table(user_account) values(#{account}) 
+		insert into teacher_table(user_account) values(#{account})
 	</insert>
 	
 	<insert id="addAdmin">
