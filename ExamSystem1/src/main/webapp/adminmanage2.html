@@ -164,7 +164,7 @@ solid
 												class="glyphicon glyphicon-user"></span>
 											</span> <input type="text" class="form-control"
 												placeholder="Username" aria-describedby="basic-addon1"
-												id="username" name="username">
+												id="changeAccount" name="username" disabled>
 										</div>
 									</div>
 									<div class="form-group">
@@ -192,7 +192,7 @@ solid
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">关闭</button>
-								<button type="button" class="btn btn-primary">提交更改</button>
+								<button type="button" class="btn btn-primary">提交</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->
@@ -200,6 +200,7 @@ solid
 					<!-- /.modal -->
 				</div>
 				<!-- 修改模态框 -->
+				
 				<div class="blank-page widget-shadow scroll" id="style-2 div1">
 				
 				<!-- 搜索框 -->
@@ -280,6 +281,32 @@ solid
 						</div>
 					<!-- 添加模态框 -->
 					
+					<!-- 删除模态框 -->
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">删除用户</h4>
+							</div>
+							<div class="modal-body">
+								<label class="control-label">确认删除:</label>
+								<p id="deleteAccount"></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary" id="deleteButton">提交</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
+				</div>
+				<!-- 删除模态框 -->
+					
 					<!-- 列表 -->
 					<div style="position: relative; height: 600px; overflow-y: auto">
 						<table class="table table-striped" id="tab">
@@ -337,6 +364,50 @@ solid
 	</script>
 
 	<script>
+	
+		$("#changeModal").on("show.bs.modal",function(event) {
+			var button = $(event.relatedTarget);
+			var account = button.data("whatever");
+			document.getElementById("changeAccount").value = account;
+		});
+		
+		$("#deleteModal").on("show.bs.modal",function(event) {
+			var button = $(event.relatedTarget);
+			var account = button.data("whatever");
+			$("#deleteAccount").html(account);
+		});
+		
+		$("#deleteButton").click(function() {
+			var account = $("#deleteAccount").text();
+			var deleteURL = "/exam/admin/delete/" + account;
+			$.ajax({
+				url:deleteURL,
+				type:"GET",
+				dataType:"text",
+				contentType:"application/json;charset=UTF-8",
+				success:function(str){
+					alert(str);
+					$("#deleteModal").modal("hide");
+					
+					var queryURL = "/exam/admin/query/All";
+					$.ajax({
+						url:queryURL,
+						type:"GET",
+						dataType:"json",
+						success:function(str){
+							auto_list(str);
+						},
+						error:function(){
+						}
+					});
+				},
+				error:function(){
+					
+				}
+			});
+			
+		});
+		
 		$("#addButton").click(function(){
 			var account = $("#account").val();
 			var password = $("#pw").val();
@@ -399,14 +470,11 @@ solid
 				res = res + "<tr>";
 				res = res + "<td>"+e.account+"</td>";
 				res = res + "<td>"+e.permission+"</td>";
-				res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal'>";
+				res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal' data-whatever='" + e.account + "'>";
 				res = res + "<span class='glyphicon glyphicon-pencil'></span></button>" + "</td>";
-				res = res + "<td><button type='button' class='btn btn-default' id='delete" + e.account + "'>";
+				res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#deleteModal' data-whatever='" + e.account + "'>";
 				res = res + "<span class='glyphicon glyphicon-remove'></span></button>" + "</td></tr>";
 				res = res + "</tr>"
-				$("#delete" + e.account).click(function(){
-					localtion.href="/exam/admin/delete/" + e.account + "/" + e.permission;
-				});
 			});
 			var app = $(res);
 			$("#first").after(app);

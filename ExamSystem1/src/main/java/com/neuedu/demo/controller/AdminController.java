@@ -41,10 +41,18 @@ public class AdminController {
 		}
 	}
 	
-	@RequestMapping(value="/delete/{account}/{permission}")
-	public String deleteUser(@PathVariable("account")String account, @PathVariable("permission")String permission) {
-		System.out.println("123");
+	@RequestMapping(value="/delete/{account}")
+	@ResponseBody
+	public String deleteUser(@PathVariable("account")String account) {
+		System.out.println("delete");
+		List<User> users = adminService.query(account);
+		String permission;
+		if(users.isEmpty() || users.size() != 1) {
+			return "fail";
+		} else {
+			permission = users.get(0).getPermission();
+		}
 		adminService.deleteUser(account,permission);
-		return "../adminmanage2.html";
+		return "success";
 	}
 }
