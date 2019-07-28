@@ -388,18 +388,8 @@ solid
 				success:function(str){
 					alert(str);
 					$("#deleteModal").modal("hide");
-					
-					var queryURL = "/exam/admin/query/All";
-					$.ajax({
-						url:queryURL,
-						type:"GET",
-						dataType:"json",
-						success:function(str){
-							auto_list(str);
-						},
-						error:function(){
-						}
-					});
+					queryAll();
+			
 				},
 				error:function(){
 					
@@ -420,6 +410,9 @@ solid
 				contentType:"application/json;charset=UTF-8",
 				success:function(str){
 					alert(str);
+					$("#addModal").modal("hide");
+					queryAll();
+					
 				},
 				error:function(){
 					
@@ -478,6 +471,20 @@ solid
 			});
 			var app = $(res);
 			$("#first").after(app);
+		}
+		
+		function queryAll(){
+			var queryURL = "/exam/admin/query/All";
+			$.ajax({
+				url:queryURL,
+				type:"GET",
+				dataType:"json",
+				success:function(str){
+					auto_list(str);
+				},
+				error:function(){
+				}
+			});
 		}
 	</script> 
 </body>
