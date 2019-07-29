@@ -154,25 +154,21 @@
 				<div class="main-page">
 					<h3 class="title1">生成试卷</h3>
 					<form>
-						<div class="dropdown" style="margin:0 auto;">
-							<div class="form-group">
+						<div class="form-group">
 							<label>课程：</label>
-							<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-							 aria-haspopup="true" aria-expanded="true">
-								课程
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a href="#">语文</a></li>
-								<li><a href="#">数学</a></li>
-								<li><a href="#">英语</a></li>
-								<li><a href="#">物理</a></li>
-								<li><a href="#">化学</a></li>
-							</ul>
+							<div class="input-group">
+								<span class="input-group-addon"> <span class="glyphicon glyphicon-book"></span>
+								</span> <select class="form-control" name="course" style="width: 100px;">
+									<option>数学</option>
+									<option>语文</option>
+									<option>英语</option>
+									<option>物理</option>
+									<option>化学</option>
+								</select>
 							</div>
 						</div>
 						<div class="inbox-page">
-							<h4>试题</h4>
+							<h4 id="first">试题</h4>
 							<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
 								<div class="mail "> <input type="checkbox" class="checkbox"> </div>
 								<div class="mail mail-name">
