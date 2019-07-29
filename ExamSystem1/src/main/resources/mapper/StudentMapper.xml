@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.neuedu.demo.dao.StudentMapper">
 
 	 	<select id="getPaperId" parameterType="String" resultType="String">
-			select paper_id 
+			select paper_ids
 			from exam_table
 			where exam_id = #{examId}
 		</select>
