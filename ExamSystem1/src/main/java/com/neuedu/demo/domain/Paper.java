@@ -9,13 +9,21 @@ public class Paper {
 	private Teacher producer;
 	private int passPoint;
 	private int fullPoint;
-	public Paper(String id, String course, List<Question> questions, int passPoint, int fullPoint) {
+	private String questionStr;
+	public Paper(String id, String course, List<Question> questions, int passPoint, int fullPoint,String questionStr) {
 		super();
 		this.id = id;
 		this.course = course;
 		this.questions = questions;
 		this.passPoint = passPoint;
 		this.fullPoint = fullPoint;
+		this.questionStr = questionStr;
+	}
+	public String getQuestionStr() {
+		return questionStr;
+	}
+	public void setQuestionStr(String questionStr) {
+		this.questionStr = questionStr;
 	}
 	public Paper() {
 		super();
