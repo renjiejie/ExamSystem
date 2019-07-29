@@ -55,4 +55,16 @@ public class AdminController {
 		adminService.deleteUser(account,permission);
 		return "success";
 	}
+	
+	@RequestMapping(value="/update/{account}/{password}")
+	@ResponseBody
+	public String updateUserPassword(@PathVariable("account")String account, @PathVariable("password")String password) {
+		List<User> users = adminService.query(account);
+		if(users.isEmpty() || users.size()!=1) {
+			return "error";
+		} else {
+			adminService.updatePassword(account, password);
+			return "success";
+		}
+	}
 }
