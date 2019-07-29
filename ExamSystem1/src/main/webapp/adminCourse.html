@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Blank Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+		SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!-- Bootstrap Core CSS -->
+		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- Custom CSS -->
+		<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
+		<!-- font CSS -->
+		<!-- font-awesome icons -->
+		<link href="/exam/css/font-awesome.css" rel="stylesheet">
+		<!-- //font-awesome icons -->
+		<!-- js-->
+		<script src="http://localhost:8080/exam/js/jquery-1.11.1.min.js"></script>
+		<script src="/exam/js/modernizr.custom.js"></script>
+		<!--animate-->
+		<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
+		<script src="/exam/js/wow.min.js"></script>
+		<script>
+			new WOW().init();
+</script>
+		<!--//end-animate-->
+		<!-- Metis Menu -->
+		<script src="/exam/js/metisMenu.min.js"></script>
+		<script src="/exam/js/custom.js"></script>
+		<link href="/exam/css/custom.css" rel="stylesheet">
+
+		<style>
+			.middle {
+	margin: 0 auto;
+	width: 600px;
+	height: 100px;
+}
+//border:1px solid #F00
+</style>
+	</head>
+
+	<body class="cbp-spmenu-push">
+		<div class="main-content">
+			<!--left-fixed -navigation-->
+			<div class=" sidebar" role="navigation">
+				<div class="navbar-collapse">
+					<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+						<ul class="nav" id="side-menu">
+
+							<li><a href="/exam/admin.html"><i class="fa fa-home nav_icon"></i>管理员主页</a></li>
+							<li><a href="/exam/adminmanage2.html"><i class="fa fa-user nav_icon"></i>用户管理</a></li>
+							<li><a href="/exam/adminCourse.html"><i class="fa fa-book nav_icon"></i>安排课程</a></li>
+							<li><a href="/exam/adminexam2.html"><i class="fa fa-file nav_icon"></i>安排考试</a></li>
+							<li><a href="/exam/adminExamAnalyse.html"><i class="fa fa-list nav_icon"></i>成绩分析</a></li>
+						</ul>
+						<div class="clearfix"></div>
+						<!-- //sidebar-collapse -->
+					</nav>
+				</div>
+			</div>
+			<!--left-fixed -navigation-->
+			<!-- header-starts -->
+			<div class="sticky-header header-section ">
+				<div class="header-left">
+					<!--toggle button start-->
+					<button id="showLeftPush">
+						<i class="fa fa-bars"></i>
+					</button>
+					<!--toggle button end-->
+					<!--logo -->
+					<div class="logo">
+						<a href="/exam/admin.html">
+							<h1>管理员</h1> <span>学生考试系统</span>
+						</a>
+					</div>
+					<!--//logo-->
+					<!--search-box-->
+					<!--//end-search-box-->
+					<div class="clearfix"></div>
+				</div>
+				<div class="header-right">
+					<div class="profile_details_left">
+						<!--notifications of menu start -->
+						<ul class="nofitications-dropdown">
+
+							<li class="dropdown head-dpdn"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+									 class="fa fa-bell"></i><span class="badge blue1">1</span></a>
+								<ul class="dropdown-menu">
+									<li>
+										<div class="notification_header">
+											<h3>有1次考试正在进行</h3>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<!--notification menu end -->
+					<div class="profile_details">
+						<ul>
+							<li class="dropdown profile_details_drop"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+								 aria-expanded="false">
+									<div class="profile_img">
+										<div class="user-name">
+											<p>Wikolia</p>
+											<span>Administrator</span>
+										</div>
+										<i class="fa fa-angle-down lnr"></i> <i class="fa fa-angle-up lnr"></i>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+								<ul class="dropdown-menu drp-mnu">
+									<li><a href="/exam/admin.html"><i class="fa fa-user"></i>
+											Profile</a></li>
+									<li><a href="/exam/login1.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- //header-ends -->
+			<!-- main content start-->
+
+			<div id="page-wrapper">
+				<div class="main-page">
+
+					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+						<!-- 搜索框 -->
+						<div class="middle">
+							<form class="form-inline" id="searchForm">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon" style="width: 50px">
+										<span class="glyphicon glyphicon-book"></span>
+										</span>
+										<input type="text" class="form-control" placeholder="CourseName" aria-describedby="basic-addon1" id="searchCourse" style="width: 200px">
+										</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+										<span class="input-group-addon" style="width: 50px">
+										<span class="glyphicon glyphicon-user"></span>
+										</span>
+										<input type="text" class="form-control" placeholder="TeacherID" aria-describedby="basic-addon1" id="searchTeacher" style="width: 200px">
+										<button type="button" class="btn btn-default" id="searchButton">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+										<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+										</div>
+										</div>
+										
+							</form>
+						</div>
+						<!-- 搜索框 -->
+
+						<!-- 添加模态框 -->
+						<form id="addForm">
+							<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-sm">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title" id="myModalLabel">添加课程</h4>
+										</div>
+										<div class="modal-body">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"> <span class="glyphicon glyphicon-book"></span>
+													</span> <input type="text" class="form-control" placeholder="CourseName" aria-describedby="basic-addon1"
+													 id="addCourse">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"> <span class="glyphicon glyphicon-user"></span>
+													</span> <input type="text" class="form-control" placeholder="Teacher" aria-describedby="basic-addon1" id="addTeacher">
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+											<button type="button" class="btn btn-primary" id="addButton">提交</button>
+										</div>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal -->
+							</div>
+						</form>
+						<!-- 添加模态框 -->
+
+						<!-- 删除模态框 -->
+						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">删除课程</h4>
+									</div>
+									<div class="modal-body">
+										<label class="control-label">确认删除:</label>
+										<p id="deleteCourse"></p>
+										<p id="deleteTeacher"></p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										<button type="button" class="btn btn-primary" id="deleteButton">提交</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal -->
+						</div>
+						<!-- 删除模态框 -->
+
+						<!-- 列表 -->
+						<div style="position: relative; height: 600px; overflow-y: auto">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>课程名</th>
+										<th>授课教师</th>
+										<th>删除</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr id="first">
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 列表 -->
+
+					</div>
+				</div>
+			</div>
+			<!--footer-->
+			<div class="footer">
+				<p>学生考试系统</p>
+			</div>
+			<!--//footer-->
+		</div>
+
+		<!-- Classic -->
+		<script src="/exam/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById('cbp-spmenu-s1'),
+				showLeftPush = document
+				.getElementById('showLeftPush'),
+				body = document.body;
+
+			showLeftPush.onclick = function() {
+				classie.toggle(this, 'active');
+				classie.toggle(body, 'cbp-spmenu-push-toright');
+				classie.toggle(menuLeft, 'cbp-spmenu-open');
+				disableOther('showLeftPush');
+			};
+
+			function disableOther(button) {
+				if (button !== 'showLeftPush') {
+					classie.toggle(showLeftPush, 'disabled');
+				}
+			}
+		</script>
+		<!--scrolling js-->
+		<script src="/exam/js/jquery.nicescroll.js"></script>
+		<script src="/exam/js/scripts.js"></script>
+		<!--//scrolling js-->
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/exam/js/bootstrap.js">
+
+		</script>
+
+		<script>
+
+			$("#deleteModal").on("show.bs.modal", function(event) {
+				var button = $(event.relatedTarget);
+				var str = button.data("whatever");
+				var index = str.indexOf("/");
+				var course = str.substring(0,index);
+				var teacher = str.substring(index+1);
+				$("#deleteCourse").html(course);
+				$("#deleteTeacher").html(teacher);
+			});
+
+			$("#deleteButton").click(function() {
+				var course = $("#deleteCourse").text();
+				var teacher = $("#deleteTeacher").text();
+				var deleteURL = "/exam/admin/deleteCourseRelation/" + course + "/" + teacher;
+				$.ajax({
+					url: deleteURL,
+					type: "GET",
+					dataType: "text",
+					contentType: "application/json;charset=UTF-8",
+					success: function(str) {
+						alert(str);
+						$("#deleteModal").modal("hide");
+						queryAll();
+
+					},
+					error: function() {
+
+					}
+				});
+
+			});
+
+			$("#addButton").click(function() {
+				var course = $("#addCourse").val();
+				var teacher = $("#addTeacher").val();
+				var addURL = "/exam/admin/addCourseRelation/" + course + "/" + teacher;
+				if(course==null || course=="" || teacher==null || teacher=="") {
+					alert("不能为空");
+				} else {
+					$.ajax({
+						url: addURL,
+						type: "GET",
+						dataType: "text",
+						contentType: "application/json;charset=UTF-8",
+						success: function(str) {
+							alert(str);
+							$("#addModal").modal("hide");
+							$("#addModal").on("hidden.bs.modal", function() {
+								document.getElementById("addForm").reset();
+							});
+							queryAll();
+						},
+						error: function() {
+
+						}
+					});
+				}
+			});
+
+			$("#searchButton").click(function() {
+				var course = $("#searchCourse").val();
+				var teacher = $("#searchTeacher").val();
+				document.getElementById("searchForm").reset();
+				var queryURL;
+				if (course == null || course == "") {
+					queryURL = "/exam/admin/queryCourseRelation/All/" + teacher;
+				} else if(teacher == null || teacher == ""){
+					queryURL = "/exam/admin/queryCourseRelation/" + course + "/All";
+				} else {
+					queryURL = "/exam/admin/queryCourseRelation/" + course + "/" + teacher;
+				}
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						auto_list(str);
+					},
+					error: function() {}
+				});
+			});
+
+			$(document).ready(function() {
+				queryAll();
+			});
+
+			function auto_list(str) {
+				//清空id=first的所有兄弟节点
+				$("#first").siblings().remove();
+				var res = "";
+				$(str)
+					.each(
+						function(index, e) {
+							res = res + "<tr>";
+							res = res + "<td>" + e.courseName + "</td>";
+							res = res + "<td>" + e.teacherID + "</td>";
+							res = res +
+								"<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#deleteModal' data-whatever='" +
+								e.courseName + "/" + e.teacherID + "'>";
+							res = res +
+								"<span class='glyphicon glyphicon-remove'></span></button>" +
+								"</td></tr>";
+							res = res + "</tr>"
+						});
+				var app = $(res);
+				$("#first").after(app);
+			}
+
+			function queryAll() {
+				var queryURL = "/exam/admin/queryCourseRelation/All/All";
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						auto_list(str);
+					},
+					error: function() {}
+				});
+			}
+		</script>
+	</body>
+</html>
