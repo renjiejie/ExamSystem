@@ -361,27 +361,22 @@
 									<div class="form-group">
 										<div class="dropdown">
 											<label>课程：</label>
-											<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-											 aria-haspopup="true" aria-expanded="true">
-												课程
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												<li><a href="#">语文</a></li>
-												<li><a href="#">数学</a></li>
-												<li><a href="#">英语</a></li>
-												<li><a href="#">物理</a></li>
-												<li><a href="#">化学</a></li>
-											</ul>
+											<select class="form-control" id="course" name="course" style="width: 100px;">
+												<option>数学</option>
+												<option>语文</option>
+												<option>英语</option>
+												<option>物理</option>
+												<option>化学</option>
+											</select>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="dropdown">
 											<label>试卷：</label>
-											<input type="text" class="form-control" id="question-name" placeholder="试卷名">
+											<input type="text" class="form-control" id="paper-name" placeholder="试卷名">
 										</div>
 									</div>
-									<button type="submit" class="btn btn-default">查询</button>
+									<button type="button" class="btn btn-default" id ="search">查询</button>
 									<table class="table table-striped">
 										<thead>
 											<tr>
@@ -394,123 +389,12 @@
 											</tr>
 										</thead>
 										<tbody>
+											<tr id="first"></tr>
 											<tr>
 												<td>sdfsf</td>
 												<td>Lorem</td>
 												<td>ipsum</td>
 												<td>sdfsf</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,002</td>
-												<td>amet</td>
-												<td>consectetur</td>
-												<td>adipiscing</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,003</td>
-												<td>Integer</td>
-												<td>nec</td>
-												<td>odio</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,003</td>
-												<td>libero</td>
-												<td>Sed</td>
-												<td>cursus</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,004</td>
-												<td>dapibus</td>
-												<td>diam</td>
-												<td>Sed</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,005</td>
-												<td>Nulla</td>
-												<td>quis</td>
-												<td>sdfsf</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,006</td>
-												<td>nibh</td>
-												<td>elementum</td>
-												<td>imperdiet</td>
-												<td>
-													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,007</td>
-												<td>sagittis</td>
-												<td>ipsum</td>
-												<td>Praesent</td>
 												<td>
 													<button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/teacherChangePaper.html'">
 														<span class="glyphicon glyphicon-pencil"></span>
@@ -554,8 +438,140 @@
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
-			}
-			
+			};
+				$("#search").click(function() {
+				var paperId = $("#paper-name").val();
+				var courseId = $("#course").val();
+				var queryURL;
+				if(paperId==null || paperId=="") {
+					queryURL = "/exam/paper/query/All/"+courseId;
+				} else {
+					queryURL = "/exam/paper/query/"+ paperId+"/"+courseId; 
+				}
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$(str).each(function(index,e){
+						res = res + '<tr>';
+							res = res + '<td>'+e.id+'</td>';
+							res = res + '<td>'+e.fullPoint+'</td>';
+							res = res + '<td>'+e.passPoint+'</td>';
+							res = res + '<td>'+e.producer.user.account+'</td>';
+							res = res + '<td>';
+							res = res + '<button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/teacherChangePaper.html\'">';
+							res = res + '<span class="glyphicon glyphicon-pencil"></span>';
+							res = res + '</button>';
+							res = res + '</td>';
+							res = res + '<td>';
+							res = res + '<button type="button" class="btn btn-default">';
+							res = res + '<span class="glyphicon glyphicon-remove"></span>';
+							res = res + '</button>';
+							res = res + '</td>';
+						res = res + '</tr>';
+					});
+					var app = $(res);
+					$("#first").after(app);
+					},
+					error:function(){
+					}
+				}); 
+			});
+			$("#course").change(function() {var paperId = $("#paper-name").val();
+				var courseId = $("#course").val();
+				var queryURL;
+				if(paperId==null || paperId=="") {
+					queryURL = "/exam/paper/query/All/"+courseId;
+				} else {
+					queryURL = "/exam/paper/query/"+ paperId+"/"+courseId; 
+				}
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$(str).each(function(index,e){
+						res = res + '<tr>';
+							res = res + '<td>'+e.id+'</td>';
+							res = res + '<td>'+e.fullPoint+'</td>';
+							res = res + '<td>'+e.passPoint+'</td>';
+							res = res + '<td>'+e.producer.user.account+'</td>';
+							res = res + '<td>';
+							res = res + '<button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/teacherChangePaper.html\'">';
+							res = res + '<span class="glyphicon glyphicon-pencil"></span>';
+							res = res + '</button>';
+							res = res + '</td>';
+							res = res + '<td>';
+							res = res + '<button type="button" class="btn btn-default">';
+							res = res + '<span class="glyphicon glyphicon-remove"></span>';
+							res = res + '</button>';
+							res = res + '</td>';
+						res = res + '</tr>';
+					});
+					var app = $(res);
+					$("#first").after(app);
+					},
+					error:function(){
+					}
+				}); 
+			});
+				
+			$(document).ready(function() {var paperId = $("#paper-name").val();
+				var courseId = $("#course").val();
+				var queryURL;
+				if(paperId==null || paperId=="") {
+					queryURL = "/exam/paper/query/All/"+courseId;
+				} else {
+					queryURL = "/exam/paper/query/"+ paperId+"/"+courseId; 
+				}
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$(str).each(function(index,e){
+						res = res + '<tr>';
+							res = res + '<td>'+e.id+'</td>';
+							res = res + '<td>'+e.fullPoint+'</td>';
+							res = res + '<td>'+e.passPoint+'</td>';
+							res = res + '<td>'+e.producer.user.account+'</td>';
+							res = res + '<td>';
+							res = res + '<button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/teacherChangePaper.html\'">';
+							res = res + '<span class="glyphicon glyphicon-pencil"></span>';
+							res = res + '</button>';
+							res = res + '</td>';
+							res = res + '<td>';
+							res = res + '<button type="button" class="btn btn-default" id="delete'+e.id+'">';
+							res = res + '<span class="glyphicon glyphicon-remove"></span>';
+							res = res + '</button>';
+							res = res + '</td>';
+						res = res + '</tr>';
+					});
+					var app = $(res);
+					$("#first").after(app);
+					$(str).each(function(index,e){
+						$(document).on('click','#delete'+e.id,function(){
+							window.location.href="/exam/paper/delete/"+e.id;
+						})
+						});
+					},
+					error:function(){
+					}
+				}); 
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

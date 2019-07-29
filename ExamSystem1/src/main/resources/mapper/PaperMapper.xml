@@ -10,4 +10,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		VALUES(#{id},#{course},#{questionStr},#{producer.user.account},#{passPoint},#{fullPoint});
 	</insert>
 	
+	<select id="query" resultMap="paper">
+		SELECT paper_id,paper_fullpoint,paper_passpoint,producer_id,paper_questions
+		FROM paper_table
+		<where>
+			<if test="paperId !=null and paperId!=''">
+				and paper_id = #{paperId}
+			</if>
+			<if test="true">
+				and course_id = #{courseId}
+			</if>
+		</where>
+	</select>
+	<resultMap type="Paper" id="paper">
+		<id column="paper_id" property="id"/>
+		<result column="paper_fullpoint" property="fullPoint"/>
+		<result column="paper_passpoint" property="passPoint"/>
+		<result column="producer_id" property="producer.user.account"/>
+		<result column="paper_questions" property="questionStr"/>
+	</resultMap>
+	
+	<delete parameterType="String" id="deletePaper">
+		Delete from paper_table where paper_id = #{paperId};
+	</delete>
+	
 </mapper>

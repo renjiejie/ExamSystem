@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.neuedu.demo.domain.Paper;
+import com.neuedu.demo.domain.Question;
 import com.neuedu.demo.domain.User;
 import com.neuedu.demo.service.AdminService;
 import com.neuedu.demo.service.PaperService;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 @RequestMapping("/paper")
@@ -36,4 +39,21 @@ public class PaperController {
 		return "/exam/generatePaper.html";
 	}
 	
+	@RequestMapping(value = "/query/{paperId}/{courseId}",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Paper> query(@PathVariable("paperId") String paperId,@PathVariable("courseId") String courseId){
+		if(!paperId.equals("All")){
+			return pService.query(paperId,courseId);
+		}
+		else{
+			return pService.query(null,courseId);
+		}
+	}
+	
+	@RequestMapping(value="/delete/{paperId}")
+	public String deletePaper(@PathVariable("paperId")String paperId){
+		System.out.println("delete"+paperId);
+		pService.deletePaper(paperId);
+		return "redirect:../../paperManage.html";
+	}
 }
