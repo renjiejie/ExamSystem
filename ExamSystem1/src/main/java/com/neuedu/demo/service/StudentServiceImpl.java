@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.regex.*;
 
+import com.neuedu.demo.dao.QuestionMapper;
 import com.neuedu.demo.dao.StudentMapper;
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
+import com.neuedu.demo.domain.Question;
 import com.neuedu.demo.domain.Student;
 
 @Service
@@ -18,6 +20,8 @@ public class StudentServiceImpl implements StudentService{
 
 	@Autowired
 	private StudentMapper mapper;
+	@Autowired
+	private QuestionMapper qmapper;
 	@Override
 	public List<Paper> getPaperId(String examId) {
 		// TODO Auto-generated method stub
@@ -39,6 +43,12 @@ public class StudentServiceImpl implements StudentService{
 			int paperLenth = getPaperId(exam.getId()).size();
 			int ran = r.nextInt(paperLenth);
 			Paper paper = getPaperId(exam.getId()).get(ran);
+			String[] qids = paper.getQuestionStr().split(",");
+			List<Question> questions = new ArrayList<Question>();
+			for(String qid:qids) {
+				questions.add(qmapper.query(qid, exam.getCourseId()).get(0));
+			}
+			paper.setQuestions(questions);
 			exam.setPapers(paper);
 		}
 		return exams;

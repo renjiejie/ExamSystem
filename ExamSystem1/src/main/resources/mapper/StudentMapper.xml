@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="course_id" property="course"/>
 			<result column="paper_passpoint" property="passPoint"/>
 			<result column="papper_fullpoint" property="fullPoint"/>
+			<result column="paper_questions" property="questionStr"/>
 		</resultMap>
  	<select id="joinExam" resultMap="exam">
  		select * 
