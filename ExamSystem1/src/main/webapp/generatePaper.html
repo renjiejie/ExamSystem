@@ -113,6 +113,7 @@
 					</div>
 					<!--//end-search-box-->
 					<div class="clearfix"> </div>
+					<div id = "producer"></div>
 				</div>
 				<div class="header-right">
 					<div class="profile_details_left">
@@ -180,7 +181,7 @@
 						</div>
 						<div class="inbox-page">
 							<h4>试题</h4>
-							<div>
+							<div id="div-container">
 								<div id="first"></div>
 								<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
 									<div class="mail "> <input type="checkbox" class="checkbox"> </div>
@@ -240,14 +241,14 @@
 
 						</div>
 						<div class="form-group" style="padding-top: 30px;">
-							<button class="btn btn-default" type="button">
+							<button id="random-gen" class="btn btn-default" type="button">
 								自动生成
 							</button>
 							<div class="form-group">
 								<label>试卷名：</label>
-								<input type="text" class="form-control" placeholder="examID" aria-describedby="basic-addon1" id="paperid" name="paperid">
+								<input type="text" class="form-control" placeholder="paperID" aria-describedby="basic-addon1" id="paperid" name="paperid">
 							</div>
-							<button class="btn btn-default" type="submit">
+							<button class="btn btn-default" type="button" id="submitbtn">
 								提交试卷
 							</button>
 						</div>
@@ -280,9 +281,82 @@
 				}
 			};
 
-			$("#course").change(function() {
+			$("#random-gen").click(function() {
+				var number = $("#div-container").children().length - 1;
+				for (let i = 0; i < number; i++) {
+					$("#id" + i).prop("checked", false);
+				}
+				var randomNum = Math.floor(Math.random() * number) + 1;
+				for (let i = 1; i <= randomNum; i++) {
+					var randomId = Math.floor(Math.random() * number);
+					$("#id" + randomId).prop("checked", true);
+				}
+			});
+
+			$("#submitbtn").click(function() {
 				var courseId = $("#course").val();
-				var queryURL = "/exam/question/query/All/" + courseId;;
+				var fullpoint = 0;
+				var queryURL = "/exam/question/query/All/" + courseId;
+				var questions = "";
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						$(str).each(function(index, e) {
+							if ($("#id" + index).prop('checked')) {
+								fullpoint = fullpoint + e.point;
+							}
+							if (index === 0) {
+								questions = questions + e.id;
+							} else {
+								questions = questions + ","  + e.id;
+							}
+						});
+						var submiturl = "/exam/paper/add";
+						var id = $("#paperid").val();
+						var course = $("#course").val();
+						$(function() {
+							$.ajax({
+								type: "get",
+								url: "/exam/questionajax/setMaker",
+								dataType: "text",
+								success: function(producer) {
+									var param = {
+										"id": id,
+										"producer":{"user":{"account":producer}},
+										"course": course,
+										"fullPoint": fullpoint,
+										"passPoint": Math.floor(fullpoint * 0.6),
+										"questionStr": questions
+									};
+									var paramStr = JSON.stringify(param);
+									$.ajax({
+										url: submiturl,
+										type: "POST",
+										dataType: "text",
+										data: paramStr,
+										contentType: "application/json;charset=UTF-8",
+										success: function(str) {
+											alert("生成试卷成功");
+											window.location.href = str;
+										},
+										error: function() {}
+									});
+								},
+								error: function() {
+									alert("請求失敗");
+								}
+							});
+						});
+					},
+					error: function() {}
+				});
+			});
+
+			$(document).ready(function() {
+				var courseId = $("#course").val();
+				var queryURL = "/exam/question/query/All/" + courseId;
 				$.ajax({
 					url: queryURL,
 					type: "GET",
@@ -291,25 +365,72 @@
 						$("#first").siblings().remove();
 						var res = "";
 						$(str).each(function(index, e) {
-								res=res+'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">';
-									res=res+'<div class="mail "> <input type="checkbox" class="checkbox" name="question" value="'+e.id+'"> </div>';
-									res=res+'<div class="mail mail-name">';
-										res=res+'<h6>'+e.id+'</h6>';
-									res=res+'</div>';
-									res=res+'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'+index+'" aria-expanded="true"';
-									 res=res+'aria-controls="collapse'+index+'">';
-										res=res+'<div class="mail">';
-											res=res+'<p>'+courseId+e.type+'题</p>';
-										res=res+'</div>';
-									res=res+'</a>';
-									res=res+'<div class="clearfix"> </div>';
-									res=res+'<div id="collapse'+index+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'+index+'">';
-										res=res+'<div class="mail-body">';
-											res=res+'<p>题干:'+e.stem+'</p>';
-											res=res+'<p>答案:'+e.answer+'</p>';
-										res=res+'</div>';
-									res=res+'</div>';
-								res=res+'</div>';
+							res = res +
+								'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">';
+							res = res + '<div class="mail "> <input type="checkbox" class="checkbox" name="question" value="' + e.id +
+								'" id="id' + index + '"> </div>';
+							res = res + '<div class="mail mail-name">';
+							res = res + '<h6>' + e.id + '</h6>';
+							res = res + '</div>';
+							res = res + '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + index +
+								'" aria-expanded="true"';
+							res = res + 'aria-controls="collapse' + index + '">';
+							res = res + '<div class="mail">';
+							res = res + '<p>' + courseId + e.type + '题</p>';
+							res = res + '</div>';
+							res = res + '</a>';
+							res = res + '<div class="clearfix"> </div>';
+							res = res + '<div id="collapse' + index +
+								'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading' + index + '">';
+							res = res + '<div class="mail-body">';
+							res = res + '<p>题干:' + e.stem + '</p>';
+							res = res + '<p>答案:' + e.answer + '</p>';
+							res = res + '</div>';
+							res = res + '</div>';
+							res = res + '</div>';
+						});
+						var app = $(res);
+						$("#first").after(app);
+
+					},
+					error: function() {}
+				});
+			});
+
+			$("#course").change(function() {
+				var courseId = $("#course").val();
+				var queryURL = "/exam/question/query/All/" + courseId;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						$("#first").siblings().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res +
+								'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">';
+							res = res + '<div class="mail "> <input type="checkbox" class="checkbox" name="question" value="' + e.id +
+								'" id="id' + index + '"> </div>';
+							res = res + '<div class="mail mail-name">';
+							res = res + '<h6>' + e.id + '</h6>';
+							res = res + '</div>';
+							res = res + '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + index +
+								'" aria-expanded="true"';
+							res = res + 'aria-controls="collapse' + index + '">';
+							res = res + '<div class="mail">';
+							res = res + '<p>' + courseId + e.type + '题</p>';
+							res = res + '</div>';
+							res = res + '</a>';
+							res = res + '<div class="clearfix"> </div>';
+							res = res + '<div id="collapse' + index +
+								'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading' + index + '">';
+							res = res + '<div class="mail-body">';
+							res = res + '<p>题干:' + e.stem + '</p>';
+							res = res + '<p>答案:' + e.answer + '</p>';
+							res = res + '</div>';
+							res = res + '</div>';
+							res = res + '</div>';
 						});
 						var app = $(res);
 						$("#first").after(app);

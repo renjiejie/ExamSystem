@@ -24,6 +24,7 @@ public class QuestionAjaxController {
 	@ResponseBody
 	public String checkAccount(HttpServletRequest req) {
 		String maker = (String) req.getSession().getAttribute("account");
+		System.out.println(maker);
 		return maker;
 	}
 	

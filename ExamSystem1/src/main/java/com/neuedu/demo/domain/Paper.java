@@ -65,5 +65,10 @@ public class Paper {
 	public void setFullPoint(int fullPoint) {
 		this.fullPoint = fullPoint;
 	}
+	@Override
+	public String toString() {
+		return "Paper [id=" + id + ", course=" + course + ", questions=" + questions + ", producer=" + producer
+				+ ", passPoint=" + passPoint + ", fullPoint=" + fullPoint + ", questionStr=" + questionStr + "]";
+	}
 	
 }
