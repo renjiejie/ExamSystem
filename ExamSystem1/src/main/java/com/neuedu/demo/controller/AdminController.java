@@ -81,9 +81,9 @@ public class AdminController {
 		return adminService.queryCourseRelation(course, teacher);
 	}
 	
-	@RequestMapping(value="/addCourse/{course}/{teacher}")
+	@RequestMapping(value="/addCourseRelation/{course}/{teacher}")
 	@ResponseBody
-	public String addCourse(@PathVariable("course")String course, @PathVariable("teacher")String teacher) {
+	public String addCourseRelation(@PathVariable("course")String course, @PathVariable("teacher")String teacher) {
 		List<User> users = adminService.query(teacher);
 		if(users.isEmpty() || users.size()!=1 || !users.get(0).getPermission().equals("教师")) {
 			System.out.print(users);
@@ -94,7 +94,26 @@ public class AdminController {
 			if(c == null) {
 				adminService.addCourse(course);
 			}
-			adminService.assignCourse(course, teacher);
+			adminService.assignCourseRelation(course, teacher);
+			return "success";
+		}
+	}
+	
+	@RequestMapping(value="/deleteCourseRelation/{course}/{teacher}")
+	@ResponseBody
+	public String deleteCourseRelation(@PathVariable("course")String course, @PathVariable("teacher")String teacher) {
+			List<Course> courses = adminService.queryCourseRelation(course, teacher);
+			if(courses.isEmpty() || courses.size() != 1) {
+				return "error";
+			} else {
+				Course c = courses.get(0);
+				if(!c.getCourseName().equals(course) || !c.getTeacherID().equals(teacher)) {
+					return "error";
+			}
+			adminService.deleteCourseRelation(course, teacher);
+			if(adminService.queryCourseRelation(course, null).isEmpty()) {
+				adminService.deleteCourse(course);
+			}
 			return "success";
 		}
 	}

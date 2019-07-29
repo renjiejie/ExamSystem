@@ -70,9 +70,19 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void assignCourse(String course, String teacher) {
-		mapper.assignCourse(course, teacher);
+	public void assignCourseRelation(String course, String teacher) {
+		mapper.assignCourseRelation(course, teacher);
 		
+	}
+
+	@Override
+	public void deleteCourseRelation(String course, String teacher) {
+		mapper.deleteCourseRelation(course, teacher);
+	}
+
+	@Override
+	public void deleteCourse(String course) {
+		mapper.deleteCourse(course);
 	}
 
 }

@@ -94,9 +94,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="course_id" property="courseName"/>
 	</resultMap>
 	
-	<insert id="assignCourse">
+	<insert id="assignCourseRelation">
 		INSERT INTO teacher_course_table(user_account,course_id)
 		VALUES(#{teacher},#{course})
 	</insert>
+	
+	<delete id="deleteCourseRelation">
+		DELETE FROM teacher_course_table
+		WHERE course_id=#{course} and user_account=#{teacher}
+	</delete>
+	
+	<delete id="deleteCourse" parameterType="String">
+		DELETE FROM course_table
+		WHERE course_id=#{course} 
+	</delete>
 	
 </mapper>

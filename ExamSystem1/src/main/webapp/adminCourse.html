@@ -137,43 +137,6 @@
 			<div id="page-wrapper">
 				<div class="main-page">
 
-					<!-- 修改模态框 -->
-					<form id="changeForm">
-						<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title" id="myModalLabel">修改用户</h4>
-									</div>
-									<div class="modal-body">
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <span class="glyphicon glyphicon-user"></span>
-												</span> <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" id="changeAccount"
-												 name="username" disabled>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <span class="glyphicon glyphicon-lock"></span>
-												</span> <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1"
-												 id="ChangePassword" name="password">
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary" id="updateButton">提交</button>
-									</div>
-								</div>
-								<!-- /.modal-content -->
-							</div>
-							<!-- /.modal -->
-						</div>
-					</form>
-					<!-- 修改模态框 -->
-
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 
 						<!-- 搜索框 -->
@@ -248,11 +211,12 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title" id="myModalLabel">删除用户</h4>
+										<h4 class="modal-title" id="myModalLabel">删除课程</h4>
 									</div>
 									<div class="modal-body">
 										<label class="control-label">确认删除:</label>
-										<p id="deleteAccount"></p>
+										<p id="deleteCourse"></p>
+										<p id="deleteTeacher"></p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -272,7 +236,6 @@
 									<tr>
 										<th>课程名</th>
 										<th>授课教师</th>
-										<th>修改</th>
 										<th>删除</th>
 									</tr>
 								</thead>
@@ -325,21 +288,21 @@
 		</script>
 
 		<script>
-			$("#changeModal").on("show.bs.modal", function(event) {
-				var button = $(event.relatedTarget);
-				var account = button.data("whatever");
-				document.getElementById("changeAccount").value = account;
-			});
 
 			$("#deleteModal").on("show.bs.modal", function(event) {
 				var button = $(event.relatedTarget);
-				var account = button.data("whatever");
-				$("#deleteAccount").html(account);
+				var str = button.data("whatever");
+				var index = str.indexOf("/");
+				var course = str.substring(0,index);
+				var teacher = str.substring(index+1);
+				$("#deleteCourse").html(course);
+				$("#deleteTeacher").html(teacher);
 			});
 
 			$("#deleteButton").click(function() {
-				var account = $("#deleteAccount").text();
-				var deleteURL = "/exam/admin/delete/" + account;
+				var course = $("#deleteCourse").text();
+				var teacher = $("#deleteTeacher").text();
+				var deleteURL = "/exam/admin/deleteCourseRelation/" + course + "/" + teacher;
 				$.ajax({
 					url: deleteURL,
 					type: "GET",
@@ -358,36 +321,10 @@
 
 			});
 
-			$("#updateButton").click(function() {
-				var account = $("#changeAccount").val();
-				var password = $("#ChangePassword").val();
-				var changeURL = "/exam/admin/update/" + account + "/" + password;
-				if (password == null || password == "") {
-					alert("密码不能为空");
-				} else {
-					$.ajax({
-						url: changeURL,
-						type: "GET",
-						dataType: "text",
-						contentType: "application/json;charset=UTF-8",
-						success: function(str) {
-							alert(str);
-							$("#changeModal").modal("hide");
-							$("#changeModal").on("hidden.bs.modal", function() {
-								document.getElementById("changeForm").reset();
-							});
-						},
-						error: function() {
-
-						}
-					});
-				}
-			});
-
 			$("#addButton").click(function() {
 				var course = $("#addCourse").val();
 				var teacher = $("#addTeacher").val();
-				var addURL = "/exam/admin/addCourse/" + course + "/" + teacher;
+				var addURL = "/exam/admin/addCourseRelation/" + course + "/" + teacher;
 				if(course==null || course=="" || teacher==null || teacher=="") {
 					alert("不能为空");
 				} else {
@@ -449,14 +386,8 @@
 							res = res + "<td>" + e.courseName + "</td>";
 							res = res + "<td>" + e.teacherID + "</td>";
 							res = res +
-								"<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal' data-whatever='" +
-								e.course + "'>";
-							res = res +
-								"<span class='glyphicon glyphicon-pencil'></span></button>" +
-								"</td>";
-							res = res +
 								"<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#deleteModal' data-whatever='" +
-								e.course + "'>";
+								e.courseName + "/" + e.teacherID + "'>";
 							res = res +
 								"<span class='glyphicon glyphicon-remove'></span></button>" +
 								"</td></tr>";

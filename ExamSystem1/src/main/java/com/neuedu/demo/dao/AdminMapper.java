@@ -24,5 +24,7 @@ public interface AdminMapper {
 	public void addCourse(String courseName);
 	public List<Course> queryCourseRelation(@Param("course") String course, @Param("teacher") String teacher);
 	public Course queryCourse(String courseName);
-	public void assignCourse(@Param("course") String course, @Param("teacher") String teacher);
+	public void assignCourseRelation(@Param("course") String course, @Param("teacher") String teacher);
+	public void deleteCourseRelation(@Param("course") String course, @Param("teacher") String teacher);
+	public void deleteCourse(String course);
 }

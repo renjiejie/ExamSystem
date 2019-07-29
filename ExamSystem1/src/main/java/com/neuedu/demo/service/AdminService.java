@@ -14,5 +14,7 @@ public interface AdminService {
 	public void addCourse(String courseName);
 	public List<Course> queryCourseRelation(String course, String teacher);
 	public Course queryCourse(String course);
-	public void assignCourse(String course, String teacher);
+	public void assignCourseRelation(String course, String teacher);
+	public void deleteCourseRelation(String course, String teacher);
+	public void deleteCourse(String course);
 }
