@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="query" resultMap="question">
-		SELECT question_id,question_type,question_stem,question_point,question_maker
+		SELECT question_id,question_type,question_stem,question_point,question_maker,question_answer
 		FROM question_table
 		<where>
 			<if test="questionId !=null and questionId!=''">
@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="question_stem" property="stem"/>
 		<result column="question_point" property="point"/>
 		<result column="question_maker" property="maker"/>
+		<result column="question_answer" property="answer"/>
 	</resultMap>
 	
 	<delete parameterType="String" id="deleteQuestion">

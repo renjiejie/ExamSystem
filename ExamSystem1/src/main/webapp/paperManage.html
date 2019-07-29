@@ -556,40 +556,6 @@
 				}
 			}
 			
-			$("#course").change(function() {
-				var questionId = $("#question-name").val();
-				var courseId = $("#course").val();
-				var queryURL = "/exam/question/query/All/"+courseId;;
-				$.ajax({
-					url:queryURL,
-					type:"GET",
-					dataType:"json",					
-					success:function(str){
-					//str-----json-----SchoolClass
-					//清空id=first的所有兄弟节点
-					$("#first").siblings().remove();
-					var res="";
-					$(str).each(function(index,e){
-						res = res + "<tr>";
-						res = res + "<td>"+e.id+"</td>";
-						res = res + "<td>"+e.type+"</td>";
-						res = res + "<td>"+e.stem+"</td>";
-						res = res + "<td>"+e.point+"</td>";
-						res = res + "<td>"+e.maker+"</td>";
-						res = res + "<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#changeModal' id = 'change"+e.id+"'>"
-								  + "<span class='glyphicon glyphicon-pencil'></span></button></td>";
-						res = res + "<td><button type='button' class='btn btn-default' id = 'delete"+e.id+"'>"+
-									"<span class='glyphicon glyphicon-remove'></span></button></td>"
-						res = res + "</tr>"
-						
-						
-					});
-					
-					},
-					error:function(){
-					}
-				}); 
-			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
