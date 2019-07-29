@@ -696,6 +696,12 @@
 				<!-- Classie -->
 		<script src="/exam/js/classie.js"></script>
 		<script>
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);
+				return null;
+			}
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
@@ -711,7 +717,8 @@
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
-			}
+			};
+			alert(getUrlParam("id"));
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
