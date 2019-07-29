@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.neuedu.demo.domain.Admin;
+import com.neuedu.demo.domain.Student;
 import com.neuedu.demo.domain.User;
 
 @Mapper
@@ -18,4 +19,5 @@ public interface AdminMapper {
 	public void deleteStudent(String account);
 	public void deleteTeacher(String account);
 	public void deleteAdmin(String account);
+	public void updatePassword(@Param("account")String account, @Param("password")String password);
 }

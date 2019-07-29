@@ -47,4 +47,9 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+	@Override
+	public void updatePassword(String account, String password) {
+		mapper.updatePassword(account, password);
+	}
+
 }

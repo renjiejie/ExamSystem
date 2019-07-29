@@ -57,4 +57,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE user_account=#{account}
 	</delete>
 	
+	<update id="updatePassword">
+		UPDATE user_table
+		SET user_password=#{password}
+		WHERE user_account=#{account}
+	</update>
+	
 </mapper>

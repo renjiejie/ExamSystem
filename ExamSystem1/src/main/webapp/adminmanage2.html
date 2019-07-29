@@ -147,6 +147,7 @@ solid
 			<div class="main-page">
 
 				<!-- 修改模态框 -->
+				<form id="changeForm">
 				<div class="modal fade" id="changeModal" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-sm">
@@ -157,7 +158,6 @@ solid
 								<h4 class="modal-title" id="myModalLabel">修改用户</h4>
 							</div>
 							<div class="modal-body">
-								<form>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"> <span
@@ -173,32 +173,21 @@ solid
 												class="glyphicon glyphicon-lock"></span>
 											</span> <input type="password" class="form-control"
 												placeholder="Password" aria-describedby="basic-addon1"
-												id="password" name="password">
+												id="ChangePassword" name="password">
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"> <span
-												class="glyphicon glyphicon-list-alt"></span>
-											</span> <select class="form-control">
-												<option>学生</option>
-												<option>教师</option>
-												<option>管理员</option>
-											</select>
-										</div>
-									</div>
-								</form>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">关闭</button>
-								<button type="button" class="btn btn-primary">提交</button>
+								<button type="button" class="btn btn-primary" id="updateButton">提交</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->
 					</div>
 					<!-- /.modal -->
 				</div>
+				</form>
 				<!-- 修改模态框 -->
 				
 				<div class="blank-page widget-shadow scroll" id="style-2 div1">
@@ -228,6 +217,7 @@ solid
 					<!-- 搜索框 -->
 					
 					<!-- 添加模态框 -->
+					<form id="addForm">
 						<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
 							aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-sm">
@@ -277,8 +267,8 @@ solid
 								<!-- /.modal-content -->
 							</div>
 							<!-- /.modal -->
-
 						</div>
+						</form>
 					<!-- 添加模态框 -->
 					
 					<!-- 删除模态框 -->
@@ -309,7 +299,7 @@ solid
 					
 					<!-- 列表 -->
 					<div style="position: relative; height: 600px; overflow-y: auto">
-						<table class="table table-striped" id="tab">
+						<table class="table table-striped">
 							<thead>
 								<tr>
 									<th>用户名</th>
@@ -398,6 +388,32 @@ solid
 			
 		});
 		
+		$("#updateButton").click(function() {
+			var account = $("#changeAccount").val();
+			var password = $("#ChangePassword").val();
+			var changeURL = "/exam/admin/update/" + account + "/" + password;
+			if(password==null || password=="") {
+				alert("密码不能为空");
+			} else {
+				$.ajax({
+					url:changeURL,
+					type:"GET",
+					dataType:"text",
+					contentType:"application/json;charset=UTF-8",
+					success:function(str){
+						alert(str);
+						$("#changeModal").modal("hide");
+						$("#changeModal").on("hidden.bs.modal", function (){
+							document.getElementById("changeForm").reset();
+						});
+					},
+					error:function(){
+						
+					}
+				});
+			}
+		});
+		
 		$("#addButton").click(function(){
 			var account = $("#account").val();
 			var password = $("#pw").val();
@@ -411,8 +427,10 @@ solid
 				success:function(str){
 					alert(str);
 					$("#addModal").modal("hide");
+					$("#addModal").on("hidden.bs.modal", function (){
+						document.getElementById("addForm").reset();
+					});
 					queryAll();
-					
 				},
 				error:function(){
 					
