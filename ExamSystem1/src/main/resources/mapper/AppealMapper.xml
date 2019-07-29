@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.demo.dao.AppealMapper">
+
+	<insert id="addAppeal" parameterType="Appeal">
+ 		INSERT INTO appeal_table (paper_id,appeal_content) VALUE (#{paper.id},#{content});
+	</insert>
+	<update id="updateAppeal" >
+		UPDATE appeal_table ap, paper_table p,answer_table a 
+		SET ap.course_id = p.course_id,ap.student_account = a.student_account,ap.teacher_account = a.teacher_account 
+		WHERE ap.paper_id = p.paper_id = a.paper_id
+	</update>
+	
+</mapper>
