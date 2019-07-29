@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.neuedu.demo.dao.AdminMapper;
 import com.neuedu.demo.domain.Admin;
+import com.neuedu.demo.domain.Course;
 import com.neuedu.demo.domain.User;
 
 @Service
@@ -50,6 +51,28 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updatePassword(String account, String password) {
 		mapper.updatePassword(account, password);
+	}
+
+	@Override
+	public void addCourse(String courseName) {
+		mapper.addCourse(courseName);
+		
+	}
+
+	@Override
+	public List<Course> queryCourseRelation(String course, String teacher) {
+		return mapper.queryCourseRelation(course, teacher);
+	}
+
+	@Override
+	public Course queryCourse(String course) {
+		return mapper.queryCourse(course);
+	}
+
+	@Override
+	public void assignCourse(String course, String teacher) {
+		mapper.assignCourse(course, teacher);
+		
 	}
 
 }

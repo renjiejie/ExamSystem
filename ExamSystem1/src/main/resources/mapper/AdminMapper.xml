@@ -63,4 +63,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE user_account=#{account}
 	</update>
 	
+	<insert id="addCourse" parameterType="String">
+		INSERT INTO course_table
+		VALUES(#{courseName})
+	</insert>
+	
+	<select id="queryCourseRelation" resultMap="courserel">
+		SELECT course_id,user_account
+		FROM teacher_course_table
+		<where>
+			<if test="course != null and course != ''">
+				and course_id=#{course}
+			</if>
+			<if test="teacher!=null and teacher!=''">
+				and user_account=#{teacher}
+			</if>
+		</where>
+	</select>
+	<resultMap type="Course" id="courserel">
+		<result column="course_id" property="courseName"/>
+		<result column="user_account" property="teacherID"/>
+	</resultMap>
+	
+	<select id="queryCourse" parameterType="String" resultMap="course">
+		SELECT course_id
+		FROM course_table
+		WHERE course_id=#{courseName}
+	</select>
+	<resultMap type="Course" id="course">
+		<id column="course_id" property="courseName"/>
+	</resultMap>
+	
+	<insert id="assignCourse">
+		INSERT INTO teacher_course_table(user_account,course_id)
+		VALUES(#{teacher},#{course})
+	</insert>
+	
 </mapper>

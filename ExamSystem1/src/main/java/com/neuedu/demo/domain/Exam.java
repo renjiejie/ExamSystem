@@ -1,8 +1,5 @@
 package com.neuedu.demo.domain;
 
-import java.util.Date;
-import java.util.List;
-
 public class Exam {
 	private String id;
 	private String begintime;
@@ -14,6 +11,7 @@ public class Exam {
 	private String place;
 	private Paper papers;
 	private String ids;
+	
 	public String getId() {
 		return id;
 	}
