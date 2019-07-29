@@ -33,4 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Delete from question_table where question_id = #{questionId};
 	</delete>
 	
+	<update id="changeQuestion" parameterType="Question">
+		Update question_table
+		Set course_id = #{course},question_type=#{type},question_stem=#{stem},question_answer=#{answer},question_point=#{point}
+		Where question_id = #{id};
+	</update>
+	
 </mapper>

@@ -41,4 +41,5 @@ public class QuestionController {
 		questionService.deleteQuestion(questionId);
 		return "redirect:../../questionManage.html";
 	}
+	
 }

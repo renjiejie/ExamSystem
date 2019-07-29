@@ -223,7 +223,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 													<label for="question-name">出题人</label>
 													<input type="text" class="form-control" id="maker-id" name="maker" placeholder="出题人" readonly="readonly">
 												</div>
-												<input type="submit" class="btn btn-default">上传试题</input>
+												<input type="submit" class="btn btn-default"></input>
 											</form>
 										</div>
 									</div>
@@ -261,7 +261,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			$(function() {
 				$.ajax({
 					type: "get",
-					url: "/exam/ajax/setMaker",
+					url: "/exam/questionajax/setMaker",
 					dataType: "text",
 					success: function(result) {
 						$("#maker-id").val(result);

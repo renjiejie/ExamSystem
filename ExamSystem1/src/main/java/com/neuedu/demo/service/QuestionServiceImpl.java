@@ -27,6 +27,13 @@ public class QuestionServiceImpl implements QuestionService{
 	public void deleteQuestion(String questionId) {
 		mapper.deleteQuestion(questionId);
 	}
+
+	@Override
+	public void changeQuestion(Question question) {
+		System.out.println(question);
+		mapper.changeQuestion(question);
+		
+	}
 	
 	
 	
