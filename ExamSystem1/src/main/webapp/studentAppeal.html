@@ -153,10 +153,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<div class="alert alert-info">
 								填写考试名以向审卷人发送申诉信息
 							</div>
-							<form class="com-mail">
-								<input type="text" class="form-control1 control3" placeholder="考试名">
-								<textarea rows="6" class="form-control1 control2" placeholder="申诉信息 :"></textarea>
-								<input type="submit" value="发送"> 
+							<form action="/exam/appeal/add">
+								<input name="paper.id" type="text" class="form-control1 control3" placeholder="考试名">
+								<textarea name="content" rows="6" class="form-control1 control2" placeholder="申诉信息 :"></textarea>
+								<input id="sub"type="submit" value="发送"> 
 							</form>
 						</div>
 					</div>
@@ -188,6 +188,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
+			$("#sub").click(function(){
+				alert("提交成功");
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

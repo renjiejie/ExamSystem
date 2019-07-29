@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neuedu.demo.domain.Course;
 import com.neuedu.demo.domain.User;
 import com.neuedu.demo.service.AdminService;
 
@@ -67,4 +68,35 @@ public class AdminController {
 			return "success";
 		}
 	}
+	
+	@RequestMapping(value="/queryCourseRelation/{course}/{teacher}")
+	@ResponseBody
+	public List<Course> queryCourseRelation(@PathVariable("course")String course, @PathVariable("teacher")String teacher) {
+		if(course.equals("All")){
+			course = null;
+		}
+		if(teacher.equals("All")) {
+			teacher = null;
+		}
+		return adminService.queryCourseRelation(course, teacher);
+	}
+	
+	@RequestMapping(value="/addCourse/{course}/{teacher}")
+	@ResponseBody
+	public String addCourse(@PathVariable("course")String course, @PathVariable("teacher")String teacher) {
+		List<User> users = adminService.query(teacher);
+		if(users.isEmpty() || users.size()!=1 || !users.get(0).getPermission().equals("教师")) {
+			System.out.print(users);
+			return "error";
+		} else {
+			Course c = adminService.queryCourse(course);
+			System.out.println(c);
+			if(c == null) {
+				adminService.addCourse(course);
+			}
+			adminService.assignCourse(course, teacher);
+			return "success";
+		}
+	}
+	
 }
