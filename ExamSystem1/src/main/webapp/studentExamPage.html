@@ -82,7 +82,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<!--toggle button end-->
 					<!--logo -->
 					<div class="logo">
-						<a href="blankStudentPage.html">
+						<a href="index.html">
 							<h1>学生</h1>
 							<span>学生考试系统</span>
 						</a>
@@ -244,14 +244,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					$.ajax({
 						url: queryURL,
 						type: "GET",
-						dataType: "json",
-						success: function() {
-							alert("提交成功")
-							
+						dataType: "text",
+						success: function(str) {
+							alert(str);
+							window.location.href="http://localhost:8080/exam/blankStudentPage.html"
 						},
-						error: function() {}
+						error: function() {
+							alert("提交")
+						}
 					});
-					
+		
 				});
 			});
 			function auto_list(str) {
