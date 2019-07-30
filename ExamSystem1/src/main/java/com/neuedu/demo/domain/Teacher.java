@@ -3,7 +3,7 @@ package com.neuedu.demo.domain;
 public class Teacher {
 	private User user;
 	private String name;
-	private int telephone;
+	private Integer telephone;
 	public User getUser() {
 		return user;
 	}

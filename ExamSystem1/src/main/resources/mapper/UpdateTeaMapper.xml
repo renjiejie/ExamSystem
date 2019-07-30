@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neuedu.demo.dao.UpdateTeaMapper">
+	<update id="updateTeaPassword" parameterType="Teacher">
+		update teacher_table t , user_table u
+		Set u.user_password=#{user.password}
+		Where t.user_account =#{user.account} and t.user_account = u.user_account;
+	</update>
+	<update id="updateTeaTel" >
+		update teacher_table t , user_table u
+		Set t.teacher_tel = #{telephone}
+		Where t.user_account =#{account} and t.user_account = u.user_account;
+	</update>
+	
+</mapper>
