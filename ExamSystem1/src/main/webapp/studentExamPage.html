@@ -156,18 +156,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<div class="inbox-page" id="unit">
 						</div>
 						<div class="inbox-page row" id="mutiple">
-							
+
 						</div>
-						
+
 						<div class="inbox-page row" id="fill">
-							
-							
+
+
 						</div>
 						<div class="inbox-page row" id="short">
-							
-							
+
+
 						</div>
-						<div style="text-align: center; padding-top: 100px;"><button type="submit" class="btn btn-default" style="width: 200px;height: 100px;">
+						<div style="text-align: center; padding-top: 100px;">
+							<button type="button" class="btn btn-default" style="width: 200px;height: 100px;" id="btn1">
 								<h1>提交</h1>
 							</button></div>
 					</form>
@@ -199,25 +200,58 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 			getParam();
+
 			function getParam() {
 				var url = location.search.substring(1);
-				if (url != null && url != undefined && url != "") { 
+				if (url != null && url != undefined && url != "") {
 					examId = url.split('&')[0].split('=')[1];
-					
+
 				}
 			}
 			$(document).ready(function() {
-				var queryURL = "/exam/student/take/"+examId;
+				var queryURL = "/exam/student/take/" + examId;
 				$.ajax({
 					url: queryURL,
 					type: "GET",
 					dataType: "json",
 					success: function(str) {
-						if(str!=null){
+						if (str != null) {
 							auto_list(str);
 						}
+						
 					},
 					error: function() {}
+				});
+			});
+				
+				
+			$(document).ready(function() {
+				$("button").click(function() {
+					var answerstr="";
+					$("input:radio:checked").each(function(index,e) {
+						answerstr+="单选"+e.value
+					});
+					$("input:checkbox:checked").each(function(index,e) {
+						answerstr+="多选"+e.value
+					});
+					$("input[name='fill']").each(function(index,e) {
+						answerstr+="填空"+e.value
+					});
+					$("input[name='short']").each(function(index,e) {
+						answerstr+="简答"+e.value
+					});
+					var queryURL = "/exam/student/input/" + examId+"/"+answerstr;
+					$.ajax({
+						url: queryURL,
+						type: "GET",
+						dataType: "json",
+						success: function() {
+							alert("提交成功")
+							
+						},
+						error: function() {}
+					});
+					
 				});
 			});
 			function auto_list(str) {
@@ -229,145 +263,141 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				var mutiplecount = 0;
 				var fillcount = 0;
 				var shortcount = 0;
-				
-				
-				
+
+
+
 				$(str).each(function(index, e) {
-					if(e.type=="单选"){
-						if(unitcount==0){
+					if (e.type == "单选") {
+						if (unitcount == 0) {
 							unit.innerHTML = "<h4>单选</h4>";
 						}
-						unit.innerHTML += 
-						'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">'
-								+'<div class="mail mail-name">'
-						+			'<h6>单选题</h6>'
-						+		'</div>'
-						+		'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true"'
-						+		 'aria-controls="collapseOne">'
-						+		'	<div class="mail">'
-						+				'<p>题目名</p>'
-						+			'</div>'
-						+		'</a>'
-						+		'<div class="clearfix"> </div>'
-						+		'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"'
-						+		 'aria-expanded="true">'
-						+		'	<div class="mail-body">'
-						+				'<p>'+e.stem+'</p>'
-						+				'<form>'
-						+					'<div class="radio-inline">'
-						+						'<input type="radio" name="soloanswer2">A'
-						+					'</div>'
-						+					'<div class="radio-inline">'
-						+						'<input type="radio" name="soloanswer2">B'
-						+					'</div>'
-						+					'<div class="radio-inline">'
-						+					'	<input type="radio" name="soloanswer2">C'
-						+					'</div>'
-						+					'<div class="radio-inline">'
-						+						'<input type="radio" name="soloanswer2">D'
-						+					'</div>'
-						+				'</form>'
-						+			'</div>'
-						+		'</div>'
-						+	'</div>';
-						unitcount+=1;
-					}
-					else if(e.type=="多选"){
-						if(mutiplecount==0){
+						unit.innerHTML +=
+							'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">' +
+							'<div class="mail mail-name">' +
+							'<h6>单选题</h6>' +
+							'</div>' +
+							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true"' +
+							'aria-controls="collapseOne">' +
+							'	<div class="mail">' +
+							'<p>题目名</p>' +
+							'</div>' +
+							'</a>' +
+							'<div class="clearfix"> </div>' +
+							'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
+							'aria-expanded="true">' +
+							'	<div class="mail-body">' +
+							'<p>' + e.stem + '</p>' +
+							'<form>' +
+							'<div class="radio-inline">' +
+							'<input type="radio" name="soloanswer2" value="A">A' +
+							'</div>' +
+							'<div class="radio-inline">' +
+							'<input type="radio" name="soloanswer2" value="B">B' +
+							'</div>' +
+							'<div class="radio-inline">' +
+							'	<input type="radio" name="soloanswer2" value="C">C' +
+							'</div>' +
+							'<div class="radio-inline">' +
+							'<input type="radio" name="soloanswer2" value="D">D' +
+							'</div>' +
+							'</form>' +
+							'</div>' +
+							'</div>' +
+							'</div>';
+						unitcount += 1;
+					} else if (e.type == "多选") {
+						if (mutiplecount == 0) {
 							mutiple.innerHTML = "<h4>多选</h4>"
 						}
-						mutiple.innerHTML+=
-						'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">'
-								+'<div class="mail mail-name">'
-						+			'<h6>多选题</h6>'
-						+		'</div>'
-						+		'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true"'
-						+		 'aria-controls="collapseOne">'
-						+		'	<div class="mail">'
-						+				'<p>题目名</p>'
-						+			'</div>'
-						+		'</a>'
-						+		'<div class="clearfix"> </div>'
-						+		'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"'
-						+		 'aria-expanded="true">'
-						+		'	<div class="mail-body">'
-						+				'<p>'+e.stem+'</p>'
-						+			'<form>'
-						+				'<div class="checkbox-inline">'
-						+					'<input type="checkbox" name="multianswer2">A'
-						+				'</div>'
-						+				'<div class="checkbox-inline">'
-						+					'<input type="checkbox" name="multianswer2">B'
-						+				'</div>'
-						+				'<div class="checkbox-inline">'
-						+				'	<input type="checkbox" name="multianswer2">C'
-						+				'</div>'
-						+				'<div class="checkbox-inline">'
-						+					'<input type="checkbox" name="multianswer2">D'
-						+				'</div>'
-						+			'</form>'
-						+		'</div>'
-						+	'</div>'
-						+'</div>';
-						mutiplecount+=1
-					}
-					else if(e.type=="填空"){
-						if(fillcount==0){
-							fill.innerHTML="<h4>填空</h4>"
+						mutiple.innerHTML +=
+							'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">' +
+							'<div class="mail mail-name">' +
+							'<h6>多选题</h6>' +
+							'</div>' +
+							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true"' +
+							'aria-controls="collapseOne">' +
+							'	<div class="mail">' +
+							'<p>题目名</p>' +
+							'</div>' +
+							'</a>' +
+							'<div class="clearfix"> </div>' +
+							'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
+							'aria-expanded="true">' +
+							'	<div class="mail-body">' +
+							'<p>' + e.stem + '</p>' +
+							'<form>' +
+							'<div class="checkbox-inline">' +
+							'<input type="checkbox" name="multianswer2" value="A">A' +
+							'</div>' +
+							'<div class="checkbox-inline">' +
+							'<input type="checkbox" name="multianswer2" value="B">B' +
+							'</div>' +
+							'<div class="checkbox-inline">' +
+							'	<input type="checkbox" name="multianswer2" value="C">C' +
+							'</div>' +
+							'<div class="checkbox-inline">' +
+							'<input type="checkbox" name="multianswer2" value="D">D' +
+							'</div>' +
+							'</form>' +
+							'</div>' +
+							'</div>' +
+							'</div>';
+						mutiplecount += 1
+					} else if (e.type == "填空") {
+						if (fillcount == 0) {
+							fill.innerHTML = "<h4>填空</h4>"
 						}
-						fill.innerHTML+=
-							'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">'
-						+		'<div class="mail mail-name">'
-						+		'	<h6>填空题</h6>'
-						+		'</div>'
-						+		'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="true"'
-						+		 'aria-controls="collapseOne">'
-						+		'	<div class="mail">'
-						+				'<p>题目名</p>'
-						+			'</div>'
-						+		'</a>'
-						+		'<div class="clearfix"> </div>'
-						+		'<div id="collapse9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"'
-						+		' aria-expanded="true">'
-						+			'<div class="mail-body">'
-						+			'	<p>'+e.stem+'</p>'
-						+				'<form>'
-						+				'	<input type="text" name="multianswer3" placeholder="请输入答案">'
-						+				'</form>'
-						+			'</div>'
-						+		'</div>'
-						+	'</div>';
-						fillcount+=1
-					}
-					else if(e.type="简答"){
-						if(shortcount==0){
-							short.innerHTML="<h4>简答</h4>"
+						fill.innerHTML +=
+							'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">' +
+							'<div class="mail mail-name">' +
+							'	<h6>填空题</h6>' +
+							'</div>' +
+							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="true"' +
+							'aria-controls="collapseOne">' +
+							'	<div class="mail">' +
+							'<p>题目名</p>' +
+							'</div>' +
+							'</a>' +
+							'<div class="clearfix"> </div>' +
+							'<div id="collapse9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
+							' aria-expanded="true">' +
+							'<div class="mail-body">' +
+							'	<p>' + e.stem + '</p>' +
+							'<form>' +
+							'	<input type="text" name="fill" placeholder="请输入答案">' +
+							'</form>' +
+							'</div>' +
+							'</div>' +
+							'</div>';
+						fillcount += 1
+					} else if (e.type = "简答") {
+						if (shortcount == 0) {
+							short.innerHTML = "<h4>简答</h4>"
 						}
-						short.innerHTML+=
-						'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">'
-						+	'<div class="mail mail-name">'
-						+	'	<h6>简答题</h6>'
-						+	'</div>'
-						+	'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="true"'
-						+	 'aria-controls="collapseOne">'
-						+	'	<div class="mail">'
-						+			'<p>题目名</p>'
-						+		'</div>'
-						+	'</a>'
-						+	'<div class="clearfix"> </div>'
-						+	'<div id="collapse13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"'
-						+	 'aria-expanded="true">'
-						+	'	<div class="mail-body">'
-						+			'<p>'+e.stem+'</p>'
-						+			'<form>'
-						+				'<input type="text" name="multianswer3" placeholder="请输入答案">'
-						+			'</form>'
-						+		'</div>'
-						+	'</div>'
-						+'</div>';
-						shortcount+=1
+						short.innerHTML +=
+							'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">' +
+							'<div class="mail mail-name">' +
+							'	<h6>简答题</h6>' +
+							'</div>' +
+							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="true"' +
+							'aria-controls="collapseOne">' +
+							'	<div class="mail">' +
+							'<p>题目名</p>' +
+							'</div>' +
+							'</a>' +
+							'<div class="clearfix"> </div>' +
+							'<div id="collapse13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
+							'aria-expanded="true">' +
+							'	<div class="mail-body">' +
+							'<p>' + e.stem + '</p>' +
+							'<form>' +
+							'<input type="text" name="short" placeholder="请输入答案">' +
+							'</form>' +
+							'</div>' +
+							'</div>' +
+							'</div>';
+						shortcount += 1
 					}
-			
 				});
 			}
 		</script>

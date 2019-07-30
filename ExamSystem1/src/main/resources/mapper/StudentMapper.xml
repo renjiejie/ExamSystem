@@ -37,5 +37,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="exam_supervisor" property="supervisor"/>
 		
 	
-	</resultMap>  
+	</resultMap> 
+	<insert id="submitAnswer">
+		INSERT INTO answer_table(exam_id,student_account,answer_content,paper_id) VALUES (#{examId},#{studentAccount}
+			,#{answerStr},#{paperId})
+	
+	</insert> 
 </mapper>
