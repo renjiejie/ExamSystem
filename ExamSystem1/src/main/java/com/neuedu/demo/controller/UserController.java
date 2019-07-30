@@ -29,14 +29,14 @@ public class UserController {
 			session.setAttribute("password", password);
 			if(permission.equals("学生")) {
 				session.setAttribute("permission", "student");
-				return "../blankStudentPage.html";
+				return "redirect:../blankStudentPage.html";
 				
 			} else if(permission.equals("老师")) {
 				session.setAttribute("permission", "teacher");
-				return "../blankTeacherPage.html";
+				return "redirect:../blankTeacherPage.html";
 			} else if(permission.equals("管理员")){
 				session.setAttribute("permission", "admin");
-				return "../admin.html";
+				return "redirect:../admin.html";
 			}
 		}
 		return "../login1.html";
