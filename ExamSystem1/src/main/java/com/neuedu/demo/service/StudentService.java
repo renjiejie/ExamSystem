@@ -8,6 +8,6 @@ import com.neuedu.demo.domain.Student;
 
 public interface StudentService {
 	public List<Paper> getPaperId(String examId);
-	public List<Exam> joinExam();
+	public List<Exam> joinExam( String studentAccount);
 	public void submitAnswer(String answerStr,String examId,String studentAccount,String paperId);
 }

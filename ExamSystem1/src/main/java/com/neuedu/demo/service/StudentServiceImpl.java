@@ -35,9 +35,19 @@ public class StudentServiceImpl implements StudentService{
 		return papers;
 	}
 	@Override
-	public  List<Exam> joinExam() {
+	public  List<Exam> joinExam(String studentAccount) {
 		// TODO Auto-generated method stub
 		List<Exam> exams = mapper.joinExam();
+		String examDone = mapper.isExamDone(studentAccount);
+		String[] examsDone = examDone.split(",");
+		for(int i=0;i<exams.size();++i) {
+			for(String id:examsDone) {
+				if(exams.get(i).getId().equals(id)) {
+					exams.remove(i);
+					i--;
+				}
+			}
+		}
 		for(Exam exam:exams) {
 			Random r = new Random(1);
 			int paperLenth = getPaperId(exam.getId()).size();

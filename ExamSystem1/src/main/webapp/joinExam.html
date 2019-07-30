@@ -223,11 +223,12 @@
 							res = res + "<td>未开始</td>";
 						}
 						else if(date<begintime){
-							if(date<endtime){
+							if(date>endtime){
 								res = res + "<td>已结束</td>";
+								alert(endtime)
 							}
 								
-							else if(date>endtime){
+							else if(date<endtime){
 								res = res + "<td>正在进行</td>";
 							}
 						}
@@ -296,11 +297,11 @@
 							res = res + "<td>未开始</td>";
 						}
 						else if(date<begintime){
-							if(date<endtime){
+							if(date>endtime){
 								res = res + "<td>已结束</td>";
 							}
 								
-							else if(date>endtime){
+							else if(date<endtime){
 								res = res +"<td> <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:location.href='/exam/studentExamPage.html?examId="+e.id+"'\">"
 										  +			"<span class=\"glyphicon glyphicon-pencil\"></span></button></td>"
 							}

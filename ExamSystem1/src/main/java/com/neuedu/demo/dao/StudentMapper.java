@@ -14,6 +14,7 @@ public interface StudentMapper {
 	public String getPaperId(String examId);
 	public Paper getPaper(String id);
 	public List<Exam> joinExam();
+	public String isExamDone(@Param("studentAccount") String studentAccount);
 	public void submitAnswer(@Param("answerStr") String answerStr,@Param("examId") String examId,
 			@Param("studentAccount") String studentAccount,@Param("paperId") String paperId);
 }

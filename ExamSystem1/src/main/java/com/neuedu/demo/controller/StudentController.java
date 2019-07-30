@@ -23,8 +23,8 @@ public class StudentController {
 	private List<Exam> exams;
 	@RequestMapping("/join")
 	@ResponseBody
-	public List<Exam> joinExam(){
-		exams = studentService.joinExam();
+	public List<Exam> joinExam(HttpServletRequest req){
+		exams = studentService.joinExam((String) req.getSession().getAttribute("account"));
 		return exams;
 	}
 	@RequestMapping("/take/{examId}")
