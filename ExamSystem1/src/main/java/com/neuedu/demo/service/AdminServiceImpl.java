@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.neuedu.demo.dao.AdminMapper;
-import com.neuedu.demo.domain.Admin;
 import com.neuedu.demo.domain.Course;
 import com.neuedu.demo.domain.User;
 
@@ -83,6 +82,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteCourse(String course) {
 		mapper.deleteCourse(course);
+	}
+
+	@Override
+	public void addExam(String exam, String course, String description, String start, String duaration, String end,
+			String place, String supervisor) {
+		mapper.addExam(exam, course, description, start, duaration, end, place, supervisor);
 	}
 
 }
