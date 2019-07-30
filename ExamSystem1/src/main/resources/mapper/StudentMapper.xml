@@ -40,7 +40,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap> 
 	<insert id="submitAnswer">
 		INSERT INTO answer_table(exam_id,student_account,answer_content,paper_id) VALUES (#{examId},#{studentAccount}
-			,#{answerStr},#{paperId})
+			,#{answerStr},#{paperId});
+		UPDATE student_table SET student_class = concat(student_class,#{examId}) WHERE user_account=#{studentAccount}
 	
 	</insert> 
+	
+	
+	
+	
+	
+	
 </mapper>
