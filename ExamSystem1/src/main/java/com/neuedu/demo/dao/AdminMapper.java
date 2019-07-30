@@ -41,6 +41,6 @@ public interface AdminMapper {
 
 	public void addExam(@Param("exam") String exam, @Param("course") String course,
 			@Param("description") String description, @Param("start") String start,
-			@Param("duaration") String duaration, @Param("end") String end, @Param("place") String place,
-			@Param("supervisor") String supervisor);
+			@Param("duration") String duration, @Param("end") String end, @Param("place") String place,
+			@Param("supervisor") String supervisor, @Param("paper") String paper);
 }

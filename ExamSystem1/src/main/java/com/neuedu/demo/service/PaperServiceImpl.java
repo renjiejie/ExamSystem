@@ -67,8 +67,24 @@ public class PaperServiceImpl implements PaperService{
 			}
 		}
 		paper.setQuestionStr(resultstr);
+		mapper.updatePaper(paper);		
+	}
+
+	@Override
+	public void addPaperQuestion(String paperId, String questionId) {
+		System.out.println("addPaperQuestion");
+		Paper paper = mapper.queryById(paperId);
+		String[] questions = paper.getQuestionStr().split(",");
+		for(String str:questions){
+			if(str.equals(questionId)){
+				return;
+			}
+		}
+		String questionstr = paper.getQuestionStr();
+		String result = questionstr.concat(","+questionId);
+		paper.setQuestionStr(result);
+		System.out.println(paper.getQuestionStr());
 		mapper.updatePaper(paper);
-		
 	}
 
 }

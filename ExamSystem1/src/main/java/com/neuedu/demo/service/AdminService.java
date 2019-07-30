@@ -27,6 +27,6 @@ public interface AdminService {
 
 	public void deleteCourse(String course);
 
-	public void addExam(String exam, String course, String description, String start, String duaration, String end,
-			String place, String supervisor);
+	public void addExam(String exam, String course, String description, String start, String duration, String end,
+			String place, String supervisor, String paper);
 }

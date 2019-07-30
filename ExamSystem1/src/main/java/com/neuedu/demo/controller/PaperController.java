@@ -74,4 +74,10 @@ public class PaperController {
 		pService.deletePaperQuestion(paperId, questionId);
 		return "redirect:../../../teacherChangePaper.html?id="+paperId;
 	}
+	
+	@RequestMapping(value="/addQuestion/{paperId}/{questionId}")
+	public String addQuestion(@PathVariable("paperId")String paperId,@PathVariable("questionId")String questionId){
+		pService.addPaperQuestion(paperId, questionId);
+		return "redirect:../../../teacherChangePaper.html?id="+paperId;
+	}
 }

@@ -42,4 +42,10 @@ public class QuestionController {
 		return "redirect:../../questionManage.html";
 	}
 	
+	@RequestMapping(value="/queryById/{questionId}")
+	@ResponseBody
+	public Question queryById(@PathVariable("questionId")String questionId){
+		return questionService.queryById(questionId);
+	}
+	
 }

@@ -114,13 +114,13 @@ public class AdminController {
 		}
 	}
 	
-	@RequestMapping(value = "/addExam/{exam}/{course}/{description}/{start}/{duaration}/{end}/{place}/{supervisor}")
+	@RequestMapping(value = "/addExam/{exam}/{course}/{description}/{start}/{duration}/{end}/{place}/{supervisor}/{paper}")
 	@ResponseBody
 	public String addExam(@PathVariable("exam") String exam, @PathVariable("course") String course,
 			@PathVariable("description") String description, @PathVariable("start") String start,
-			@PathVariable("duaration") String duaration, @PathVariable("end") String end,
-			@PathVariable("place") String place, @PathVariable("supervisor") String supervisor) {
-		adminService.addExam(exam, course, description, start, duaration, end, place, supervisor);
+			@PathVariable("duration") String duration, @PathVariable("end") String end,
+			@PathVariable("place") String place, @PathVariable("supervisor") String supervisor, @PathVariable("paper") String paper) {
+		adminService.addExam(exam, course, description, start, duration, end, place, supervisor, paper);
 		return "success";
 	}
 	

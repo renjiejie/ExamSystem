@@ -15,4 +15,5 @@ public interface PaperService {
 	public void deletePaper(String paperId);
 	public List<Question> showQuestions(String paperId);
 	public void deletePaperQuestion(String paperId, String questionId);
+	public void addPaperQuestion(String paperId, String questionId);
 }
