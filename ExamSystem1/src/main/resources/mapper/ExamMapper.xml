@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.demo.dao.ExamMapper">
+
+ 	<select id="getExams"  parameterType="String" resultMap="exam">
+ 		select * 
+ 		from exam_table 
+ 		where course_id = #{courseId}
+	</select>
+	<resultMap type="Exam" id="exam">
+		<id column="exam_id" property="id"/>
+		<result column="exam_begintime" property="begintime"/>
+		<result column="exam_endtime" property="endtime"/>
+		<result column="exam_period" property="period"/>
+		<result column="paper_ids" property="ids"/>
+		<result column="exam_discript" property="discript"/>
+		<result column="exam_place" property="place"/>
+		<result column="course_id" property="courseId"/>
+		<result column="exam_supervisor" property="supervisor"/>
+	</resultMap>	
+</mapper>
