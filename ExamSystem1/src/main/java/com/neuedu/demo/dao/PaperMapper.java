@@ -11,6 +11,8 @@ import com.neuedu.demo.domain.Question;
 @Mapper
 public interface PaperMapper {
 	public void addPaper(Paper paper);
+	public void updatePaper(Paper paper);
 	public List<Paper> query(@Param("paperId")String paperId,@Param("courseId")String courseId);
 	public void deletePaper(@Param("paperId")String paperId);
+	public Paper queryById(@Param("paperId")String paperId);
 }

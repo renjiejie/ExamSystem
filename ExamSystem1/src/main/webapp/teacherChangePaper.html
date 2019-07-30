@@ -287,7 +287,7 @@
 				<!--toggle button end-->
 				<!--logo -->
 				<div class="logo">
-					<a href="index.html">
+					<a href="blankTeacherPage.html">
 						<h1>教师</h1>
 						<span>学生考试系统</span>
 					</a>
@@ -357,6 +357,162 @@
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 						<div class="bs-docs-section">
 							<div class="bs-example">
+								<!-- 添加题目模态框 -->
+								<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title" id="myModalLabel">查询并添加题目</h4>
+												</div>
+												<div class="modal-body">
+									
+													<form>
+														<div class="form-group">
+															<div class="dropdown">
+																<label>课程：</label>
+																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+																 aria-haspopup="true" aria-expanded="true">
+																	语文
+																	<span class="caret"></span>
+																</button>
+																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li><a href="#">语文</a></li>
+																	<li><a href="#">数学</a></li>
+																	<li><a href="#">英语</a></li>
+																	<li><a href="#">物理</a></li>
+																	<li><a href="#">化学</a></li>
+																</ul>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="dropdown">
+																<label>类型：</label>
+																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+																 aria-haspopup="true" aria-expanded="true">
+																	单选
+																	<span class="caret"></span>
+																</button>
+																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li><a href="#">单选</a></li>
+																	<li><a href="#">多选</a></li>
+																	<li><a href="#">填空</a></li>
+																	<li><a href="#">简答</a></li>
+																</ul>
+															</div>
+														</div>
+															
+														<div class="form-group">
+															
+															<label>题干：</label>
+															<input type="text" class="form-control" id="answer"
+															 name="answer" value="语文题干">
+														</div>
+														<div class="form-group">
+															<div class="input-group">
+																<label>答案：</label>
+																<input type="text" class="form-control" id="answer"
+																 name="answer" value="语文答案">
+															</div>
+															
+														</div>
+														<div class="form-group">
+															<div class="input-group">
+																<label>分数：</label>
+																<input type="text" class="form-control" id="point"
+																 name="point" value="4">
+															</div>
+															
+														</div>
+														
+									
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+													<button type="button" class="btn btn-primary">添加到试卷中</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal -->
+									</div>
+								<!-- 添加题目模态框 -->
+								<!-- 修改信息模态框 -->
+								<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title" id="myModalLabel">修改题目</h4>
+												</div>
+												<div class="modal-body">
+									
+													<form>
+														<div class="form-group">
+															<div class="dropdown">
+																<label>课程：</label>
+																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+																 aria-haspopup="true" aria-expanded="true">
+																	课程
+																	<span class="caret"></span>
+																</button>
+																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li><a href="#">语文</a></li>
+																	<li><a href="#">数学</a></li>
+																	<li><a href="#">英语</a></li>
+																	<li><a href="#">物理</a></li>
+																	<li><a href="#">化学</a></li>
+																</ul>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="dropdown">
+																<label>类型：</label>
+																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
+																 aria-haspopup="true" aria-expanded="true">
+																	类型
+																	<span class="caret"></span>
+																</button>
+																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+																	<li><a href="#">单选</a></li>
+																	<li><a href="#">多选</a></li>
+																	<li><a href="#">填空</a></li>
+																	<li><a href="#">简答</a></li>
+																</ul>
+															</div>
+														</div>
+														<label>题干：</label>
+														<div class="form-group">
+															
+															<textarea></textarea>
+														</div>
+														<div class="form-group">
+															<div class="input-group">
+																<label>答案：</label>
+																<input type="text" class="form-control" id="answer"
+																 name="answer">
+															</div>
+															
+														</div>
+														<div class="form-group">
+															<div class="input-group">
+																<label>分数：</label>
+																<input type="text" class="form-control" id="point"
+																 name="point">
+															</div>
+															
+														</div>
+														
+									
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+													<button type="button" class="btn btn-primary">修改完毕</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal -->
+									</div>
+								<!-- 修改信息模态框 -->
 								<form>
 									<div class="form-group">
 										<div class="dropdown">
@@ -365,85 +521,7 @@
 										</div>
 									</div>
 									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#searchModal">查询</button>
-									<!-- 修改信息模态框 -->
-									<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-														<h4 class="modal-title" id="myModalLabel">查询并添加题目</h4>
-													</div>
-													<div class="modal-body">
-										
-														<form>
-															<div class="form-group">
-																<div class="dropdown">
-																	<label>课程：</label>
-																	<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																	 aria-haspopup="true" aria-expanded="true">
-																		语文
-																		<span class="caret"></span>
-																	</button>
-																	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																		<li><a href="#">语文</a></li>
-																		<li><a href="#">数学</a></li>
-																		<li><a href="#">英语</a></li>
-																		<li><a href="#">物理</a></li>
-																		<li><a href="#">化学</a></li>
-																	</ul>
-																</div>
-															</div>
-															<div class="form-group">
-																<div class="dropdown">
-																	<label>类型：</label>
-																	<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																	 aria-haspopup="true" aria-expanded="true">
-																		单选
-																		<span class="caret"></span>
-																	</button>
-																	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																		<li><a href="#">单选</a></li>
-																		<li><a href="#">多选</a></li>
-																		<li><a href="#">填空</a></li>
-																		<li><a href="#">简答</a></li>
-																	</ul>
-																</div>
-															</div>
-							
-															<div class="form-group">
-																
-																<label>题干：</label>
-																<input type="text" class="form-control" id="answer"
-																 name="answer" value="语文题干">
-															</div>
-															<div class="form-group">
-																<div class="input-group">
-																	<label>答案：</label>
-																	<input type="text" class="form-control" id="answer"
-																	 name="answer" value="语文答案">
-																</div>
-																
-															</div>
-															<div class="form-group">
-																<div class="input-group">
-																	<label>分数：</label>
-																	<input type="text" class="form-control" id="point"
-																	 name="point" value="4">
-																</div>
-																
-															</div>
-															
-										
-														</form>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-														<button type="button" class="btn btn-primary">添加到试卷中</button>
-													</div>
-												</div><!-- /.modal-content -->
-											</div><!-- /.modal -->
-										</div>
-									<!-- 修改信息模态框 -->
+									
 									<table class="table table-striped">
 										<thead>
 											<tr>
@@ -458,6 +536,7 @@
 											</tr>
 										</thead>
 										<tbody>
+											<tr id="first"></tr>
 											<tr>
 												<td>sdfsf</td>
 												<td>Lorem</td>
@@ -469,83 +548,6 @@
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
 														<span class="glyphicon glyphicon-pencil"></span>
 													</button>
-													<!-- 修改信息模态框 -->
-													<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																		<h4 class="modal-title" id="myModalLabel">修改题目</h4>
-																	</div>
-																	<div class="modal-body">
-														
-																		<form>
-																			<div class="form-group">
-																				<div class="dropdown">
-																					<label>课程：</label>
-																					<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																					 aria-haspopup="true" aria-expanded="true">
-																						课程
-																						<span class="caret"></span>
-																					</button>
-																					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																						<li><a href="#">语文</a></li>
-																						<li><a href="#">数学</a></li>
-																						<li><a href="#">英语</a></li>
-																						<li><a href="#">物理</a></li>
-																						<li><a href="#">化学</a></li>
-																					</ul>
-																				</div>
-																			</div>
-																			<div class="form-group">
-																				<div class="dropdown">
-																					<label>类型：</label>
-																					<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																					 aria-haspopup="true" aria-expanded="true">
-																						类型
-																						<span class="caret"></span>
-																					</button>
-																					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																						<li><a href="#">单选</a></li>
-																						<li><a href="#">多选</a></li>
-																						<li><a href="#">填空</a></li>
-																						<li><a href="#">简答</a></li>
-																					</ul>
-																				</div>
-																			</div>
-																			<label>题干：</label>
-																			<div class="form-group">
-																				
-																				<textarea></textarea>
-																			</div>
-																			<div class="form-group">
-																				<div class="input-group">
-																					<label>答案：</label>
-																					<input type="text" class="form-control" id="answer"
-																					 name="answer">
-																				</div>
-																				
-																			</div>
-																			<div class="form-group">
-																				<div class="input-group">
-																					<label>分数：</label>
-																					<input type="text" class="form-control" id="point"
-																					 name="point">
-																				</div>
-																				
-																			</div>
-																			
-														
-																		</form>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-																		<button type="button" class="btn btn-primary">修改完毕</button>
-																	</div>
-																</div><!-- /.modal-content -->
-															</div><!-- /.modal -->
-														</div>
-													<!-- 修改信息模态框 -->
 												</td>
 												<td>
 													<button type="button" class="btn btn-default">
@@ -696,6 +698,12 @@
 				<!-- Classie -->
 		<script src="/exam/js/classie.js"></script>
 		<script>
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);
+				return null;
+			}
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
@@ -711,7 +719,53 @@
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
-			}
+			};
+			
+			$(document).ready(function() {
+				var paperId = getUrlParam("id");
+				var queryURL = "/exam/paper/questions/"+paperId;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						//str-----json-----SchoolClass
+						//清空id=first的所有兄弟节点
+						$("#first").siblings().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res=res+'<tr>';
+								res=res+'<td>'+e.id+'</td>';
+								res=res+'<td>'+e.type+'</td>';
+								res=res+'<td>'+e.stem+'</td>';
+								res=res+'<td>'+e.point+'</td>';
+								res=res+'<td>'+e.answer+'</td>';
+								res=res+'<td>'+e.maker+'</td>';
+								res=res+'<td>';
+									res=res+'<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">';
+										res=res+'<span class="glyphicon glyphicon-pencil"></span>';
+									res=res+'</button>';
+								res=res+'</td>';
+								res=res+'<td>';
+									res=res+'<button type="button" class="btn btn-default" id="delete'+e.id+'">';
+										res=res+'<span class="glyphicon glyphicon-remove"></span>';
+									res=res+'</button>';
+								res=res+'</td>';
+							res=res+'</tr>';
+						});
+						var app = $(res);
+						$("#first").after(app);
+						$(str).each(function(index, e) {
+							$(document).on('click', '#delete' + e.id, function() {
+								window.location.href = "/exam/paper/deleteQuestion/" +paperId+"/"+e.id;
+							})
+						});
+					},
+					error: function() {}
+				});
+				
+				})
+				
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

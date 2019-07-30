@@ -56,4 +56,22 @@ public class PaperController {
 		pService.deletePaper(paperId);
 		return "redirect:../../paperManage.html";
 	}
+	
+	@RequestMapping(value="/change/{paperId}")
+	public String Redirect(@PathVariable("paperId")String paperId){
+		System.out.println("change"+paperId);
+		return "redirect:../../teacherChangePaper.html?id="+paperId;
+	}
+	
+	@RequestMapping(value="/questions/{paperId}")
+	@ResponseBody
+	public List<Question> showQuestions(@PathVariable("paperId")String paperId){
+		return pService.showQuestions(paperId);
+	}
+	
+	@RequestMapping(value="/deleteQuestion/{paperId}/{questionId}")
+	public String deleteQuestion(@PathVariable("paperId")String paperId,@PathVariable("questionId")String questionId){
+		pService.deletePaperQuestion(paperId, questionId);
+		return "redirect:../../../teacherChangePaper.html?id="+paperId;
+	}
 }

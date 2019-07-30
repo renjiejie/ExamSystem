@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		VALUES(#{id},#{course},#{questionStr},#{producer.user.account},#{passPoint},#{fullPoint});
 	</insert>
 	
+	<update id="updatePaper" parameterType="Paper">
+		Update paper_table
+		Set paper_questions=#{questionStr},producer_id=#{producer.user.account},paper_passpoint=#{passPoint},paper_fullpoint=#{fullPoint}
+		Where paper_id = #{id};
+	</update>
+	
 	<select id="query" resultMap="paper">
 		SELECT paper_id,paper_fullpoint,paper_passpoint,producer_id,paper_questions
 		FROM paper_table
@@ -33,5 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete parameterType="String" id="deletePaper">
 		Delete from paper_table where paper_id = #{paperId};
 	</delete>
+	
+	<select id="queryById" resultMap="paper">
+		SELECT paper_id,paper_fullpoint,paper_passpoint,producer_id,paper_questions
+		FROM paper_table
+		WHERE paper_id = #{paperId};
+	</select>
 	
 </mapper>
