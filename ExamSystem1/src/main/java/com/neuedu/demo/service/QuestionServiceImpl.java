@@ -34,6 +34,12 @@ public class QuestionServiceImpl implements QuestionService{
 		mapper.changeQuestion(question);
 		
 	}
+
+	@Override
+	public void changeQuestionWithoutCourse(Question question) {
+		mapper.changeQuestionWithoutCourse(question);
+		
+	}
 	
 	
 

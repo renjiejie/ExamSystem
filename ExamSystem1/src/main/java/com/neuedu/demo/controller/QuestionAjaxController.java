@@ -36,5 +36,12 @@ public class QuestionAjaxController {
 		return "/exam/questionManage.html";		
 	}
 	
+	@RequestMapping(value="/changeWithout",method=RequestMethod.PUT)
+	@ResponseBody
+	public String changeQuestionWithoutCourse(@RequestBody Question question) {
+		qs.changeQuestionWithoutCourse(question);
+		return "/exam/questionManage.html";		
+	}
+	
 
 }

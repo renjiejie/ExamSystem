@@ -40,6 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Where question_id = #{id};
 	</update>
 	
+	<update id="changeQuestionWithoutCourse" parameterType="Question">
+		Update question_table
+		Set question_type=#{type},question_stem=#{stem},question_answer=#{answer},question_point=#{point}
+		Where question_id = #{id};
+	</update>
+	
 	<select id="queryById" resultMap="question">
 		SELECT question_id,question_type,question_stem,question_point,question_maker,question_answer
 		FROM question_table

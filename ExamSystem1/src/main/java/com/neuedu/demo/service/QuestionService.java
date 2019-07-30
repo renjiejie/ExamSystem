@@ -11,5 +11,6 @@ public interface QuestionService {
 	public List<Question> query(String questionId,String courseId);
 	public void deleteQuestion(String questionId);
 	public void changeQuestion(Question question);
+	public void changeQuestionWithoutCourse(Question question);
 
 }
