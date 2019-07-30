@@ -53,5 +53,9 @@ public class StudentServiceImpl implements StudentService{
 		}
 		return exams;
 	}
-
+	@Override
+	public void submitAnswer(String answerStr, String examId, String studentAccount,String paperId) {
+		// TODO Auto-generated method stub
+		mapper.submitAnswer(answerStr, examId, studentAccount,paperId);
+	}
 }

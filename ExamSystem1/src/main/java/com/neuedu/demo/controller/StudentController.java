@@ -2,6 +2,8 @@ package com.neuedu.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,4 +37,21 @@ public class StudentController {
 		}
 		return null;
 	}
+	@RequestMapping("/input/{examId}/{answerStr}")
+	@ResponseBody
+	public String submitAnswer(HttpServletRequest req,@PathVariable("examId")String examId
+			,@PathVariable("answerStr")String answerStr) {
+		String paperId=null;
+		for(Exam exam:exams) {
+			if(exam.getId().equals(examId)) {
+				paperId = exam.getPapers().getId();
+			}
+		}
+		System.out.println((String) req.getSession().getAttribute("account"));
+		String studentAccount = (String) req.getSession().getAttribute("account");
+		studentService.submitAnswer(answerStr, examId, studentAccount,paperId);
+		return "提交成功";
+	}
+	
+	
 }

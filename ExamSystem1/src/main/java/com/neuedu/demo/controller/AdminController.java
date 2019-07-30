@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,11 +110,18 @@ public class AdminController {
 					return "error";
 			}
 			adminService.deleteCourseRelation(course, teacher);
-			if(adminService.queryCourseRelation(course, null).isEmpty()) {
-				adminService.deleteCourse(course);
-			}
 			return "success";
 		}
+	}
+	
+	@RequestMapping(value = "/addExam/{exam}/{course}/{description}/{start}/{duaration}/{end}/{place}/{supervisor}")
+	@ResponseBody
+	public String addExam(@PathVariable("exam") String exam, @PathVariable("course") String course,
+			@PathVariable("description") String description, @PathVariable("start") String start,
+			@PathVariable("duaration") String duaration, @PathVariable("end") String end,
+			@PathVariable("place") String place, @PathVariable("supervisor") String supervisor) {
+		adminService.addExam(exam, course, description, start, duaration, end, place, supervisor);
+		return "success";
 	}
 	
 }
