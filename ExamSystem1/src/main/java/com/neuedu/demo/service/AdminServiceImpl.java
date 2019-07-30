@@ -85,9 +85,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void addExam(String exam, String course, String description, String start, String duaration, String end,
-			String place, String supervisor) {
-		mapper.addExam(exam, course, description, start, duaration, end, place, supervisor);
+	public void addExam(String exam, String course, String description, String start, String duration, String end,
+			String place, String supervisor, String paper) {
+		mapper.addExam(exam, course, description, start, duration, end, place, supervisor, paper);
 	}
 
 }
