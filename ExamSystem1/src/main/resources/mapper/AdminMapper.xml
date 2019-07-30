@@ -117,8 +117,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addExam">
 		INSERT INTO
-		exam_table(exam_id,exam_begintime,exam_period,exam_endtime,course_id,exam_discript,exam_place,exam_supervisor)
-		VALUES(#{exam},#{start},#{duaration},#{end},#{course},#{description},#{place},#{supervisor})
+		exam_table(exam_id,exam_begintime,exam_period,exam_endtime,course_id,exam_discript,exam_place,exam_supervisor,paper_ids)
+		VALUES(#{exam},#{start},#{duration},#{end},#{course},#{description},#{place},#{supervisor},#{paper})
 	</insert>
 
 </mapper>
