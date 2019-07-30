@@ -12,5 +12,6 @@ public interface QuestionService {
 	public void deleteQuestion(String questionId);
 	public void changeQuestion(Question question);
 	public void changeQuestionWithoutCourse(Question question);
+	public Question queryById(String questionId);
 
 }

@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="question_point" property="point"/>
 		<result column="question_maker" property="maker"/>
 		<result column="question_answer" property="answer"/>
+		<result column="course_id" property="course"/>
 	</resultMap>
 	
 	<delete parameterType="String" id="deleteQuestion">
@@ -47,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="queryById" resultMap="question">
-		SELECT question_id,question_type,question_stem,question_point,question_maker,question_answer
+		SELECT question_id,course_id,question_type,question_stem,question_point,question_maker,question_answer
 		FROM question_table
 		WHERE question_id = #{questionId};
 	</select>

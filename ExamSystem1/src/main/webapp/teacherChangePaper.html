@@ -353,88 +353,78 @@
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
+					<div id="course-div"></div>
 					<h3 class="title1">试卷修改</h3>
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 						<div class="bs-docs-section">
 							<div class="bs-example">
 								<!-- 添加题目模态框 -->
-								<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<h4 class="modal-title" id="myModalLabel">查询并添加题目</h4>
+								<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+								 aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">添加题目</h4>
+											</div>
+											<div class="modal-body">
+												<div class="form-group">
+													<div class="input-group">
+														<label>题目：</label>
+														<input type="text" class="form-control" id="add-question-id" name="add-question-id" readonly="readonly">
+													</div>
+																						
 												</div>
-												<div class="modal-body">
-									
-													<form>
-														<div class="form-group">
-															<div class="dropdown">
-																<label>课程：</label>
-																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																 aria-haspopup="true" aria-expanded="true">
-																	语文
-																	<span class="caret"></span>
-																</button>
-																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																	<li><a href="#">语文</a></li>
-																	<li><a href="#">数学</a></li>
-																	<li><a href="#">英语</a></li>
-																	<li><a href="#">物理</a></li>
-																	<li><a href="#">化学</a></li>
-																</ul>
-															</div>
+													<div class="form-group">
+														<div class="dropdown">
+															<label>课程：</label>
+															<select class="form-control" id="add-form-course" name="add-form-course" style="width: 100px;" readonly="readonly">
+																<option>数学</option>
+																<option>语文</option>
+																<option>英语</option>
+																<option>物理</option>
+																<option>化学</option>
+															</select>
 														</div>
-														<div class="form-group">
-															<div class="dropdown">
-																<label>类型：</label>
-																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																 aria-haspopup="true" aria-expanded="true">
-																	单选
-																	<span class="caret"></span>
-																</button>
-																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																	<li><a href="#">单选</a></li>
-																	<li><a href="#">多选</a></li>
-																	<li><a href="#">填空</a></li>
-																	<li><a href="#">简答</a></li>
-																</ul>
-															</div>
+													</div>
+													<div class="form-group">
+														<div class="dropdown">
+															<label>类型：</label>
+															<select class="form-control" id="add-type" name="add-type" style="width: 100px;" readonly="readonly">
+																<option>单选</option>
+																<option>多选</option>
+																<option>填空</option>
+																<option>简答</option>
+															</select>
 														</div>
-															
-														<div class="form-group">
-															
-															<label>题干：</label>
-															<input type="text" class="form-control" id="add-stem"
-															 name="answer" value="语文题干">
+													</div>
+													<label>题干：</label>
+													<div class="form-group">
+															<textarea id="add-stem" name="add-stem" readonly="readonly"></textarea>
+													</div>
+													<div class="form-group">
+														<div class="input-group">
+															<label>答案：</label>
+															<input type="text" class="form-control" id="add-answer" name="add-answer" readonly="readonly">
 														</div>
-														<div class="form-group">
-															<div class="input-group">
-																<label>答案：</label>
-																<input type="text" class="form-control" id="add-answer"
-																 name="answer" value="语文答案">
-															</div>
-															
+								
+													</div>
+													<div class="form-group">
+														<div class="input-group">
+															<label>分数：</label>
+															<input type="text" class="form-control" id="add-point" name="add-point" readonly="readonly">
 														</div>
-														<div class="form-group">
-															<div class="input-group">
-																<label>分数：</label>
-																<input type="text" class="form-control" id="add-point"
-																 name="point" value="4">
-															</div>
-															
-														</div>
-														
-									
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-													<button type="button" class="btn btn-primary">添加到试卷中</button>
-												</div>
-											</div><!-- /.modal-content -->
-										</div><!-- /.modal -->
-									</div>
+								
+													</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+												<button type="button" id ="add-form-submit" class="btn btn-primary">添加试题</input>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal -->
+								</div>
+								<!-- 修改信息模态框 -->
 								<!-- 添加题目模态框 -->
 								<!-- 修改信息模态框 -->
 								<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -452,6 +442,18 @@
 														<input type="text" class="form-control" id="question-id" name="question-id" readonly="readonly">
 													</div>
 																						
+												</div>
+												<div class="form-group">
+													<div class="dropdown">
+														<label>课程：</label>
+														<select class="form-control" id="form-course" name="form-course" style="width: 100px;" readonly="readonly">
+															<option>数学</option>
+															<option>语文</option>
+															<option>英语</option>
+															<option>物理</option>
+															<option>化学</option>
+														</select>
+													</div>
 												</div>
 													<div class="form-group">
 														<div class="dropdown">
@@ -498,7 +500,7 @@
 											<input type="text" class="form-control" id="question-name" placeholder="题目名">
 										</div>
 									</div>
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#searchModal">查询</button>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#searchModal" id="searchButton">查询</button>
 									
 									<table class="table table-striped">
 										<thead>
@@ -594,14 +596,16 @@
 								window.location.href = "/exam/paper/deleteQuestion/" +paperId+"/"+e.id;
 							})
 						});
+						var courseId = '';
 						$(str).each(function(index,e){
 							$(document).on('click','#change'+e.id,function(){
 								$("#question-id").val(e.id);
 								$("#type").val(e.type);
 								$("#stem").val(e.stem);
+								$("#form-course").val(e.course);
 								$("#answer").val(e.answer);
 								$("#point").val(e.point);
-							})
+							});
 						});
 					},
 					error: function() {}
@@ -641,7 +645,30 @@
 					}); 
 					
 					
-				})
+				});
+				$("#searchButton").click(function(){
+					var questionId = $("#question-name").val();
+					var submiturl = "/exam/question/queryById/"+questionId;
+					$.ajax({
+						url:submiturl,
+						type:"GET",
+						dataType:"json",
+						success:function(str){
+							$("#add-question-id").val(str.id);
+							$("#add-type").val(str.type);
+							$("#add-stem").val(str.stem);
+							$("#add-answer").val(str.answer);
+							$("#add-point").val(str.point);
+						},
+						error:function(){
+						}
+					}); 
+				});
+				$("#add-form-submit").click(function(){
+					var paperId = getUrlParam("id");
+					var questionId = $("#question-name").val();
+					window.location.href="/exam/paper/addQuestion/"+paperId+"/"+questionId;				
+				});
 				
 		</script>
 		<!--scrolling js-->
