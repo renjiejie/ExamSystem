@@ -6,24 +6,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.neuedu.demo.dao.AdminMapper">
 
 	<insert id="addStudent">
- 		INSERT INTO user_table 
- 		VALUES(#{account},#{password},"学生");
-		INSERT INTO student_table(user_account) 
+		INSERT INTO user_table
+		VALUES(#{account},#{password},"学生");
+		INSERT INTO student_table(user_account)
 		VALUES(#{account})
 	</insert>
-	
+
 	<insert id="addTeacher">
- 		INSERT INTO user_table 
- 		VALUES(#{account},#{password},"教师");
-		INSERT INTO teacher_table(user_account) 
+		INSERT INTO user_table
+		VALUES(#{account},#{password},"教师");
+		INSERT INTO teacher_table(user_account)
 		VALUES(#{account})
 	</insert>
-	
+
 	<insert id="addAdmin">
- 		INSERT INTO user_table 
- 		VALUES(#{account},#{password},"管理员")
+		INSERT INTO user_table
+		VALUES(#{account},#{password},"管理员")
 	</insert>
-	
+
 	<select id="query" parameterType="String" resultMap="user">
 		SELECT user_account,user_permission
 		FROM user_table
@@ -34,40 +34,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	<resultMap type="User" id="user">
-		<id column="user_account" property="account"/>
-		<result column="user_permission" property="permission"/>
+		<id column="user_account" property="account" />
+		<result column="user_permission" property="permission" />
 	</resultMap>
-	
+
 	<delete id="deleteStudent">
-		DELETE FROM student_table 
+		DELETE FROM student_table
 		WHERE user_account=#{account};
 		DELETE FROM user_table
-		WHERE user_account=#{account}
+		WHERE
+		user_account=#{account}
 	</delete>
-	
+
 	<delete id="deleteTeacher">
 		DELETE FROM teacher_table
-		WHERE user_account=#{account};
+		WHERE
+		user_account=#{account};
 		DELETE FROM user_table
-		WHERE user_account=#{account}
+		WHERE
+		user_account=#{account}
 	</delete>
-	
+
 	<delete id="deleteAdmin">
 		DELETE FROM user_table
 		WHERE user_account=#{account}
 	</delete>
-	
+
 	<update id="updatePassword">
 		UPDATE user_table
 		SET user_password=#{password}
-		WHERE user_account=#{account}
+		WHERE
+		user_account=#{account}
 	</update>
-	
+
 	<insert id="addCourse" parameterType="String">
 		INSERT INTO course_table
 		VALUES(#{courseName})
 	</insert>
-	
+
 	<select id="queryCourseRelation" resultMap="courserel">
 		SELECT course_id,user_account
 		FROM teacher_course_table
@@ -81,32 +85,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	<resultMap type="Course" id="courserel">
-		<result column="course_id" property="courseName"/>
-		<result column="user_account" property="teacherID"/>
+		<result column="course_id" property="courseName" />
+		<result column="user_account" property="teacherID" />
 	</resultMap>
-	
+
 	<select id="queryCourse" parameterType="String" resultMap="course">
 		SELECT course_id
 		FROM course_table
 		WHERE course_id=#{courseName}
 	</select>
 	<resultMap type="Course" id="course">
-		<id column="course_id" property="courseName"/>
+		<id column="course_id" property="courseName" />
 	</resultMap>
-	
+
 	<insert id="assignCourseRelation">
-		INSERT INTO teacher_course_table(user_account,course_id)
+		INSERT INTO
+		teacher_course_table(user_account,course_id)
 		VALUES(#{teacher},#{course})
 	</insert>
-	
+
 	<delete id="deleteCourseRelation">
 		DELETE FROM teacher_course_table
-		WHERE course_id=#{course} and user_account=#{teacher}
+		WHERE
+		course_id=#{course} and user_account=#{teacher}
 	</delete>
-	
+
 	<delete id="deleteCourse" parameterType="String">
 		DELETE FROM course_table
-		WHERE course_id=#{course} 
+		WHERE course_id=#{course}
 	</delete>
-	
+
+	<insert id="addExam">
+		INSERT INTO
+		exam_table(exam_id,exam_begintime,exam_period,exam_endtime,course_id,exam_discript,exam_place,exam_supervisor)
+		VALUES(#{exam},#{start},#{duaration},#{end},#{course},#{description},#{place},#{supervisor})
+	</insert>
+
 </mapper>

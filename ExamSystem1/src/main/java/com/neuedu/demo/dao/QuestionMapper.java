@@ -14,5 +14,6 @@ public interface QuestionMapper {
 	public List<Question> query(@Param("questionId")String questionId,@Param("courseId")String courseId);
 	public void deleteQuestion(@Param("questionId")String questionId);
 	public Question queryById(@Param("questionId")String questionId);
+	public void changeQuestionWithoutCourse(Question question);
 
 }

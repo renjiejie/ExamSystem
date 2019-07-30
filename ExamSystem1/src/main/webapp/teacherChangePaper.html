@@ -287,7 +287,7 @@
 				<!--toggle button end-->
 				<!--logo -->
 				<div class="logo">
-					<a href="blankTeacherPage.html">
+					<a href="index.html">
 						<h1>教师</h1>
 						<span>学生考试系统</span>
 					</a>
@@ -405,13 +405,13 @@
 														<div class="form-group">
 															
 															<label>题干：</label>
-															<input type="text" class="form-control" id="answer"
+															<input type="text" class="form-control" id="add-stem"
 															 name="answer" value="语文题干">
 														</div>
 														<div class="form-group">
 															<div class="input-group">
 																<label>答案：</label>
-																<input type="text" class="form-control" id="answer"
+																<input type="text" class="form-control" id="add-answer"
 																 name="answer" value="语文答案">
 															</div>
 															
@@ -419,7 +419,7 @@
 														<div class="form-group">
 															<div class="input-group">
 																<label>分数：</label>
-																<input type="text" class="form-control" id="point"
+																<input type="text" class="form-control" id="add-point"
 																 name="point" value="4">
 															</div>
 															
@@ -437,81 +437,59 @@
 									</div>
 								<!-- 添加题目模态框 -->
 								<!-- 修改信息模态框 -->
-								<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<h4 class="modal-title" id="myModalLabel">修改题目</h4>
+								<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+								 aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title" id="myModalLabel">修改题目</h4>
+											</div>
+											<div class="modal-body">
+												<div class="form-group">
+													<div class="input-group">
+														<label>题目：</label>
+														<input type="text" class="form-control" id="question-id" name="question-id" readonly="readonly">
+													</div>
+																						
 												</div>
-												<div class="modal-body">
-									
-													<form>
-														<div class="form-group">
-															<div class="dropdown">
-																<label>课程：</label>
-																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																 aria-haspopup="true" aria-expanded="true">
-																	课程
-																	<span class="caret"></span>
-																</button>
-																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																	<li><a href="#">语文</a></li>
-																	<li><a href="#">数学</a></li>
-																	<li><a href="#">英语</a></li>
-																	<li><a href="#">物理</a></li>
-																	<li><a href="#">化学</a></li>
-																</ul>
-															</div>
+													<div class="form-group">
+														<div class="dropdown">
+															<label>类型：</label>
+															<select class="form-control" id="type" name="type" style="width: 100px;">
+																<option>单选</option>
+																<option>多选</option>
+																<option>填空</option>
+																<option>简答</option>
+															</select>
 														</div>
-														<div class="form-group">
-															<div class="dropdown">
-																<label>类型：</label>
-																<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-																 aria-haspopup="true" aria-expanded="true">
-																	类型
-																	<span class="caret"></span>
-																</button>
-																<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-																	<li><a href="#">单选</a></li>
-																	<li><a href="#">多选</a></li>
-																	<li><a href="#">填空</a></li>
-																	<li><a href="#">简答</a></li>
-																</ul>
-															</div>
+													</div>
+													<label>题干：</label>
+													<div class="form-group">
+															<textarea id="stem" name="stem"></textarea>
+													</div>
+													<div class="form-group">
+														<div class="input-group">
+															<label>答案：</label>
+															<input type="text" class="form-control" id="answer" name="answer">
 														</div>
-														<label>题干：</label>
-														<div class="form-group">
-															
-															<textarea></textarea>
+								
+													</div>
+													<div class="form-group">
+														<div class="input-group">
+															<label>分数：</label>
+															<input type="text" class="form-control" id="point" name="point">
 														</div>
-														<div class="form-group">
-															<div class="input-group">
-																<label>答案：</label>
-																<input type="text" class="form-control" id="answer"
-																 name="answer">
-															</div>
-															
-														</div>
-														<div class="form-group">
-															<div class="input-group">
-																<label>分数：</label>
-																<input type="text" class="form-control" id="point"
-																 name="point">
-															</div>
-															
-														</div>
-														
-									
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-													<button type="button" class="btn btn-primary">修改完毕</button>
-												</div>
-											</div><!-- /.modal-content -->
-										</div><!-- /.modal -->
-									</div>
+								
+													</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+												<button type="button" id ="form-submit" class="btn btn-primary">提交修改</input>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal -->
+								</div>
 								<!-- 修改信息模态框 -->
 								<form>
 									<div class="form-group">
@@ -537,150 +515,6 @@
 										</thead>
 										<tbody>
 											<tr id="first"></tr>
-											<tr>
-												<td>sdfsf</td>
-												<td>Lorem</td>
-												<td>ipsum</td>
-												<td>sdfsf</td>
-												<td>sdfsf</td>
-												<td>Lorem</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,002</td>
-												<td>amet</td>
-												<td>consectetur</td>
-												<td>adipiscing</td>
-												<td>sdfsf</td>
-												<td>elit</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,003</td>
-												<td>Integer</td>
-												<td>nec</td>
-												<td>odio</td>
-												<td>sdfsf</td>
-												<td>Praesent</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,003</td>
-												<td>libero</td>
-												<td>Sed</td>
-												<td>cursus</td>
-												<td>sdfsf</td>
-												<td>ante</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,004</td>
-												<td>dapibus</td>
-												<td>diam</td>
-												<td>Sed</td>
-												<td>sdfsf</td>
-												<td>nisi</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,005</td>
-												<td>Nulla</td>
-												<td>quis</td>
-												<td>sdfsf</td>
-												<td>sdfsf</td>
-												<td>Lorem</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,006</td>
-												<td>nibh</td>
-												<td>elementum</td>
-												<td>sdfsf</td>
-												<td>imperdiet</td>
-												<td>Duis</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>1,007</td>
-												<td>sagittis</td>
-												<td>ipsum</td>
-												<td>sdfsf</td>
-												<td>Praesent</td>
-												<td>sdfsf</td>
-												<td>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</td>
-												<td>
-													<button type="button" class="btn btn-default">
-														<span class="glyphicon glyphicon-remove"></span>
-													</button>
-												</td>
-											</tr>
 										</tbody>
 									</table>
 								</form>
@@ -742,7 +576,7 @@
 								res=res+'<td>'+e.answer+'</td>';
 								res=res+'<td>'+e.maker+'</td>';
 								res=res+'<td>';
-									res=res+'<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">';
+									res=res+'<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal" id="change'+e.id+'">';
 										res=res+'<span class="glyphicon glyphicon-pencil"></span>';
 									res=res+'</button>';
 								res=res+'</td>';
@@ -760,10 +594,53 @@
 								window.location.href = "/exam/paper/deleteQuestion/" +paperId+"/"+e.id;
 							})
 						});
+						$(str).each(function(index,e){
+							$(document).on('click','#change'+e.id,function(){
+								$("#question-id").val(e.id);
+								$("#type").val(e.type);
+								$("#stem").val(e.stem);
+								$("#answer").val(e.answer);
+								$("#point").val(e.point);
+							})
+						});
 					},
 					error: function() {}
 				});
 				
+				});
+				$("#form-submit").click(function(){
+					var paperId = getUrlParam("id");
+					var submiturl = "/exam/questionajax/changeWithout";
+					var id=$("#question-id").val();
+					var course = $("#form-course").val();
+					var type = $("#type").val();
+					var stem = $("#stem").val();
+					var point = $("#point").val();
+					var answer = $("#answer").val();
+					var param={
+						"id":id,
+						"course":course,
+						"type":type,
+						"stem":stem,
+						"point":point,
+						"answer":answer					
+					};
+					var paramStr = JSON.stringify(param);
+					$.ajax({
+						url:submiturl,
+						type:"PUT",
+						dataType:"text",
+						data:paramStr,
+						contentType:"application/json;charset=UTF-8",
+						success:function(str){
+							alert("修改成功");
+							window.location.href= "/exam/teacherChangePaper.html?id="+paperId;
+						},
+						error:function(){
+						}
+					}); 
+					
+					
 				})
 				
 		</script>

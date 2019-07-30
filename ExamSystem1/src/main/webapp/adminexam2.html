@@ -6,23 +6,31 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 		SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
 		<!-- Bootstrap Core CSS -->
 		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
 		<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
 		<!-- font CSS -->
 		<!-- font-awesome icons -->
-		<link href="/exam/css/font-awesome.css" rel="stylesheet"> 
+		<link href="/exam/css/font-awesome.css" rel="stylesheet">
 		<!-- //font-awesome icons -->
-		 <!-- js-->
+		<!-- js-->
 		<script src="/exam/js/jquery-1.11.1.min.js"></script>
 		<script src="/exam/js/modernizr.custom.js"></script>
 		<!--animate-->
 		<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
 		<script src="/exam/js/wow.min.js"></script>
-			<script>
-				 new WOW().init();
+		<script>
+			new WOW().init();
 			</script>
 		<!--//end-animate-->
 		<!-- Metis Menu -->
@@ -137,6 +145,8 @@
 			<div id="page-wrapper">
 				<div class="main-page">
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+
+						<!-- 搜索框 -->
 						<div class="middle">
 							<form class="form-inline">
 								<div class="form-group">
@@ -156,6 +166,9 @@
 								</div>
 							</form>
 						</div>
+						<!-- 搜索框 -->
+
+						<!-- 添加模态框 -->
 						<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -164,7 +177,183 @@
 										<h4 class="modal-title" id="myModalLabel">添加考试</h4>
 									</div>
 									<div class="modal-body">
+										<form id="addForm">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-book"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Exam Name" aria-describedby="basic-addon1" id="addExamName">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-book"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Course Name" aria-describedby="basic-addon1" id="addCourseName">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
+													<div class="mail mail-name">
+													</div>
+													<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+													 aria-controls="collapseTwo" class="collapsed">
+														<div class="mail">
+															<p>考试试卷</p>
+														</div>
+													</a>
+													<div class="clearfix"> </div>
+													<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
+													 aria-expanded="false" style="height: 0px;">
+														<div class="mail-body">
+															<div class="checkbox">
+																<input type="checkbox" name="multianswer3">A卷
+															</div>
+															<div class="checkbox">
+																<input type="checkbox" name="multianswer3">B卷
+															</div>
+															<div class="checkbox">
+																<input type="checkbox" name="multianswer3">C卷
+															</div>
+															<div class="checkbox">
+																<input type="checkbox" name="multianswer3">D卷
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-file"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Exam Description" aria-describedby="basic-addon1" id="addDescription">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-calendar"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Start Time" aria-describedby="basic-addon1" id="addStartTime">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-time"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Duaration" aria-describedby="basic-addon1" id="addDuaration">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-calendar"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="End Time" aria-describedby="basic-addon1" id="addEndTime">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-home"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Place" aria-describedby="basic-addon1" id="addPlace">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-user"></span>
+													</span>
+													<input type="text" class="form-control" placeholder="Supervisors" aria-describedby="basic-addon1" id="addSupervisor">
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										<button type="button" class="btn btn-primary" id="addButton">添加考试</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal -->
+						</div>
+						<!-- 添加模态框 -->
 
+						<!-- 详细信息模态框 -->
+						<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">考试详情</h4>
+									</div>
+									<div class="modal-body">
+										<table class="table">
+											<tbody>
+												<tr class="active">
+													<td>考试ID</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>课程</td>
+													<td>数学</td>
+												</tr>
+												<tr class="success">
+													<td>考试名</td>
+													<td>18数学期末</td>
+												</tr>
+												<tr>
+													<td>考试开始时间</td>
+													<td>2018/07/25 00:00:00</td>
+												</tr>
+												<tr class="info">
+													<td>考试时长</td>
+													<td>60分钟</td>
+												</tr>
+												<tr>
+													<td>考试结束时间</td>
+													<td>2018/07/25 00:00:00</td>
+												</tr>
+												<tr class="danger">
+													<td>考试试卷</td>
+													<td>18数学期末A卷</td>
+												</tr>
+												<tr>
+													<td>考试描述</td>
+													<td>很难的数学考试</td>
+												</tr>
+												<tr class="warning">
+													<td>考场</td>
+													<td>正心B11</td>
+												</tr>
+												<tr>
+													<td>监考教师</td>
+													<td>***</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal -->
+						</div>
+						<!-- 详细信息模态框 -->
+
+						<!-- 修改信息模态框 -->
+						<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">修改考试</h4>
+									</div>
+									<div class="modal-body">
 										<form>
 											<div class="form-group">
 												<div class="input-group">
@@ -184,18 +373,18 @@
 													 name="username">
 												</div>
 											</div>
-											<div class="form-group">
+											<div style="padding-bottom: 20px;">
 												<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
 													<div class="mail mail-name">
 													</div>
-													<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-													 aria-controls="collapseTwo" class="collapsed">
+													<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+													 aria-controls="collapseOne" class="collapsed">
 														<div class="mail">
 															<p>考试试卷</p>
 														</div>
 													</a>
 													<div class="clearfix"> </div>
-													<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
+													<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
 													 aria-expanded="false" style="height: 0px;">
 														<div class="mail-body">
 															<div class="checkbox">
@@ -274,11 +463,14 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary">添加考试</button>
+										<button type="button" class="btn btn-primary">修改完毕</button>
 									</div>
 								</div><!-- /.modal-content -->
 							</div><!-- /.modal -->
 						</div>
+						<!-- 修改信息模态框 -->
+
+						<!-- 列表 -->
 						<div style="position:relative; height:600px; overflow-y:auto">
 							<table class="table table-striped">
 								<thead>
@@ -300,504 +492,12 @@
 											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
 												<span class="glyphicon glyphicon-list"></span>
 											</button>
-											<!-- 详细信息模态框 -->
-											<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-											 aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel">考试详情</h4>
-														</div>
-														<div class="modal-body">
-															<table class="table">
-																<tbody>
-																	<tr class="active">
-																		<td>考试ID</td>
-																		<td>1</td>
-																	</tr>
-																	<tr>
-																		<td>课程</td>
-																		<td>数学</td>
-																	</tr>
-																	<tr class="success">
-																		<td>考试名</td>
-																		<td>18数学期末</td>
-																	</tr>
-																	<tr>
-																		<td>考试开始时间</td>
-																		<td>2018/07/25 00:00:00</td>
-																	</tr>
-																	<tr class="info">
-																		<td>考试时长</td>
-																		<td>60分钟</td>
-																	</tr>
-																	<tr>
-																		<td>考试结束时间</td>
-																		<td>2018/07/25 00:00:00</td>
-																	</tr>
-																	<tr class="danger">
-																		<td>考试试卷</td>
-																		<td>18数学期末A卷</td>
-																	</tr>
-																	<tr>
-																		<td>考试描述</td>
-																		<td>很难的数学考试</td>
-																	</tr>
-																	<tr class="warning">
-																		<td>考场</td>
-																		<td>正心B11</td>
-																	</tr>
-																	<tr>
-																		<td>监考教师</td>
-																		<td>***</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-														</div>
-													</div><!-- /.modal-content -->
-												</div><!-- /.modal -->
-											</div>
-											<!-- 详细信息模态框 -->
 										</td>
 										<td>
 											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
 												<span class="glyphicon glyphicon-pencil"></span>
 											</button>
-											<!-- 修改信息模态框 -->
-											<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																<h4 class="modal-title" id="myModalLabel">修改考试</h4>
-															</div>
-															<div class="modal-body">
-												
-																<form>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-book"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="examID" aria-describedby="basic-addon1" id="paperid"
-																			 name="username">
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-book"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="CourseID" aria-describedby="basic-addon1" id="courseid"
-																			 name="username">
-																		</div>
-																	</div>
-																	<div style="padding-bottom: 20px;">
-																		<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
-																			<div class="mail mail-name">
-																			</div>
-																			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
-																			 aria-controls="collapseOne" class="collapsed">
-																				<div class="mail">
-																					<p>考试试卷</p>
-																				</div>
-																			</a>
-																			<div class="clearfix"> </div>
-																			<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
-																			 aria-expanded="false" style="height: 0px;">
-																				<div class="mail-body">
-																					<div class="checkbox">
-																						<input type="checkbox" name="multianswer3">A卷
-																					</div>
-																					<div class="checkbox">
-																						<input type="checkbox" name="multianswer3">B卷
-																					</div>
-																					<div class="checkbox">
-																						<input type="checkbox" name="multianswer3">C卷
-																					</div>
-																					<div class="checkbox">
-																						<input type="checkbox" name="multianswer3">D卷
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-file"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="Exam Description" aria-describedby="basic-addon1" id="paperid"
-																			 name="username">
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-calendar"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="StartTime" aria-describedby="basic-addon1" id="starttime"
-																			 name="starttime">
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-time"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="Duaration" aria-describedby="basic-addon1" id="duaration"
-																			 name="duaration">
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-calendar"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="EndTime" aria-describedby="basic-addon1" id="endtime"
-																			 name="endtime">
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-home"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="Place" aria-describedby="basic-addon1" id="place"
-																			 name="place">
-																		</div>
-																	</div>
-												
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<span class="glyphicon glyphicon-user"></span>
-																			</span>
-																			<input type="text" class="form-control" placeholder="Supervisors" aria-describedby="basic-addon1" id="supervisor"
-																			 name="supervisor">
-																		</div>
-																	</div>
-												
-																</form>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-																<button type="button" class="btn btn-primary">修改完毕</button>
-															</div>
-														</div><!-- /.modal-content -->
-													</div><!-- /.modal -->
-												</div>
-											<!-- 修改信息模态框 -->
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
 										</td>
-									</tr>
-									<tr>
-										<td>amet</td>
-										<td>consectetur</td>
-										<td>未开始</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-										</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Integer</td>
-										<td>nec</td>
-										<td>未开始</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>libero</td>
-										<td>Sed</td>
-										<td>未开始</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>dapibus</td>
-										<td>diam</td>
-										<td>未开始</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Nulla</td>
-										<td>quis</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>nibh</td>
-										<td>elementum</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>sagittis</td>
-										<td>ipsum</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Fusce</td>
-										<td>nec</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>augue</td>
-										<td>semper</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											
-										</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>massa</td>
-										<td>Vestibulum</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											
-										</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>eget</td>
-										<td>nulla</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											
-										</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>taciti</td>
-										<td>sociosqu</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-										</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											
-										</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>torquent</td>
-										<td>per</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>per</td>
-										<td>inceptos</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											
-										</td>
-										<td>
-											<button type="button" class="btn btn-default">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>sodales</td>
-										<td>ligula</td>
-										<td>已结束</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-												<span class="glyphicon glyphicon-list"></span>
-											</button>
-											</td>
-										<td>
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#changeModal">
-												<span class="glyphicon glyphicon-pencil"></span>
-											</button>
-											</td>
 										<td>
 											<button type="button" class="btn btn-default">
 												<span class="glyphicon glyphicon-remove"></span>
@@ -842,5 +542,42 @@
 		<!--//scrolling js-->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="/exam/js/bootstrap.js"> </script>
+
+		<script>
+			$("#addButton").click(function() {
+				var exam = $("#addExamName").val();
+				var course = $("#addCourseName").val();
+				var description = $("#addDescription").val();
+				var start = $("#addStartTime").val();
+				var duaration = $("#addDuaration").val();
+				var end = $("#addEndTime").val();
+				var place = $("#addPlace").val();
+				var supervisor = $("#addSupervisor").val();
+				var addURL = "/exam/admin/addExam/" + exam + "/" + course + "/" + description + "/" + start + "/" + duaration +
+					"/" + end + "/" + place + "/" + supervisor;
+				$("#addForm input").each(function(index, element) {
+					if (element.value == "" || element.value == null) {
+						alert("表单不能不为空");
+						return false;
+					}
+				});
+				$.ajax({
+					url: addURL,
+					type: "GET",
+					dataType: "text",
+					contentType: "application/json;charset=UTF-8",
+					success: function(str) {
+						alert(str);
+						$("#addModal").modal("hide");
+						$("#addModal").on("hidden.bs.modal", function() {
+							document.getElementById("addForm").reset();
+						});
+					},
+					error: function() {
+
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
