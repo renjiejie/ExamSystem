@@ -5,7 +5,7 @@ public class Student {
 	private User user;
 	private String name;
 	private String className;
-	private int telephone;
+	private Integer telephone;
 	public User getUser() {
 		return user;
 	}
