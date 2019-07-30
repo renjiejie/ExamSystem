@@ -32,4 +32,9 @@ public interface AdminService {
 			String place, String supervisor, String paper);
 	
 	public List<Exam> queryExam(String exam);
+	
+	public void deleteExam(String exam);
+	
+	public void updateExam(String exam, String course, String description, String start, String duration, String end,
+			String place, String supervisor, String paper);
 }

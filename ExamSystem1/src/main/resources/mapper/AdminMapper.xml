@@ -63,8 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updatePassword">
 		UPDATE user_table
 		SET user_password=#{password}
-		WHERE
-		user_account=#{account}
+		WHERE user_account=#{account}
 	</update>
 
 	<insert id="addCourse" parameterType="String">
@@ -141,5 +140,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="course_id" property="courseId"/>
 		<result column="exam_supervisor" property="supervisor"/>
 	</resultMap>
+	
+	<delete id="deleteExam" parameterType="String">
+		DELETE FROM exam_table
+		WHERE exam_id=#{exam}
+	</delete>
+	
+	<update id="updateExam">
+	 UPDATE exam_table
+	 SET exam_begintime=#{start},exam_period=#{duration},exam_endtime=#{end},exam_discript=#{description},exam_place=#{place},exam_supervisor=#{supervisor},paper_ids=#{paper}
+	 WHERE exam_id=#{exam} and course_id=#{course}
+	</update>
 
 </mapper>

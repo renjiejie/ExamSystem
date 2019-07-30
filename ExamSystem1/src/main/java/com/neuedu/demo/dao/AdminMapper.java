@@ -46,4 +46,11 @@ public interface AdminMapper {
 			@Param("supervisor") String supervisor, @Param("paper") String paper);
 	
 	public List<Exam> queryExam(String exam);
+	
+	public void deleteExam(String exam);
+	
+	public void updateExam(@Param("exam") String exam, @Param("course") String course,
+			@Param("description") String description, @Param("start") String start,
+			@Param("duration") String duration, @Param("end") String end, @Param("place") String place,
+			@Param("supervisor") String supervisor, @Param("paper") String paper);
 }
