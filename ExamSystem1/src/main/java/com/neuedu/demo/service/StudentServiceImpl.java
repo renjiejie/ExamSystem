@@ -39,12 +39,16 @@ public class StudentServiceImpl implements StudentService{
 		// TODO Auto-generated method stub
 		List<Exam> exams = mapper.joinExam();
 		String examDone = mapper.isExamDone(studentAccount);
-		String[] examsDone = examDone.split(",");
-		for(int i=0;i<exams.size();++i) {
-			for(String id:examsDone) {
-				if(exams.get(i).getId().equals(id)) {
-					exams.remove(i);
-					i--;
+		
+		//examDone为空时会报错，我加个条件判断-zjh
+		if(examDone!=null&&!examDone.equals("")){
+			String[] examsDone = examDone.split(",");
+			for(int i=0;i<exams.size();++i) {
+				for(String id:examsDone) {
+					if(exams.get(i).getId().equals(id)) {
+						exams.remove(i);
+						i--;
+					}
 				}
 			}
 		}

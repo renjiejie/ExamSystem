@@ -167,6 +167,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							</tr>
 						</thead>
 						<tbody>
+							<tr id="first">
+								
+							</tr>
 							<tr>
 								<td>Lorem</td>
 								<td>ipsum</td>
@@ -251,7 +254,42 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
-			}
+			};
+			
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);
+				return null;
+			};
+			
+			$(document).ready(function() {
+				var examId = getUrlParam("id");
+				var queryURL = "/exam/answer/query/"+examId;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						//str-----json-----SchoolClass
+						//清空id=first的所有兄弟节点
+						$("#first").siblings().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res=res+'<tr>';
+								res=res+'<td>'+e.id+'</td>';
+								res=res+'<td>'+e.paper.id+'</td>';
+								res=res+'<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/answerCard.html\'">查看</button></td>';
+							res=res+'</tr>';
+						});
+						var app = $(res);
+						$("#first").after(app);
+					},
+					error: function() {}
+				});
+				
+				});
+			
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
