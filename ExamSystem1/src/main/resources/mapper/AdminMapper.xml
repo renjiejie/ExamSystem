@@ -120,5 +120,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		exam_table(exam_id,exam_begintime,exam_period,exam_endtime,course_id,exam_discript,exam_place,exam_supervisor,paper_ids)
 		VALUES(#{exam},#{start},#{duration},#{end},#{course},#{description},#{place},#{supervisor},#{paper})
 	</insert>
+	
+	<select id="queryExam" resultMap="exam">
+		SELECT *
+		FROM exam_table
+		<where>
+			<if test="exam != null and exam != ''">
+				and exam_id=#{exam}
+			</if>
+		</where>
+	</select>
+	<resultMap type="Exam" id="exam">
+		<id column="exam_id" property="id"/>
+		<result column="exam_begintime" property="begintime"/>
+		<result column="exam_endtime" property="endtime"/>
+		<result column="exam_period" property="period"/>
+		<result column="paper_ids" property="ids"/>
+		<result column="exam_discript" property="discript"/>
+		<result column="exam_place" property="place"/>
+		<result column="course_id" property="courseId"/>
+		<result column="exam_supervisor" property="supervisor"/>
+	</resultMap>
 
 </mapper>

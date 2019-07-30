@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.neuedu.demo.domain.Course;
+import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.User;
 import com.neuedu.demo.service.AdminService;
 
@@ -122,6 +123,16 @@ public class AdminController {
 			@PathVariable("place") String place, @PathVariable("supervisor") String supervisor, @PathVariable("paper") String paper) {
 		adminService.addExam(exam, course, description, start, duration, end, place, supervisor, paper);
 		return "success";
+	}
+	
+	@RequestMapping(value="/queryExam/{exam}")
+	@ResponseBody
+	public List<Exam> queryExam(@PathVariable("exam") String exam) {
+		if(exam.equals("All"))
+		{
+			exam = null;
+		}
+		return adminService.queryExam(exam);
 	}
 	
 }
