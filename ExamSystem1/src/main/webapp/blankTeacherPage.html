@@ -205,12 +205,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
-			$("#sub1").click(function(){
-				alert("提交成功");
-			});
+
 			$("#sub2").click(function(){
 				alert("提交成功");
 			});
+   			$("#ConfirmPassword").blur(function(){
+   	   		var password1 = $("#Password").val();
+   	   		var password2 = $("#ConfirmPassword").val();
+   	   		if (password1 === password2){
+   				$("#sub1").click(function(){
+   					alert("提交成功");
+   				});
+    		}else{
+   	   			alert("密码不相同")
+   	   		}
+   		
+   	   		}); 
 			
 		</script>
 		<!--scrolling js-->

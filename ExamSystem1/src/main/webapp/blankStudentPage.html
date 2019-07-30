@@ -148,11 +148,11 @@
 							<h4>修改密码 :</h4>
 						</div>
 						<div class="form-body">
-							<form action="/exam/student/updatepassword">
+							<form action="/exam/student/updatepassword" >
 								<div class="form-group"> <label for="Password">密码</label> <input type="password" class="form-control" id="Password"
 									 placeholder="Password" style="width: 300px;"> </div>
 								<div class="form-group"> <label for="ConfirmPassword">确认密码</label> <input name="user.password" type="password" class="form-control"
-									 id="ConfirmPassword" placeholder="Password" style="width: 300px;"> </div>
+									 id="ConfirmPassword" placeholder="Password" onchange="checkpwd()" style="width: 300px;"> </div>
 								<button id="sub1" type="submit" class="btn btn-default">确认修改</button>
 							</form>
 						</div>
@@ -196,14 +196,23 @@
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
-			$("#sub1").click(function(){
-				alert("提交成功");
-			});
+
 			$("#sub2").click(function(){
 				alert("提交成功");
 			});
-			
-			$("#Password").val()
+
+   			$("#ConfirmPassword").blur(function(){
+   			var password1 = $("#Password").val();
+   			var password2 = $("#ConfirmPassword").val();
+   			if (password1 === password2){
+   				$("#sub1").click(function(){
+   					alert("提交成功");
+   				});
+   			}else{
+   				alert("密码不相同")
+   			}
+		
+   			});  
 			
 		</script>
 		<!--scrolling js-->
