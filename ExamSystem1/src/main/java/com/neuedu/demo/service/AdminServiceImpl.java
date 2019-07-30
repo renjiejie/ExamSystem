@@ -96,4 +96,15 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.queryExam(exam);
 	}
 
+	@Override
+	public void deleteExam(String exam) {
+		mapper.deleteExam(exam);
+	}
+
+	@Override
+	public void updateExam(String exam, String course, String description, String start, String duration, String end,
+			String place, String supervisor, String paper) {
+		mapper.updateExam(exam, course, description, start, duration, end, place, supervisor, paper);
+	}
+
 }
