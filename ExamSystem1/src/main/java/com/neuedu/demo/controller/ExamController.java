@@ -23,4 +23,10 @@ public class ExamController {
 		return examService.getExams(courseId);
 	}
 	
+	@RequestMapping(value="/check/{examId}")
+	public String Redirect(@PathVariable("examId")String examId){
+		System.out.println("redirect "+examId);
+		return "redirect:../../answercardList.html?id="+examId;
+	}
+	
 }

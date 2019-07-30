@@ -221,6 +221,39 @@
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
+			$("#course").change(function() {
+				var courseId = $("#course").val();
+					var queryURL = "/exam/exams/queryAll/"+courseId;;
+					$.ajax({
+						url:queryURL,
+						type:"GET",
+						dataType:"json",					
+						success:function(str){
+						//str-----json-----SchoolClass
+						//清空id=first的所有兄弟节点
+						$("#first").siblings().remove();
+						var res="";
+						$(str).each(function(index,e){
+							res = res + '<tr>';
+										res = res + '<td>'+e.id+'</td>';
+										res = res + '<td>'+e.begintime+'</td>';
+										res = res + '<td>'+e.courseId+'</td>';
+										res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'">查看</button></td>';
+									res = res + '</tr>';
+						});
+						var app = $(res);
+						$("#first").after(app);
+						/* $(str).each(function(index,e){
+							$(document).on('click','#delete'+e.id,function(){
+								window.location.href="/exam/question/delete/"+e.id;
+							})
+							}); */
+						},
+						error:function(){
+							alert("失败");
+						}
+					}); 
+				});
 			$(document).ready(function() {
 				var courseId = $("#course").val();
 				var queryURL = "/exam/exams/queryAll/"+courseId;;
@@ -238,7 +271,7 @@
 									res = res + '<td>'+e.id+'</td>';
 									res = res + '<td>'+e.begintime+'</td>';
 									res = res + '<td>'+e.courseId+'</td>';
-									res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/answercardList.html\'">查看</button></td>';
+									res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'">查看</button></td>';
 								res = res + '</tr>';
 					});
 					var app = $(res);
