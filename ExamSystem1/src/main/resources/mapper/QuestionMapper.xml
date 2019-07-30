@@ -40,4 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Where question_id = #{id};
 	</update>
 	
+	<select id="queryById" resultMap="question">
+		SELECT question_id,question_type,question_stem,question_point,question_maker,question_answer
+		FROM question_table
+		WHERE question_id = #{questionId};
+	</select>
+	
+	
 </mapper>
