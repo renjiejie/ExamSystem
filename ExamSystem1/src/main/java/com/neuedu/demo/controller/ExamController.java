@@ -23,6 +23,12 @@ public class ExamController {
 		return examService.getExams(courseId);
 	}
 	
+	@RequestMapping("/time/{examId}")
+	@ResponseBody
+	public String getExamTime(@PathVariable("examId")String examId){
+		return examService.getExamTime(examId);
+	}
+	
 	@RequestMapping(value="/check/{examId}")
 	public String Redirect(@PathVariable("examId")String examId){
 		System.out.println("redirect "+examId);

@@ -10,4 +10,5 @@ import com.neuedu.demo.domain.Exam;
 @Mapper
 public interface ExamMapper {
 	public List<Exam> getExams(@Param("courseId") String courseId);
+	public Exam getExamById(@Param("examId")String examId);
 }
