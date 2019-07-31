@@ -348,6 +348,16 @@
 					error: function() {}
 				});
 			}
+			
+			$.ajax({
+				url: "http://localhost:8080/exam/query/stuname",
+				success: function(str) {
+					$("#stuname").html(str)
+				},
+				error: function(status) {
+
+				}
+			});	
 		</script>
 	</body>
 </html>
