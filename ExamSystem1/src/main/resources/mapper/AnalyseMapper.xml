@@ -5,19 +5,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.neuedu.demo.dao.AnalyseMapper">
 
+	<select id="queryExamId">
+		INSERT INTO exam_result(exam_id,course_id)
+		SELECT exam_id,course_id
+		FROM exam_table
+		WHERE course_id = #{courseId};
+
+	</select>
+	<select id="queryExamPeople">
+		UPDATE exam_result e INNER JOIN(
+		SELECT COUNT(student_account)num ,exam_id id
+		FROM answer_table 
+		WHERE exam_id = #{examId}
+		GROUP BY exam_id) a 
+		ON a.id = e.exam_id
+		SET e.exam_people = a.num
+	</select>
+	<select id="queryPaperId">
+		UPDATE exam_result e INNER JOIN(
+		SELECT paper_id pid,exam_id id
+		FROM answer_table
+		WHERE exam_id = #{examId}
+		) a
+		ON a.id = e.exam_id
+		SET e.paper_id = a.pid
+	</select>
+	<select id="queryExamPassPeople">
+		UPDATE exam_result e INNER JOIN(
+		SELECT COUNT(student_account)num ,exam_id id
+		FROM answer_table a , paper_table p
+		WHERE  a.paper_id =  #{paperId} 
+		AND a.exam_id = #{examId} 
+		AND a.paper_id = p.paper_id 
+		AND a.answer_result >= p.paper_passpoint) o
+		ON o.id = e.exam_id
+		SET e.exam_passpeople = o.num
+	</select>
+	<select id="queryExamAverage">
+		UPDATE exam_result e INNER JOIN(
+		SELECT AVG(answer_result) num,exam_id id
+		FROM answer_table
+		WHERE exam_id = #{examId}
+		) o
+		ON o.id = e.exam_id
+		SET e.exam_average = o.num
+	</select>
+	
 	<select id="query" resultMap="analyse">
 		SELECT exam_id, exam_people, exam_passpeople, exam_average
-		FROM exam_result_table
+		FROM exam_result
 		where course_id = #{courseId};
 
 	</select>
-	<resultMap type="Analyse" id="analyse">
-		<result column="exam_id" property="examId"/>
-		<result column="exam_people" property="examPeople"/>
-		<result column="exam_passpeople" property="examPassPeople"/>
-		<result column="exam_average" property="examAverage"/>
-		<result column="course_id" property="courseId"/>
-	</resultMap>
 	
 	<select id="queryByExam" parameterType="String" resultMap="analyse">
 		SELECT *
@@ -28,5 +67,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-
+	<resultMap type="Analyse" id="analyse">
+		<result column="exam_id" property="examId"/>
+		<result column="exam_people" property="examPeople"/>
+		<result column="exam_passpeople" property="examPassPeople"/>
+		<result column="exam_average" property="examAverage"/>
+		<result column="paper_id" property="paperId"/>
+		<result column="course_id" property="courseId"/>
+	</resultMap>
 </mapper>

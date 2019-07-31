@@ -227,35 +227,35 @@
 			var courseId = $("#course-name").val();
 			var queryURL = "/exam/analyse/query/" + courseId;
 			
-			;
-			$.ajax({
-				url : queryURL,
-				type : "GET",
-				dataType : "json",
-				success : function(str) {
+			
+   			$.ajax({
+ 				url : queryURL,
+ 				type : "GET",
+ 				dataType : "json",
+ 				success : function(str) {
 
-					$("#first").siblings().remove();
-					var res = "";
-					$(str).each(function(index, e) {
-						res = res + "<tr>";
-						res = res + "<td>" + e.examId + "</td>";
-						res = res + "<td>" + e.examPeople + "</td>";
-						res = res + "<td>" + e.examPassPeople + "</td>";
-						res = res + "<td>" + e.examAverage + "</td>";
-						res = res + "</tr>"
+ 					$("#first").siblings().remove();
+ 					var res = "";
+ 					$(str).each(function(index, e) {
+ 						res = res + "<tr>";
+ 						res = res + "<td>" + e.examId + "</td>";
+ 						res = res + "<td>" + e.examPeople + "</td>";
+ 						res = res + "<td>" + e.examPassPeople + "</td>";
+ 						res = res + "<td>" + e.examAverage + "</td>";
+ 						res = res + "</tr>"
 						
-					});
-					var app = $(res);
-					$("#first").after(app);
-				},
-				error : function() {
-				}
-			});
+ 					});
+ 					var app = $(res);
+ 					$("#first").after(app);
+ 				},
+ 				error : function() {
+ 				}
+ 			}); 
 		});
-		$(document).ready(function() {
+ 		$(document).ready(function() {
 			var courseId = $("#course-name").val();
 			var queryURL = "/exam/analyse/query/" + courseId;
-			;
+			
 			$.ajax({
 				url : queryURL,
 				type : "GET",
@@ -279,7 +279,7 @@
 				error : function() {
 				}
 			});			
-		});
+		}); 
 		$.ajax({
 			url:"http://localhost:8080/exam/query/teaname",
 			success:function(str){
