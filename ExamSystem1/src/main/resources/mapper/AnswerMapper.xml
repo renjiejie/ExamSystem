@@ -25,4 +25,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		from answer_table 
  		where answer_id = #{answerId}
 	</select>
+	
+	<update id="updateScore" parameterType="String">
+		Update answer_table
+		Set answer_points = #{result}
+		Where answer_id = #{answerId};
+	</update>
+	
+	<update id="updateResult">
+		Update answer_table
+		Set answer_result = #{result}
+		Where answer_id = #{answerId};
+	</update>
 </mapper>

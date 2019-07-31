@@ -33,4 +33,16 @@ public class AnswerController {
 		return answerService.getSubjectiveQuestions(answerId);
 	}
 	
+	@RequestMapping("/objanswer/{answerId}")
+	@ResponseBody
+	public String checkObjectiveQuestions(@PathVariable("answerId")String answerId){
+		return answerService.checkObjectiveQuestions(answerId);
+	}
+	
+	@RequestMapping("/subanswer/{answerId}/{scoreText}")
+	@ResponseBody
+	public String updateSubjectiveQuestions(@PathVariable("answerId")String answerId,@PathVariable("scoreText")String scoreText){
+		answerService.updateSubjectiveQuestions(answerId, scoreText);
+		return "批改完毕";
+	}
 }

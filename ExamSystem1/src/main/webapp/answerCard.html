@@ -164,14 +164,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="main-page">
 				<h3 class="title1">考试评阅</h3>
 				<div class="blank-page widget-shadow scroll" id="style-2 div1">
+					<button class="btn btn-default" type="button" id="autocheckbutton"
+							style="width:150px">自动批阅客观题</button>
+					<div class="form-group">
+					<label for="exampleInputEmail1">客观题成绩:</label>
+					<input type="number" class="form-control" id="objscore" style="width:100px" min="0">
+					</div>
+				</div>
+				<div class="blank-page widget-shadow scroll" id="style-2 div1">
 					<div>
 						<div id="first">
 							
 						</div>
 					</div>
 					<div style = "text-align:right;">
-						<input class="btn btn-default" type="button" value="提交" id="submitbutton"
-								style="width:100px">
+						<button class="btn btn-default" type="button" id="submitbutton"
+								style="width:100px">提交</button>
 					</div>
 				</div>
 			</div>
@@ -238,27 +246,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							res = res + '</figure>';
 							res = res + '<div class="form-group">';
 								res = res + '<label for="exampleInputEmail1">分数</label>';
-								res = res + '<input type="number" class="form-control" id="score" style="width:100px">';
+								res = res + '<input type="number" class="form-control" id="score'+key+'" style="width:100px" min="0" max="'+value.question.point+'">';
 							res = res + '</div>';
 						res = res + '</div>';
 					});
 					var app = $(res);
 					$("#first").after(app);
-					$(str).each(function(index,e){
-						$(document).on('click','#delete'+e.id,function(){
-							window.location.href="/exam/question/delete/"+e.id;
-						})
-						});
-						$(str).each(function(index,e){
-							$(document).on('click','#change'+e.id,function(){
-								$("#question-id").val(e.id);
-								$("#form-course").val($("#course").val());
-								$("#type").val(e.type);
-								$("#stem").val(e.stem);
-								$("#answer").val(e.answer);
-								$("#point").val(e.point);
-							})
-						});
 					},
 					error:function(){
 					}
@@ -273,6 +266,49 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					
 				}
 			});	
+			$("#autocheckbutton").click(function(){
+				var answerId = getUrlParam("id");
+				var queryURL = "/exam/answer/objanswer/"+answerId;
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"text",					
+					success:function(str){
+					$("#objscore").val(str)					
+					},
+					error:function(){
+					}
+				}); 
+				
+			});
+			$("#submitbutton").click(function(){
+				var answerId = getUrlParam("id");
+				var queryURL = "/exam/answer/subanswer/"+answerId;
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+						var res="";
+						$.each(str,function(key,value){
+							res+=$("#score"+key).val()+'*';
+						});
+						$.ajax({
+							url:"/exam/answer/subanswer/"+answerId+"/"+res,
+							type:"GET",
+							dataType:"text",
+							success:function(str){
+								alert(str)
+							},
+							error:function(){
+							}
+						});
+					},
+					error:function(){
+					}
+				}); 
+				
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
