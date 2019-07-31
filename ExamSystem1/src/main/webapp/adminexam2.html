@@ -42,7 +42,7 @@
 		<style>
 			.middle{
 	 margin:0 auto; 
-	 width:350px; 
+	 width:410px; 
 	 height:100px; 
 	 } //border:1px solid #F00
 </style>
@@ -151,9 +151,12 @@
 							<form class="form-inline" id="searchForm">
 								<div class="form-group">
 									<div class="input-group">
-										<span class="input-group-addon" style="width:50px">
-											<span class="glyphicon glyphicon-book"></span>
-										</span>
+										<select class="form-control" style="width:120px" id="searchType">
+										  <option value="0">全部</option>
+										  <option value="1">正在进行</option>
+										  <option value="2">已结束</option>
+										  <option value="3">未开始</option>
+										</select>
 										<input type="text" class="form-control" placeholder="Exam Name" aria-describedby="basic-addon1" id="searchExam"
 										 style="width:200px">
 										<button type="button" class="btn btn-default" id="searchButton">
@@ -692,7 +695,7 @@
 					dataType: "json",
 					success: function(str) {
 						auto_list(str);
-						document.getElementById("searchForm").reset();
+						document.getElementById("searchExam").value = "";
 					},
 					error: function() {}
 				});
@@ -896,20 +899,39 @@
 				//清空id=first的所有兄弟节点
 				$("#first").siblings().remove();
 				var res = "";
+				var type = $("#searchType").val();
 				$(str)
 					.each(
 						function(index, e) {
-							res = res + "<tr>";
-							res = res + "<td>" + e.courseId + "</td>";
-							res = res + "<td>" + e.id + "</td>";
 							var start = new Date(Date.parse((e.begintime).replace(/-/g, "/")));
 							var end = new Date(Date.parse((e.endtime).replace(/-/g, "/")));
 							var date = new Date();
 							if (start > date) {
+								if(type != "0" && type != "3")
+									{
+									return true;
+									}
+								res = res + "<tr>";
+								res = res + "<td>" + e.courseId + "</td>";
+								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "未开始" + "</td>";
 							} else if (end < date) {
+								if(type != "0" && type != "2")
+								{
+								return true;
+								}
+								res = res + "<tr>";
+								res = res + "<td>" + e.courseId + "</td>";
+								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "已结束" + "</td>";
 							} else {
+								if(type != "0" && type != "1")
+								{
+								return true;
+								}
+								res = res + "<tr>";
+								res = res + "<td>" + e.courseId + "</td>";
+								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "正在进行" + "</td>";
 							}
 							res = res + "<td>";
