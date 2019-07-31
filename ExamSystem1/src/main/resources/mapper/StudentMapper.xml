@@ -50,14 +50,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE student_table SET exam_done = concat(exam_done,concat(",",#{examId})) WHERE user_account=#{studentAccount}
 	
 	</insert> 
+	
 	<select id="scoreQuery" parameterType="String" resultMap="score">
 		select answer_result,answer_points from answer_table where student_account = studentId
 	</select>
 	<resultMap type="Score" id="score">
+		<id column="answer_id" property="id"/>
+		<result column="exam_id" property="exam"/>
 		<result column="answer_result" property="result"/>
-		<result column="answer_points" property="points"/>
-	
+		<result column="answer_points" property="pointStr"/>
 	</resultMap>
+	
+	<select id="queryScoreByExam" resultMap="score">
+		select *
+		FROM answer_table
+		<where>
+			and student_account=#{student}
+			<if test="exam!=null and exam!=''">
+				and exam_id LIKE "%"#{exam}"%"
+			</if>
+		</where>
+	</select>
+	
 	<select id="mockExam" resultMap="mock">
 		select * from question_table
 		where question_use="练习"
@@ -71,9 +85,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="question_answer" property="answer"/>
 		<result column="course_id" property="course"/>
 	</resultMap>
-	
-	
-	
-	
 	
 </mapper>

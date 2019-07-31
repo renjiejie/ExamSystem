@@ -6,7 +6,6 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.regex.*;
 
 import com.neuedu.demo.dao.QuestionMapper;
 import com.neuedu.demo.dao.StudentMapper;
@@ -14,7 +13,6 @@ import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
 import com.neuedu.demo.domain.Question;
 import com.neuedu.demo.domain.Score;
-import com.neuedu.demo.domain.Student;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -82,7 +80,22 @@ public class StudentServiceImpl implements StudentService{
 		String str = "";
 		for(int i=0;i<score.size();++i) {
 			str = score.get(i).getPointStr();
-			String[] points = str.split("*");
+			String[] points = str.split("\\*");
+			if(points!=null) {
+				for(String point:points) {
+					score.get(i).addPoint(point);
+				}
+			}
+		}
+		return score;
+	}
+	@Override
+	public List<Score> queryScoreByExam(String student, String exam) {
+		List<Score> score= mapper.queryScoreByExam(student,exam);
+		String str = "";
+		for(int i=0;i<score.size();++i) {
+			str = score.get(i).getPointStr();
+			String[] points = str.split("\\*");
 			if(points!=null) {
 				for(String point:points) {
 					score.get(i).addPoint(point);

@@ -17,48 +17,62 @@ import com.neuedu.demo.service.StudentService;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
-	
+
 	@Autowired
 	private StudentService studentService;
 	private List<Exam> exams;
+
 	@RequestMapping("/join")
 	@ResponseBody
-	public List<Exam> joinExam(HttpServletRequest req){
+	public List<Exam> joinExam(HttpServletRequest req) {
 		exams = studentService.joinExam((String) req.getSession().getAttribute("account"));
 		return exams;
 	}
+
 	@RequestMapping("/take/{examId}")
 	@ResponseBody
-	public List<Question> takeExam(@PathVariable("examId")String examId){
-		for(Exam exam:exams) {
-			if(exam.getId().equals(examId)) {
+	public List<Question> takeExam(@PathVariable("examId") String examId) {
+		for (Exam exam : exams) {
+			if (exam.getId().equals(examId)) {
 				return exam.getPapers().getQuestions();
 			}
 		}
 		return null;
 	}
+
 	@RequestMapping("/input/{examId}/{answerStr}")
 	@ResponseBody
-	public String submitAnswer(HttpServletRequest req,@PathVariable("examId")String examId
-			,@PathVariable("answerStr")String answerStr) {
-		String paperId=null;
-		for(Exam exam:exams) {
-			if(exam.getId().equals(examId)) {
+	public String submitAnswer(HttpServletRequest req, @PathVariable("examId") String examId,
+			@PathVariable("answerStr") String answerStr) {
+		String paperId = null;
+		for (Exam exam : exams) {
+			if (exam.getId().equals(examId)) {
 				paperId = exam.getPapers().getId();
 			}
 		}
 		System.out.println((String) req.getSession().getAttribute("account"));
 		String studentAccount = (String) req.getSession().getAttribute("account");
-		studentService.submitAnswer(answerStr, examId, studentAccount,paperId);
+		studentService.submitAnswer(answerStr, examId, studentAccount, paperId);
 		return "提交成功";
 	}
+
 	@ResponseBody
-	public List<Score> scoreQuery(HttpServletRequest req){
+	public List<Score> scoreQuery(HttpServletRequest req) {
 		return studentService.scoreQuery((String) req.getSession().getAttribute("account"));
 	}
+
+	@RequestMapping("/queryScoreByExam/{exam}")
+	@ResponseBody
+	public List<Score> queryScoreByExam(HttpServletRequest req, @PathVariable("exam") String exam) {
+		if (exam.equals("All")) {
+			exam = null;
+		}
+		return studentService.queryScoreByExam((String) req.getSession().getAttribute("account"), exam);
+	}
+
 	@RequestMapping("/pratice")
 	@ResponseBody
-	public List<Question> mockExam(){
+	public List<Question> mockExam() {
 		return studentService.mockExam();
 	}
 }

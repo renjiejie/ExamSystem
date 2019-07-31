@@ -2,34 +2,49 @@
 <html>
 	<head>
 		<title>学生空页</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<!-- Bootstrap Core CSS -->
-	<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
-	<!-- Custom CSS -->
-	<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
-	<!-- font CSS -->
-	<!-- font-awesome icons -->
-	<link href="/exam/css/font-awesome.css" rel="stylesheet"> 
-	<!-- //font-awesome icons -->
-	 <!-- js-->
-	<script src="/exam/js/jquery-1.11.1.min.js"></script>
-	<script src="/exam/js/modernizr.custom.js"></script>
-	<!--animate-->
-	<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
-	<script src="/exam/js/wow.min.js"></script>
-		<script>
-			 new WOW().init();
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
 		</script>
-	<!--//end-animate-->
-	<!-- Metis Menu -->
-	<script src="/exam/js/metisMenu.min.js"></script>
-	<script src="/exam/js/custom.js"></script>
-	<link href="/exam/css/custom.css" rel="stylesheet">
+		<!-- Bootstrap Core CSS -->
+		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- Custom CSS -->
+		<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
+		<!-- font CSS -->
+		<!-- font-awesome icons -->
+		<link href="/exam/css/font-awesome.css" rel="stylesheet">
+		<!-- //font-awesome icons -->
+		<!-- js-->
+		<script src="/exam/js/jquery-1.11.1.min.js"></script>
+		<script src="/exam/js/modernizr.custom.js"></script>
+		<!--animate-->
+		<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
+		<script src="/exam/js/wow.min.js"></script>
+		<script>
+			new WOW().init();
+		</script>
+		<!--//end-animate-->
+		<!-- Metis Menu -->
+		<script src="/exam/js/metisMenu.min.js"></script>
+		<script src="/exam/js/custom.js"></script>
+		<link href="/exam/css/custom.css" rel="stylesheet">
 		<!--//Metis Menu -->
+		<style>
+			.middle{
+			 margin:0 auto; 
+			 width:350px; 
+			 height:100px; 
+			 } //border:1px solid #F00
+		</style>
 	</head>
 	<body class="cbp-spmenu-push">
 		<div class="main-content">
@@ -120,7 +135,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
 										<div class="user-name">
-											<p>Arcane</p>
+											<p id="stuname"></p>
 											<span>Student</span>
 										</div>
 										<i class="fa fa-angle-down lnr"></i>
@@ -145,92 +160,74 @@
 				<div class="main-page">
 					<h3 class="title1">学生成绩</h3>
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>考试</th>
-									<th>分数</th>
-									<th>详情</th>
-								</tr>
-							</thead>
-							<tbody>
-								
-								<tr>
-								<td>某次考试</td>
-								<td>82</td>
-								<td>
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-										<span class="glyphicon glyphicon-list"></span>
-									</button>
-									<!-- 详细信息模态框 -->
-									<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-													<h4 class="modal-title" id="myModalLabel">答题卡</h4>
-												</div>
-												<div class="modal-body">
-													<table class="table">
-														<tbody id="showlist">
-															<tr id="firstMore">
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-												</div>
-											</div><!-- /.modal-content -->
-										</div><!-- /.modal -->
+
+						<!-- 搜索框 -->
+						<div class="middle">
+							<form class="form-inline" id="searchForm">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon" style="width: 50px"> <span class="glyphicon glyphicon-book"></span>
+										</span> <input type="text" class="form-control" placeholder="Exam Name" aria-describedby="basic-addon1" id="searchExam"
+										 style="width: 200px">
+										<button type="button" class="btn btn-default" id="searchButton">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
 									</div>
-									<!-- 详细信息模态框 -->
-								</td>
-								</tr>
-								<tr>
-								<td>某次考试</td>
-								<td>90</td>
-								<td>
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-										<span class="glyphicon glyphicon-list"></span>
-									</button>
-								</td>
-								</tr>
-								<tr>
-								<td>某次考试</td>
-								<td>60</td>
-								<td>
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-										<span class="glyphicon glyphicon-list"></span>
-									</button>
-								</td>
-								</tr>
-								<tr>
-								<td>某次考试</td>
-								<td>75</td>
-								<td>
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
-										<span class="glyphicon glyphicon-list"></span>
-									</button>
-								</td>
-								</tr>
+								</div>
+							</form>
+						</div>
+						<!-- 搜索框 -->
 
+						<!-- 列表 -->
+						<div style="position: relative; height: 600px; overflow-y: auto">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>考试</th>
+										<th>分数</th>
+										<th>详情</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr id="first">
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 列表 -->
 
-							</tbody>
-						</table>
+						<!-- 详细信息模态框 -->
+						<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">答题卡</h4>
+									</div>
+									<div class="modal-body">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>题号</th>
+													<th>得分</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr id="firstMore">
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal -->
+						</div>
+						<!-- 详细信息模态框 -->
+
 
 					</div>
-					<ul class="pagination pagination-lg">
-						<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-					</ul>
 				</div>
 			</div>
 			<!--footer-->
@@ -239,51 +236,34 @@
 			</div>
 			<!--//footer-->
 		</div>
-				<!-- Classie -->
+		<!-- Classie -->
 		<script src="/exam/js/classie.js"></script>
 		<script>
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
-		
+
 			showLeftPush.onclick = function() {
 				classie.toggle(this, 'active');
 				classie.toggle(body, 'cbp-spmenu-push-toright');
 				classie.toggle(menuLeft, 'cbp-spmenu-open');
 				disableOther('showLeftPush');
 			};
-		
+
 			function disableOther(button) {
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
-			
-			
-			$(document).ready(function(){
-				var queryURL = "/exam/student/score";
-				$.ajax({
-					url:queryURL,
-					type:"GET",
-					dataType:"json",
-					success:function(str){
-						auto_list(str);
-					},
-					error:function(){
-					}
-				});
-				});
-			
-				function auto_list(str) {
-					
-					$(str).each(function(index, e) {
-					 	
-					
-					
-					
-					
-					});
+			$.ajax({
+				url: "http://localhost:8080/exam/query/stuname",
+				success: function(str) {
+					$("#stuname").html(str)
+				},
+				error: function(status) {
+
 				}
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
@@ -291,5 +271,93 @@
 		<!--//scrolling js-->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="/exam/js/bootstrap.js"> </script>
+		<script>
+			$("#searchButton").click(function() {
+				var exam = $("#searchExam").val();
+				if (exam == null || exam == "") {
+					exam = "All";
+				}
+				var queryURL = "/exam/student/queryScoreByExam/" + exam;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						auto_list(str);
+						document.getElementById("searchForm").reset();
+					},
+					error: function() {}
+				});
+			});
+
+			$("#moreModal").on("show.bs.modal", function(event) {
+				var button = $(event.relatedTarget);
+				var exam = button.data("whatever");
+				var moreURL = "/exam/student/queryScoreByExam/" + exam;
+				$.ajax({
+					url: moreURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						$("#firstMore").siblings().remove();
+						var res = "";
+						for (var i = 0; i < str[0].point.length; i++) {
+							res = res + "<tr>";
+							res = res + "<td>" + (i + 1) + "</td>";
+							res = res + "<td>" + str[0].point[i] + "</td>";
+							res = res + "</tr>";
+						}
+						var app = $(res);
+						$("#firstMore").after(app);
+					},
+					error: function() {}
+				});
+			});
+
+			$(document).ready(function() {
+				queryAll();
+			});
+
+			function auto_list(str) {
+				//清空id=first的所有兄弟节点
+				$("#first").siblings().remove();
+				var res = "";
+				$(str).each(function(index, e) {
+					res = res + "<tr>";
+					res = res + "<td>" + e.exam + "</td>";
+					res = res + "<td>" + e.result + "</td>";
+					res = res +
+						"<td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#moreModal' data-whatever='" +
+						e.exam + "'>";
+					res = res + "<span class='glyphicon glyphicon-list-alt'></span></button>" + "</td>";
+					res = res + "</tr>"
+				});
+				var app = $(res);
+				$("#first").after(app);
+			}
+
+			function queryAll() {
+				var queryURL = "/exam/student/queryScoreByExam/All";
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						auto_list(str);
+					},
+					error: function() {}
+				});
+			}
+			
+			$.ajax({
+				url: "http://localhost:8080/exam/query/stuname",
+				success: function(str) {
+					$("#stuname").html(str)
+				},
+				error: function(status) {
+
+				}
+			});	
+		</script>
 	</body>
 </html>

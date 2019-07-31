@@ -20,5 +20,6 @@ public interface StudentMapper {
 	public void submitAnswer(@Param("answerStr") String answerStr,@Param("examId") String examId,
 			@Param("studentAccount") String studentAccount,@Param("paperId") String paperId);
 	public List<Score> scoreQuery(String studentId);
+	public List<Score> queryScoreByExam(@Param("student") String student, @Param("exam") String exam);
 	public List<Question> mockExam();
 }
