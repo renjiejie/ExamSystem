@@ -120,7 +120,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
 										<div class="user-name">
-											<p id="stuname"></p>
+											<p>Arcane</p>
 											<span>Student</span>
 										</div>
 										<i class="fa fa-angle-down lnr"></i>
@@ -154,6 +154,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								
 								<tr>
 								<td>某次考试</td>
 								<td>82</td>
@@ -171,44 +172,8 @@
 												</div>
 												<div class="modal-body">
 													<table class="table">
-														<tbody>
-															<tr class="active">
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr>
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr class="success">
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr>
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr class="info">
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr>
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr class="danger">
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr>
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr class="warning">
-																<td>题目</td>
-																<td>分数</td>
-															</tr>
-															<tr>
+														<tbody id="showlist">
+															<tr id="firstMore">
 																<td>题目</td>
 																<td>分数</td>
 															</tr>
@@ -293,15 +258,32 @@
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
-			$.ajax({
-				url:"http://localhost:8080/exam/query/stuname",
-				success:function(str){
-					$("#stuname").html(str)
-				},
-				error:function(status){
+			
+			
+			$(document).ready(function(){
+				var queryURL = "/exam/student/score";
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",
+					success:function(str){
+						auto_list(str);
+					},
+					error:function(){
+					}
+				});
+				});
+			
+				function auto_list(str) {
 					
+					$(str).each(function(index, e) {
+					 	
+					
+					
+					
+					
+					});
 				}
-			});	
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

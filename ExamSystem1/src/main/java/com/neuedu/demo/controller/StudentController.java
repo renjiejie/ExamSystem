@@ -56,5 +56,9 @@ public class StudentController {
 	public List<Score> scoreQuery(HttpServletRequest req){
 		return studentService.scoreQuery((String) req.getSession().getAttribute("account"));
 	}
-	
+	@RequestMapping("/pratice")
+	@ResponseBody
+	public List<Question> mockExam(){
+		return studentService.mockExam();
+	}
 }

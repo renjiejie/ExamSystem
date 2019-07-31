@@ -89,4 +89,9 @@ public class StudentServiceImpl implements StudentService{
 		}
 		return score;
 	}
+	@Override
+	public List<Question> mockExam() {
+		// TODO Auto-generated method stub
+		return mapper.mockExam();
+	}
 }

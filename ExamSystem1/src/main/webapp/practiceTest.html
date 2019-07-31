@@ -143,7 +143,7 @@
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
-					<h3 class="title1">模拟考试</h3>
+					<h3 class="title1" >模拟考试</h3>
 					<form>
 						<div class="inbox-page">
 							<h4>单选</h4>
@@ -162,7 +162,7 @@
 								<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"
 								 aria-expanded="true">
 									<div class="mail-body">
-										<p>题干示例 A.1 B.2 C.3 D.4</p>
+										<p id="stem"></p>
 										<form>
 											<div class="radio-inline">
 												<input type="radio" name="soloanswer1">A
@@ -194,7 +194,7 @@
 											<div class="modal-body">
 												<div class="row-info"> 
 													<div class="col-md-4">答案</div> 
-													<div class="col-md-4 col-md-offset-4"></div> 
+													<div class="col-md-4 col-md-offset-4" id="answer"></div> 
 												</div>  
 												<div class="row"> 
 													<div class="col-md-6 col-md-offset-3"></div> 
@@ -205,7 +205,7 @@
 												<div class="col-xs-4 col-sm-6"></div> </div> </div> </div> </div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-default" data-dismiss="modal">结束模拟考</button>
-												<button type="button" class="btn btn-primary">开始下一题</button>
+												<button type="button" class="btn btn-primary" data-dismiss="modal" id="next">开始下一题</button>
 											</div>
 										</div><!-- /.modal-content -->
 									</div><!-- /.modal-dialog -->
@@ -249,8 +249,26 @@
 				error:function(status){
 					
 				}
-			});	
-
+			});
+				var index = 0;
+			$(document).ready(function() {
+				var queryURL = "/exam/student/pratice";
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						document.getElementById("stem").innerHTML = $(str)[index].stem;
+						document.getElementById("answer").innerHTML = $(str)[index].answer;
+						$("#next").click(function(){
+							index+=1
+							document.getElementById("stem").innerHTML = $(str)[index].stem;
+							document.getElementById("answer").innerHTML = $(str)[index].answer;
+						});
+					},
+					error: function() {}
+				});
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
