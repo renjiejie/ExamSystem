@@ -135,7 +135,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
 										<div class="user-name">
-											<p id="stuname"></p>
+											<p>Arcane</p>
 											<span>Student</span>
 										</div>
 										<i class="fa fa-angle-down lnr"></i>
@@ -160,6 +160,7 @@
 				<div class="main-page">
 					<h3 class="title1">学生成绩</h3>
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+<<<<<<< HEAD
 
 						<!-- 搜索框 -->
 						<div class="middle">
@@ -172,6 +173,48 @@
 										<button type="button" class="btn btn-default" id="searchButton">
 											<span class="glyphicon glyphicon-search"></span>
 										</button>
+=======
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>考试</th>
+									<th>分数</th>
+									<th>详情</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								<tr>
+								<td>某次考试</td>
+								<td>82</td>
+								<td>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#moreModal">
+										<span class="glyphicon glyphicon-list"></span>
+									</button>
+									<!-- 详细信息模态框 -->
+									<div class="modal fade" id="moreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title" id="myModalLabel">答题卡</h4>
+												</div>
+												<div class="modal-body">
+													<table class="table">
+														<tbody id="showlist">
+															<tr id="firstMore">
+																<td>题目</td>
+																<td>分数</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal -->
+>>>>>>> a82295c215959a866b26adb47c99adca6389226e
 									</div>
 								</div>
 							</form>
@@ -255,6 +298,7 @@
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
+<<<<<<< HEAD
 			$.ajax({
 				url: "http://localhost:8080/exam/query/stuname",
 				success: function(str) {
@@ -264,6 +308,34 @@
 
 				}
 			});
+=======
+			
+			
+			$(document).ready(function(){
+				var queryURL = "/exam/student/score";
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",
+					success:function(str){
+						auto_list(str);
+					},
+					error:function(){
+					}
+				});
+				});
+			
+				function auto_list(str) {
+					
+					$(str).each(function(index, e) {
+					 	
+					
+					
+					
+					
+					});
+				}
+>>>>>>> a82295c215959a866b26adb47c99adca6389226e
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

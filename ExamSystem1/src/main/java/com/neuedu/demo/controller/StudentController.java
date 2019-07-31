@@ -56,6 +56,7 @@ public class StudentController {
 	public List<Score> scoreQuery(HttpServletRequest req){
 		return studentService.scoreQuery((String) req.getSession().getAttribute("account"));
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping("/queryScoreByExam/{exam}")
 	@ResponseBody
@@ -64,5 +65,11 @@ public class StudentController {
 			exam = null;
 		}
 		return studentService.queryScoreByExam((String) req.getSession().getAttribute("account"), exam);
+=======
+	@RequestMapping("/pratice")
+	@ResponseBody
+	public List<Question> mockExam(){
+		return studentService.mockExam();
+>>>>>>> a82295c215959a866b26adb47c99adca6389226e
 	}
 }

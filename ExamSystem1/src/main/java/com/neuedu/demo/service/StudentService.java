@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
+import com.neuedu.demo.domain.Question;
 import com.neuedu.demo.domain.Score;
 
 public interface StudentService {
@@ -11,5 +12,9 @@ public interface StudentService {
 	public List<Exam> joinExam( String studentAccount);
 	public void submitAnswer(String answerStr,String examId,String studentAccount,String paperId);
 	public List<Score> scoreQuery(String studentId);
+<<<<<<< HEAD
 	public List<Score> queryScoreByExam(String student, String exam);
+=======
+	public List<Question> mockExam();
+>>>>>>> a82295c215959a866b26adb47c99adca6389226e
 }
