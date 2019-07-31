@@ -53,4 +53,6 @@ public interface AdminMapper {
 			@Param("description") String description, @Param("start") String start,
 			@Param("duration") String duration, @Param("end") String end, @Param("place") String place,
 			@Param("supervisor") String supervisor, @Param("paper") String paper);
+	
+	public List<String> queryPaperByCourse(String course);
 }
