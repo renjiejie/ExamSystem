@@ -16,11 +16,11 @@ public class Answer {
 		public void setId(int id) {
 			this.id = id;
 		}
-		public Exam getExam() {
-			return exam;
-		}
 		public void setExam(Exam exam) {
 			this.exam = exam;
+		}
+		public Exam getExam() {
+			return exam;
 		}
 		public User getUserstu() {
 			return userstu;

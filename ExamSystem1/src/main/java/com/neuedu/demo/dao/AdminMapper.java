@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.neuedu.demo.domain.Course;
+import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.User;
 
 @Mapper
@@ -40,6 +41,15 @@ public interface AdminMapper {
 	public void deleteCourse(String course);
 
 	public void addExam(@Param("exam") String exam, @Param("course") String course,
+			@Param("description") String description, @Param("start") String start,
+			@Param("duration") String duration, @Param("end") String end, @Param("place") String place,
+			@Param("supervisor") String supervisor, @Param("paper") String paper);
+	
+	public List<Exam> queryExam(String exam);
+	
+	public void deleteExam(String exam);
+	
+	public void updateExam(@Param("exam") String exam, @Param("course") String course,
 			@Param("description") String description, @Param("start") String start,
 			@Param("duration") String duration, @Param("end") String end, @Param("place") String place,
 			@Param("supervisor") String supervisor, @Param("paper") String paper);

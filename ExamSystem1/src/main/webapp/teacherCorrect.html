@@ -161,20 +161,17 @@
 			<div id="page-wrapper">
 				<div class="main-page" >
 					<h3 class="title1">批改</h3>
-					<div class="dropdown" id="dropdown1">
-						<label>课程：</label>
-						<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-						 aria-haspopup="true" aria-expanded="true">
-							课程
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li><a href="#">语文</a></li>
-							<li><a href="#">数学</a></li>
-							<li><a href="#">英语</a></li>
-							<li><a href="#">物理</a></li>
-							<li><a href="#">化学</a></li>
-						</ul>
+					<div class="form-group">
+						<div class="dropdown">
+							<label>课程：</label>
+							<select class="form-control" id="course" name="course" style="width: 100px;">
+								<option>数学</option>
+								<option>语文</option>
+								<option>英语</option>
+								<option>物理</option>
+								<option>化学</option>
+							</select>
+						</div>
 					</div>
 
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
@@ -184,103 +181,13 @@
 								<tr>
 									<th>考试名称</th>
 									<th>考试时间</th>
+									<th>考试课程</th>
 									<th>查看</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
-								</tr>
-								<tr>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td> <button type="button" class="btn btn-default" onclick="javascript:location.href='/exam/answercardList.html'">查看</button></td>
+								<tr id = "first">
+									
 								</tr>
 							</tbody>
 						</table>
@@ -314,6 +221,72 @@
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
+			$("#course").change(function() {
+				var courseId = $("#course").val();
+					var queryURL = "/exam/exams/queryAll/"+courseId;;
+					$.ajax({
+						url:queryURL,
+						type:"GET",
+						dataType:"json",					
+						success:function(str){
+						//str-----json-----SchoolClass
+						//清空id=first的所有兄弟节点
+						$("#first").siblings().remove();
+						var res="";
+						$(str).each(function(index,e){
+							res = res + '<tr>';
+										res = res + '<td>'+e.id+'</td>';
+										res = res + '<td>'+e.begintime+'</td>';
+										res = res + '<td>'+e.courseId+'</td>';
+										res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'">查看</button></td>';
+									res = res + '</tr>';
+						});
+						var app = $(res);
+						$("#first").after(app);
+						/* $(str).each(function(index,e){
+							$(document).on('click','#delete'+e.id,function(){
+								window.location.href="/exam/question/delete/"+e.id;
+							})
+							}); */
+						},
+						error:function(){
+							alert("失败");
+						}
+					}); 
+				});
+			$(document).ready(function() {
+				var courseId = $("#course").val();
+				var queryURL = "/exam/exams/queryAll/"+courseId;;
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$(str).each(function(index,e){
+						res = res + '<tr>';
+									res = res + '<td>'+e.id+'</td>';
+									res = res + '<td>'+e.begintime+'</td>';
+									res = res + '<td>'+e.courseId+'</td>';
+									res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'">查看</button></td>';
+								res = res + '</tr>';
+					});
+					var app = $(res);
+					$("#first").after(app);
+					/* $(str).each(function(index,e){
+						$(document).on('click','#delete'+e.id,function(){
+							window.location.href="/exam/question/delete/"+e.id;
+						})
+						}); */
+					},
+					error:function(){
+						alert("失败");
+					}
+				}); 
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>

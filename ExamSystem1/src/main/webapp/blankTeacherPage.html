@@ -157,12 +157,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<h4>修改密码 :</h4>
 					</div>
 					<div class="form-body">
-						<form>
+						<form action="/exam/teacher/updatepassword" >
 							<div class="form-group"> <label for="exampleInputPassword1">密码</label> <input type="password" class="form-control"
 								 id="exampleInputPassword1" placeholder="Password" style="width: 300px;"> </div>
-							<div class="form-group"> <label for="exampleInputPassword1">确认密码</label> <input type="password"
+							<div class="form-group"> <label for="exampleInputPassword1">确认密码</label> <input name="user.password" type="password"
 								 class="form-control" id="exampleInputPassword1" placeholder="Password" style="width: 300px;"> </div>
-							<button type="submit" class="btn btn-default">确认修改</button>
+							<button id="sub1" type="submit" class="btn btn-default">确认修改</button>
 						</form>
 					</div>
 				</div>
@@ -171,10 +171,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<h4>修改手机号码 :</h4>
 					</div>
 					<div class="form-body">
-						<form>
-							<div class="form-group"> <label for="exampleInputPassword1">手机号码</label> <input type="tel" class="form-control"
+						<form action="/exam/teacher/updatetel">
+							<div class="form-group"> <label for="exampleInputPassword1">手机号码</label> <input name="telephone" type="tel" class="form-control"
 								 id="exampleInputPassword1" placeholder="手机号码" style="width: 300px;"> </div>
-							<button type="submit" class="btn btn-default">确认修改</button>
+							<button id="sub2" type="submit" class="btn btn-default">确认修改</button>
 						</form>
 					</div>
 				</div>
@@ -205,6 +205,23 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
+
+			$("#sub2").click(function(){
+				alert("提交成功");
+			});
+   			$("#ConfirmPassword").blur(function(){
+   	   		var password1 = $("#Password").val();
+   	   		var password2 = $("#ConfirmPassword").val();
+   	   		if (password1 === password2){
+   				$("#sub1").click(function(){
+   					alert("提交成功");
+   				});
+    		}else{
+   	   			alert("密码不相同")
+   	   		}
+   		
+   	   		}); 
+			
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
