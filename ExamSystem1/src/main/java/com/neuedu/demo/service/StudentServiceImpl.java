@@ -95,11 +95,13 @@ public class StudentServiceImpl implements StudentService{
 		String str = "";
 		for(int i=0;i<score.size();++i) {
 			str = score.get(i).getPointStr();
+			if(str!=null){
 			String[] points = str.split("\\*");
 			if(points!=null) {
 				for(String point:points) {
 					score.get(i).addPoint(point);
 				}
+			}
 			}
 		}
 		return score;
