@@ -50,6 +50,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE student_table SET exam_done = concat(exam_done,concat(",",#{examId})) WHERE user_account=#{studentAccount}
 	
 	</insert> 
+	<select id="scoreQuery" parameterType="String" resultMap="score">
+		select answer_result,answer_points from answer_table where student_account = studentId
+	</select>
+	<resultMap type="Score" id="score">
+		<result column="answer_result" property="result"/>
+		<result column="answer_points" property="points"/>
+	
+	</resultMap>
 	
 	
 	

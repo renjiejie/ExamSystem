@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
+import com.neuedu.demo.domain.Score;
 import com.neuedu.demo.domain.Student;
 
 @Mapper
@@ -17,4 +18,5 @@ public interface StudentMapper {
 	public String isExamDone(@Param("studentAccount") String studentAccount);
 	public void submitAnswer(@Param("answerStr") String answerStr,@Param("examId") String examId,
 			@Param("studentAccount") String studentAccount,@Param("paperId") String paperId);
+	public List<Score> scoreQuery(String studentId);
 }

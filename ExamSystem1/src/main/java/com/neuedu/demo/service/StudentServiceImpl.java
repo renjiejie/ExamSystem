@@ -13,6 +13,7 @@ import com.neuedu.demo.dao.StudentMapper;
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
 import com.neuedu.demo.domain.Question;
+import com.neuedu.demo.domain.Score;
 import com.neuedu.demo.domain.Student;
 
 @Service
@@ -71,5 +72,21 @@ public class StudentServiceImpl implements StudentService{
 	public void submitAnswer(String answerStr, String examId, String studentAccount,String paperId) {
 		// TODO Auto-generated method stub
 		mapper.submitAnswer(answerStr, examId, studentAccount,paperId);
+	}
+	@Override
+	public List<Score> scoreQuery(String studentId) {
+		// TODO Auto-generated method stub
+		List<Score> score= mapper.scoreQuery(studentId);
+		String str = "";
+		for(int i=0;i<score.size();++i) {
+			str = score.get(i).getPointStr();
+			String[] points = str.split("*");
+			if(points!=null) {
+				for(String point:points) {
+					score.get(i).addPoint(point);
+				}
+			}
+		}
+		return score;
 	}
 }
