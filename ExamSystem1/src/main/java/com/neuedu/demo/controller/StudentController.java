@@ -57,4 +57,12 @@ public class StudentController {
 		return studentService.scoreQuery((String) req.getSession().getAttribute("account"));
 	}
 	
+	@RequestMapping("/queryScoreByExam/{exam}")
+	@ResponseBody
+	public List<Score> queryScoreByExam(HttpServletRequest req, @PathVariable("exam") String exam) {
+		if(exam.equals("All")) {
+			exam = null;
+		}
+		return studentService.queryScoreByExam((String) req.getSession().getAttribute("account"), exam);
+	}
 }
