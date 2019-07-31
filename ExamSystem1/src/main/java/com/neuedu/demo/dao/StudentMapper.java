@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
+import com.neuedu.demo.domain.Question;
 import com.neuedu.demo.domain.Score;
 import com.neuedu.demo.domain.Student;
 
@@ -20,4 +21,5 @@ public interface StudentMapper {
 			@Param("studentAccount") String studentAccount,@Param("paperId") String paperId);
 	public List<Score> scoreQuery(String studentId);
 	public List<Score> queryScoreByExam(@Param("student") String student, @Param("exam") String exam);
+	public List<Question> mockExam();
 }

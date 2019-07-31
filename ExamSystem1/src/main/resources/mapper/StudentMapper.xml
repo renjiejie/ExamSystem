@@ -71,4 +71,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
+	
+	<select id="mockExam" resultMap="mock">
+		select * from question_table
+		where question_use="练习"
+	</select>
+	<resultMap type="Question" id="mock">
+		<id column="question_id" property="id"/>
+		<result column="question_type" property="type"/>
+		<result column="question_stem" property="stem"/>
+		<result column="question_point" property="point"/>
+		<result column="question_maker" property="maker"/>
+		<result column="question_answer" property="answer"/>
+		<result column="course_id" property="course"/>
+	</resultMap>
+	
 </mapper>
