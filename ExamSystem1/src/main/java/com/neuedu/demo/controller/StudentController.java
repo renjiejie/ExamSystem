@@ -52,6 +52,9 @@ public class StudentController {
 		studentService.submitAnswer(answerStr, examId, studentAccount,paperId);
 		return "提交成功";
 	}
-	
+	@ResponseBody
+	public List<Score> scoreQuery(HttpServletRequest req){
+		return studentService.scoreQuery((String) req.getSession().getAttribute("account"));
+	}
 	
 }

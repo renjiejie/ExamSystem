@@ -6,23 +6,31 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 		SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
 		<!-- Bootstrap Core CSS -->
 		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
 		<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
 		<!-- font CSS -->
 		<!-- font-awesome icons -->
-		<link href="/exam/css/font-awesome.css" rel="stylesheet"> 
+		<link href="/exam/css/font-awesome.css" rel="stylesheet">
 		<!-- //font-awesome icons -->
-		 <!-- js-->
+		<!-- js-->
 		<script src="/exam/js/jquery-1.11.1.min.js"></script>
 		<script src="/exam/js/modernizr.custom.js"></script>
 		<!--animate-->
 		<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
 		<script src="/exam/js/wow.min.js"></script>
-			<script>
-				 new WOW().init();
+		<script>
+			new WOW().init();
 			</script>
 		<!--//end-animate-->
 		<!-- Metis Menu -->
@@ -30,14 +38,13 @@
 		<script src="/exam/js/custom.js"></script>
 		<link href="/exam/css/custom.css" rel="stylesheet">
 		<!--//Metis Menu -->
-
 		<style>
-			#dropdown1{
-				
-				margin: 1.25rem;
-			}
-			
-		</style>
+			.middle{
+	 margin:0 auto; 
+	 width:350px; 
+	 height:100px; 
+	 } //border:1px solid #F00
+</style>
 	</head>
 	<body class="cbp-spmenu-push">
 		<div class="main-content">
@@ -136,34 +143,33 @@
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
-					<h3 class="title1">成绩分析</h3>
-					<div class="dropdown" id="dropdown1">
-
-						<label>课程：</label>
-						<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-						 aria-haspopup="true" aria-expanded="true">
-							课程
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li><a href="#">语文</a></li>
-							<li><a href="#">数学</a></li>
-							<li><a href="#">英语</a></li>
-							<li><a href="#">物理</a></li>
-							<li><a href="#">化学</a></li>
-						</ul>
-
-
-					</div>
-
-
-
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 
+						<!-- 搜索框 -->
+						<div class="middle">
+							<form class="form-inline" id="searchForm">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon" style="width:50px">
+											<span class="glyphicon glyphicon-book"></span>
+										</span>
+										<input type="text" class="form-control" placeholder="Exam Name" aria-describedby="basic-addon1" id="searchExam"
+										 style="width:200px">
+										<button type="button" class="btn btn-default" id="searchButton">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!-- 搜索框 -->
+
+						<!-- 列表 -->
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>考试名称</th>
+									<th>考试</th>
+									<th>课程</th>
 									<th>考试人数</th>
 									<th>及格人数</th>
 									<th>及格率</th>
@@ -171,17 +177,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>10</td>
-									<td>10</td>
-									<td>20</td>
-									<td>30</td>
-									<td>40</td>
+								<tr id="first">
 								</tr>
-
 							</tbody>
 						</table>
 					</div>
+					<!-- 列表 -->
 
 				</div>
 			</div>
@@ -218,5 +219,63 @@
 		<!--//scrolling js-->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="/exam/js/bootstrap.js"> </script>
+
+		<script>
+			$("#searchButton").click(function() {
+				var exam = $("#searchExam").val();
+				var queryURL;
+				if (exam == null || exam == "") {
+					queryURL = "/exam/admin/queryResult/All";
+				} else {
+					queryURL = "/exam/admin/queryResult/" + exam;
+				}
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						auto_list(str);
+						document.getElementById("searchForm").reset();
+					},
+					error: function() {}
+				});
+			});
+			$(document).ready(function() {
+				queryAll();
+			});
+
+			function auto_list(str) {
+				//清空id=first的所有兄弟节点
+				$("#first").siblings().remove();
+				var res = "";
+				$(str)
+					.each(
+						function(index, e) {
+							res = res + "<tr>";
+							res = res + "<td>" + e.examId + "</td>";
+							res = res + "<td>" + e.courseId + "</td>";
+							res = res + "<td>" + e.examPeople + "</td>";
+							res = res + "<td>" + e.examPassPeople + "</td>";
+							res = res + "<td>" + (e.examPassPeople / e.examPeople) + "</td>";
+							res = res + "<td>" + e.examAverage + "</td>";
+							res = res + "</tr>";
+						});
+				var app = $(res);
+				$("#first").after(app);
+			}
+
+			function queryAll() {
+				var queryURL = "/exam/admin/queryResult/All";
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						auto_list(str);
+					},
+					error: function() {}
+				});
+			}
+		</script>
 	</body>
 </html>

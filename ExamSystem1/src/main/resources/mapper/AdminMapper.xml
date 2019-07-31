@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM user_table
 		<where>
 			<if test="account !=null and account!=''">
-				and user_account = #{account}
+				and user_account LIKE "%"#{account}"%"
 			</if>
 		</where>
 	</select>
@@ -76,10 +76,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM teacher_course_table
 		<where>
 			<if test="course != null and course != ''">
-				and course_id=#{course}
+				and course_id LIKE "%"#{course}"%"
 			</if>
 			<if test="teacher!=null and teacher!=''">
-				and user_account=#{teacher}
+				and user_account LIKE "%"#{teacher}"%"
 			</if>
 		</where>
 	</select>
@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryCourse" parameterType="String" resultMap="course">
 		SELECT course_id
 		FROM course_table
-		WHERE course_id=#{courseName}
+		WHERE course_id LIKE "%"#{courseName}"%"
 	</select>
 	<resultMap type="Course" id="course">
 		<id column="course_id" property="courseName" />
@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM exam_table
 		<where>
 			<if test="exam != null and exam != ''">
-				and exam_id=#{exam}
+				and exam_id LIKE "%"#{exam}"%"
 			</if>
 		</where>
 	</select>

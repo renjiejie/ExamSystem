@@ -31,7 +31,7 @@ public class UserController {
 				session.setAttribute("permission", "student");
 				return "redirect:../blankStudentPage.html";
 				
-			} else if(permission.equals("老师")) {
+			} else if(permission.equals("教师")) {
 				session.setAttribute("permission", "teacher");
 				return "redirect:../blankTeacherPage.html";
 			} else if(permission.equals("管理员")){

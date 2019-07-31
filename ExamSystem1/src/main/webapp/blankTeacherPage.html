@@ -129,7 +129,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
 									<div class="user-name">
-										<p>Vanoss</p>
+										<p id="teaname"></p>
 										<span>Teacher</span>
 									</div>
 									<i class="fa fa-angle-down lnr"></i>
@@ -221,7 +221,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
    	   		}
    		
    	   		}); 
-			
+			$.ajax({
+				url:"http://localhost:8080/exam/query/teaname",
+				success:function(str){
+					$("#teaname").html(str)
+				},
+				error:function(status){
+					
+				}
+			});	
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

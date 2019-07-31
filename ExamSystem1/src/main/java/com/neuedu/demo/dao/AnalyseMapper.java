@@ -10,4 +10,6 @@ import com.neuedu.demo.domain.Analyse;
 @Mapper
 public interface AnalyseMapper {
 	public List<Analyse> query(@Param("courseId")String courseId );
+	
+	public List<Analyse> queryByExam(String exam);
 }

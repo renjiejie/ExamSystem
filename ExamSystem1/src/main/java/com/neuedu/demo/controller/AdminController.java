@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neuedu.demo.domain.Analyse;
 import com.neuedu.demo.domain.Course;
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.User;
 import com.neuedu.demo.service.AdminService;
+import com.neuedu.demo.service.AnalyseService;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,12 +24,14 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private AnalyseService analyseService;
 
 	@RequestMapping(value = "/addUser/{account}/{password}/{permission}", method = RequestMethod.GET)
 	@ResponseBody
 	public String addUser(@PathVariable("account") String account, @PathVariable("password") String password,
 			@PathVariable("permission") String permission) {
-		System.out.println("123");
 		adminService.addUser(account, password, permission);
 		return "success";
 	}
@@ -161,6 +165,16 @@ public class AdminController {
 		}
 		adminService.updateExam(exam, course, description, start, duration, end, place, supervisor, paper);
 		return "success";
+	}
+	
+	@RequestMapping(value="/queryResult/{exam}")
+	@ResponseBody
+	public List<Analyse> queryResult(@PathVariable("exam") String exam) {
+		if(exam.equals("All"))
+		{
+			exam = null;
+		}
+		return analyseService.queryByExam(exam);
 	}
 
 }
