@@ -137,23 +137,19 @@
 			<div id="page-wrapper">
 				<div class="main-page">
 					<h3 class="title1">成绩分析</h3>
-					<div class="dropdown" id="dropdown1">
-
+					<div class="form-group">
 						<label>课程：</label>
-						<button class="btn btn-default dropdown-toggle" type="button" id="course-name" data-toggle="dropdown"
-						 aria-haspopup="true" aria-expanded="true">
-							课程
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li><a href="#">语文</a></li>
-							<li><a href="#">数学</a></li>
-							<li><a href="#">英语</a></li>
-							<li><a href="#">物理</a></li>
-							<li><a href="#">化学</a></li>
-						</ul>
-
-
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="glyphicon glyphicon-book"></span>
+							</span>
+							<select class="form-control" id="course-name" name="courseId" style="width: 100px;">
+								<option>数学</option>
+								<option>语文</option>
+								<option>英语</option>
+								<option>物理</option>
+								<option>化学</option>
+							</select>
+						</div>
 					</div>
 
 
@@ -166,17 +162,12 @@
 									<th>考试名称</th>
 									<th>考试人数</th>
 									<th>及格人数</th>
-									<th>及格率</th>
 									<th>平均分</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>10</td>
-									<td>10</td>
-									<td>20</td>
-									<td>30</td>
-									<td>40</td>
+								<tr id="first">
+
 								</tr>
 
 							</tbody>
@@ -211,6 +202,64 @@
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
+			//查询
+			$("#course-name").change(function() {
+				var courseId = $("#course-name").val();
+				var queryURL = "/exam/analyse/query/" + courseId;
+				
+				;
+				$.ajax({
+					url : queryURL,
+					type : "GET",
+					dataType : "json",
+					success : function(str) {
+
+						$("#first").siblings().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res + "<tr>";
+							res = res + "<td>" + e.examId + "</td>";
+							res = res + "<td>" + e.examPeople + "</td>";
+							res = res + "<td>" + e.examPassPeople + "</td>";
+							res = res + "<td>" + e.examAverage + "</td>";
+							res = res + "</tr>"
+							
+						});
+						var app = $(res);
+						$("#first").after(app);
+					},
+					error : function() {
+					}
+				});
+			});
+			$(document).ready(function() {
+				var courseId = $("#course-name").val();
+				var queryURL = "/exam/analyse/query/" + courseId;
+				;
+				$.ajax({
+					url : queryURL,
+					type : "GET",
+					dataType : "json",
+					success : function(str) {
+
+						$("#first").siblings().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res + "<tr>";
+							res = res + "<td>" + e.examId + "</td>";
+							res = res + "<td>" + e.examPeople + "</td>";
+							res = res + "<td>" + e.examPassPeople + "</td>";
+							res = res + "<td>" + e.examAverage + "</td>";
+							res = res + "</tr>"
+
+						});
+						var app = $(res);
+						$("#first").after(app);
+					},
+					error : function() {
+					}
+				});			
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>
