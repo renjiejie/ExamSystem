@@ -229,20 +229,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				$("button").click(function() {
 					var answerstr="";
 					$("input:radio:checked").each(function(index,e) {
-						answerstr+=e.value+"#"
+						answerstr+=e.value+"*"
 					});
 					$("input:checkbox:checked").each(function(index,e) {
-						answerstr+=e.value+"#"
+						answerstr+=e.value+"*"
 					});
 					$("input[name='fill']").each(function(index,e) {
-						answerstr+=e.value+"#"
+						answerstr+=e.value+"*"
 					});
 					$("input[name='short']").each(function(index,e) {
-						answerstr+=e.value+"#"
+						answerstr+=e.value+"*"
 					});
 					answerstr+='|';
 					$("p[name='qid']").each(function(index,e) {
-						answerstr+=e.text()+"#"
+						answerstr+=$(e).text()+"*"
 					});
 					var queryURL = "/exam/student/input/" + examId+"/"+answerstr;
 					$.ajax({
