@@ -1,6 +1,7 @@
 package com.neuedu.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.neuedu.demo.domain.Answer;
+import com.neuedu.demo.domain.Question;
 import com.neuedu.demo.domain.RealAnswer;
 import com.neuedu.demo.service.AnswerService;
 
@@ -25,4 +27,22 @@ public class AnswerController {
 		return answerService.getAnswers(examId);
 	}
 	
+	@RequestMapping("/subanswer/{answerId}")
+	@ResponseBody
+	public Map<String,Map<String,Object>> getSubjectiveQuestions(@PathVariable("answerId")String answerId){
+		return answerService.getSubjectiveQuestions(answerId);
+	}
+	
+	@RequestMapping("/objanswer/{answerId}")
+	@ResponseBody
+	public String checkObjectiveQuestions(@PathVariable("answerId")String answerId){
+		return answerService.checkObjectiveQuestions(answerId);
+	}
+	
+	@RequestMapping("/subanswer/{answerId}/{scoreText}")
+	@ResponseBody
+	public String updateSubjectiveQuestions(@PathVariable("answerId")String answerId,@PathVariable("scoreText")String scoreText){
+		answerService.updateSubjectiveQuestions(answerId, scoreText);
+		return "批改完毕";
+	}
 }

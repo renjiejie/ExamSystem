@@ -6,14 +6,13 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.regex.*;
 
 import com.neuedu.demo.dao.QuestionMapper;
 import com.neuedu.demo.dao.StudentMapper;
 import com.neuedu.demo.domain.Exam;
 import com.neuedu.demo.domain.Paper;
 import com.neuedu.demo.domain.Question;
-import com.neuedu.demo.domain.Student;
+import com.neuedu.demo.domain.Score;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -47,7 +46,9 @@ public class StudentServiceImpl implements StudentService{
 				for(String id:examsDone) {
 					if(exams.get(i).getId().equals(id)) {
 						exams.remove(i);
-						i--;
+						if(i>0){
+							i--;
+						}
 					}
 				}
 			}
@@ -71,5 +72,43 @@ public class StudentServiceImpl implements StudentService{
 	public void submitAnswer(String answerStr, String examId, String studentAccount,String paperId) {
 		// TODO Auto-generated method stub
 		mapper.submitAnswer(answerStr, examId, studentAccount,paperId);
+	}
+	@Override
+	public List<Score> scoreQuery(String studentId) {
+		// TODO Auto-generated method stub
+		List<Score> score= mapper.scoreQuery(studentId);
+		String str = "";
+		for(int i=0;i<score.size();++i) {
+			str = score.get(i).getPointStr();
+			String[] points = str.split("\\*");
+			if(points!=null) {
+				for(String point:points) {
+					score.get(i).addPoint(point);
+				}
+			}
+		}
+		return score;
+	}
+	@Override
+	public List<Score> queryScoreByExam(String student, String exam) {
+		List<Score> score= mapper.queryScoreByExam(student,exam);
+		String str = "";
+		for(int i=0;i<score.size();++i) {
+			str = score.get(i).getPointStr();
+			if(str!=null){
+			String[] points = str.split("\\*");
+			if(points!=null) {
+				for(String point:points) {
+					score.get(i).addPoint(point);
+				}
+			}
+			}
+		}
+		return score;
+	}
+	@Override
+	public List<Question> mockExam() {
+		// TODO Auto-generated method stub
+		return mapper.mockExam();
 	}
 }

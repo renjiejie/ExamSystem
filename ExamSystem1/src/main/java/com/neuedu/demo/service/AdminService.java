@@ -37,4 +37,6 @@ public interface AdminService {
 	
 	public void updateExam(String exam, String course, String description, String start, String duration, String end,
 			String place, String supervisor, String paper);
+	
+	public List<String> queryPaperByCourse(String course);
 }

@@ -13,7 +13,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 			function hideURLbar() {
 				window.scrollTo(0, 1);
-			}
+			};
 		</script>
 		<!-- Bootstrap Core CSS -->
 		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -89,20 +89,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<!--//logo-->
 					<!--search-box-->
-					<div class="search-box">
-						<form class="input">
-							<input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
-							<label class="input__label" for="input-31">
-								<svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
-									<path d="m0,0l404,0l0,77l-404,0l0,-77z" />
-								</svg>
+					<div class="wrap" style="padding-left: 400px;padding-top: 25px;">
+						<div id="timer">
+							<label>
+								<h3>倒计时</h3>
 							</label>
-						</form>
+							<label id="hours" style="padding-left: 20px;color:#FF0000">00</label>
+							<label>:</label>
+							<label id="minute" style="color:#FF0000">00</label>
+							<label>:</label>
+							<label id="second" style="color:#FF0000">00</label>
+						</div>
 					</div>
 					<!--//end-search-box-->
 					<div class="clearfix"> </div>
 				</div>
+				<div></div>
 				<div class="header-right">
+
 					<div class="profile_details_left">
 						<!--notifications of menu start -->
 						<ul class="nofitications-dropdown">
@@ -209,6 +213,57 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 			$(document).ready(function() {
+				var queryURL = "/exam/exams/time/" + examId;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						var hours = $("#hours");
+						var minute = $("#minute");
+						var second = $("#second");
+						var timer = null;
+						var Hours = Math.floor(parseInt(str) / 60);
+						var Minute = parseInt(str) % 60;
+						var Second = 0;
+						timer = setInterval(function() {
+							Second--;
+							if (Second < 0) {
+								Second = 59;
+								Minute--;
+								if (Minute < 0) {
+									Minute = 59;
+									Hours--;
+								}
+							}
+							if (Second < 10) {
+								second.html("0" + Second);
+							} else {
+								second.html(Second);
+							}
+							if (Minute < 10) {
+								minute.html("0" + Minute);
+							} else {
+								minute.html(Minute);
+							}
+							if (Hours < 10) {
+								hours.html("0" + Hours);
+							} else {
+								hours.html(Hours);
+							}
+							if(Hours===0&&Second===0&&Minute===0)
+							{
+								alert("时间到");
+								$("#btn1").click();
+							}
+						}, 1000)
+					},
+					error: function() {}
+				});
+			});
+
+
+			$(document).ready(function() {
 				var queryURL = "/exam/student/take/" + examId;
 				$.ajax({
 					url: queryURL,
@@ -218,48 +273,48 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						if (str != null) {
 							auto_list(str);
 						}
-						
+
 					},
 					error: function() {}
 				});
 			});
-				
-				
+
+
 			$(document).ready(function() {
 				$("button").click(function() {
-					var answerstr="";
-					$("input:radio:checked").each(function(index,e) {
-						answerstr+=e.value+"*"
+					var answerstr = "";
+					$("input:radio:checked").each(function(index, e) {
+						answerstr += e.value + "*"
 					});
-					$("input:checkbox:checked").each(function(index,e) {
-						answerstr+=e.value+"*"
+					$("input:checkbox:checked").each(function(index, e) {
+						answerstr += e.value + "*"
 					});
-					$("input[name='fill']").each(function(index,e) {
-						answerstr+=e.value+"*"
+					$("input[name='fill']").each(function(index, e) {
+						answerstr += e.value + "*"
 					});
-					$("input[name='short']").each(function(index,e) {
-						answerstr+=e.value+"*"
+					$("input[name='short']").each(function(index, e) {
+						answerstr += e.value + "*"
 					});
-					answerstr+='|';
-					$("p[name='qid']").each(function(index,e) {
-						answerstr+=$(e).text()+"*"
+					answerstr += '|';
+					$("p[name='qid']").each(function(index, e) {
+						answerstr += $(e).text() + "*"
 					});
-					var queryURL = "/exam/student/input/" + examId+"/"+answerstr;
+					var queryURL = "/exam/student/input/" + examId + "/" + answerstr;
 					$.ajax({
 						url: queryURL,
 						type: "GET",
 						dataType: "text",
 						success: function(str) {
 							alert(str);
-							window.location.href="http://localhost:8080/exam/blankStudentPage.html"
+							window.location.href = "http://localhost:8080/exam/blankStudentPage.html"
 						},
 						error: function() {
-							alert("提交")
 						}
 					});
-		
+
 				});
 			});
+
 			function auto_list(str) {
 				var unit = document.getElementById("unit");
 				var mutiple = document.getElementById("mutiple");
@@ -282,14 +337,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true"' +
 							'aria-controls="collapseOne">' +
 							'	<div class="mail">' +
-							'<p>题目名</p>' +
+							'<p name="qid">' + e.id + '</p>' +
 							'</div>' +
 							'</a>' +
 							'<div class="clearfix"> </div>' +
 							'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							'aria-expanded="true">' +
 							'	<div class="mail-body">' +
-							'<p name="qid">'+e.id+'</p>' +
 							'<p>' + e.stem + '</p>' +
 							'<form>' +
 							'<div class="radio-inline">' +
@@ -321,14 +375,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true"' +
 							'aria-controls="collapseOne">' +
 							'	<div class="mail">' +
-							'<p>题目名</p>' +
+							'<p name="qid">' + e.id + '</p>' +
 							'</div>' +
 							'</a>' +
 							'<div class="clearfix"> </div>' +
 							'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							'aria-expanded="true">' +
 							'	<div class="mail-body">' +
-							'<p name="qid">'+e.id+'</p>' +
 							'<p>' + e.stem + '</p>' +
 							'<form>' +
 							'<div class="checkbox-inline">' +
@@ -360,14 +413,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="true"' +
 							'aria-controls="collapseOne">' +
 							'	<div class="mail">' +
-							'<p>题目名</p>' +
+							'<p name="qid">' + e.id + '</p>' +
 							'</div>' +
 							'</a>' +
 							'<div class="clearfix"> </div>' +
 							'<div id="collapse9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							' aria-expanded="true">' +
 							'<div class="mail-body">' +
-							'<p name="qid">'+e.id+'</p>' +
 							'	<p>' + e.stem + '</p>' +
 							'<form>' +
 							'	<input type="text" name="fill" placeholder="请输入答案">' +
@@ -388,14 +440,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="true"' +
 							'aria-controls="collapseOne">' +
 							'	<div class="mail">' +
-							'<p>题目名</p>' +
+							'<p name="qid">' + e.id + '</p>' +
 							'</div>' +
 							'</a>' +
 							'<div class="clearfix"> </div>' +
 							'<div id="collapse13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							'aria-expanded="true">' +
 							'	<div class="mail-body">' +
-							'<p name="qid">'+e.id+'</p>' +
 							'<p>' + e.stem + '</p>' +
 							'<form>' +
 							'<input type="text" name="short" placeholder="请输入答案">' +
@@ -407,15 +458,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					}
 				});
 			}
+			<!-- -->
+
+
+
 			$.ajax({
-				url:"http://localhost:8080/exam/query/stuname",
-				success:function(str){
+				url: "http://localhost:8080/exam/query/stuname",
+				success: function(str) {
 					$("#stuname").html(str)
 				},
-				error:function(status){
-					
+				error: function(status) {
+
 				}
-			});	
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

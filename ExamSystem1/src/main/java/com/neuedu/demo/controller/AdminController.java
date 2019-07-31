@@ -176,5 +176,11 @@ public class AdminController {
 		}
 		return analyseService.queryByExam(exam);
 	}
+	
+	@RequestMapping(value="/queryPaperByCourse/{course}")
+	@ResponseBody
+	public List<String> queryPaperByCourse(@PathVariable("course") String course) {
+		return adminService.queryPaperByCourse(course);
+	}
 
 }

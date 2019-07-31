@@ -20,4 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="course_id" property="courseId"/>
 		<result column="exam_supervisor" property="supervisor"/>
 	</resultMap>	
+	
+	<select id="getExamById"  parameterType="String" resultMap="exam">
+ 		select * 
+ 		from exam_table 
+ 		where exam_id = #{examId}
+	</select>
 </mapper>

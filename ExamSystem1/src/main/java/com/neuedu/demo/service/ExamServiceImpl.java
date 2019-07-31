@@ -18,6 +18,11 @@ public class ExamServiceImpl implements ExamService{
 	public List<Exam> getExams(String courseId) {
 		return examMapper.getExams(courseId);
 	}
+
+	@Override
+	public String getExamTime(String examId) {
+		return ""+examMapper.getExamById(examId).getPeriod();
+	}
 	
 	
 }

@@ -6,23 +6,31 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 		SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
 		<!-- Bootstrap Core CSS -->
 		<link href="/exam/css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
 		<link href="/exam/css/style.css" rel='stylesheet' type='text/css' />
 		<!-- font CSS -->
 		<!-- font-awesome icons -->
-		<link href="/exam/css/font-awesome.css" rel="stylesheet"> 
+		<link href="/exam/css/font-awesome.css" rel="stylesheet">
 		<!-- //font-awesome icons -->
-		 <!-- js-->
+		<!-- js-->
 		<script src="/exam/js/jquery-1.11.1.min.js"></script>
 		<script src="/exam/js/modernizr.custom.js"></script>
 		<!--animate-->
 		<link href="/exam/css/animate.css" rel="stylesheet" type="text/css" media="all">
 		<script src="/exam/js/wow.min.js"></script>
-			<script>
-				 new WOW().init();
+		<script>
+			new WOW().init();
 			</script>
 		<!--//end-animate-->
 		<!-- Metis Menu -->
@@ -158,7 +166,7 @@
 								</thead>
 								<tbody>
 									<tr id="first">
-										
+
 									</tr>
 								</tbody>
 							</table>
@@ -173,155 +181,152 @@
 			</div>
 			<!--//footer-->
 		</div>
-				<!-- Classie -->
+		<!-- Classie -->
 		<script src="/exam/js/classie.js"></script>
 		<script>
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
-		
+
 			showLeftPush.onclick = function() {
 				classie.toggle(this, 'active');
 				classie.toggle(body, 'cbp-spmenu-push-toright');
 				classie.toggle(menuLeft, 'cbp-spmenu-open');
 				disableOther('showLeftPush');
 			};
-		
+
 			function disableOther(button) {
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
 			}
-			$(document).ready(function(){
+			$(document).ready(function() {
 				var queryURL = "/exam/student/join";
 				$.ajax({
-					url:queryURL,
-					type:"GET",
-					dataType:"json",
-					success:function(str){
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
 						auto_list(str);
 					},
-					error:function(){
+					error: function() {}
+				});
+			});
+
+			function auto_list(str) {
+				//清空id=first的所有兄弟节点
+				$("#first").siblings().remove();
+				var res = "";
+				var date = new Date();
+				$(str).each(function(index, e) {
+					res = res + "<tr>";
+					res = res + "<td>" + e.courseId + "</td>";
+					res = res + "<td>" + e.id + "</td>";
+					var endtimestr = e.endtime;
+					var begintimestr = e.begintime;
+					var endtime = new Date(endtimestr.slice(0, 4), endtimestr.slice(5, 7), endtimestr.slice(8, 10), endtimestr.slice(
+						11, 13), endtimestr.slice(14, 16), endtimestr.slice(17, 19));
+					var begintime = new Date(begintimestr.slice(0, 4), begintimestr.slice(5, 7), begintimestr.slice(8, 10),
+						begintimestr.slice(11, 13), begintimestr.slice(14, 16), begintimestr.slice(17, 19));
+					if (date > begintime) {
+						res = res + "<td>未开始</td>";
+					} else if (date < begintime) {
+						if (date > endtime) {
+							res = res + "<td>已结束</td>";
+							alert(endtime)
+						} else if (date < endtime) {
+							res = res + "<td>正在进行</td>";
+						}
 					}
+					res = res + "<td>" +
+						"<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#moreModal\">" +
+						"<span class=\"glyphicon glyphicon-list\"></span>" +
+						"</button>" +
+						"<div class=\"modal fade\" id=\"moreModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"" +
+						" aria-hidden=\"true\">" +
+						"<div class=\"modal-dialog\">" +
+						"<div class=\"modal-content\">" +
+						"<div class=\"modal-header\">" +
+						"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>" +
+						"<h4 class=\"modal-title\" id=\"myModalLabel\">考试详情</h4>" +
+						"</div>" +
+						"<div class=\"modal-body\">" +
+						"<table class=\"table\">" +
+						"<tbody>" +
+						"<tr>" +
+						"<td>课程</td>" +
+						"<td>" + e.courseId + "</td>" +
+						"</tr>" +
+						"<tr class=\"success\">" +
+						"<td>考试名</td>" +
+						"<td>" + e.id + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>考试开始时间</td>" +
+						"<td>" + e.begintime + "</td>" +
+						"</tr>" +
+						"<tr class=\"info\">" +
+						"	<td>考试时长</td>" +
+						"	<td>" + e.period + "分钟</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>考试结束时间</td>" +
+						"<td>" + e.endtime + "</td>" +
+						"</tr>" +
+						"<tr class=\"danger\">" +
+						"<td>考试试卷</td>" +
+						"<td>" + e.papers.id + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"<td>考试描述</td>" +
+						"<td>" + e.discript + "</td>" +
+						"</tr>" +
+						"<tr class=\"warning\">" +
+						"	<td>考场</td>" +
+						"	<td>" + e.place + "</td>" +
+						"</tr>" +
+						"<tr>" +
+						"	<td>监考教师</td>" +
+						"	<td>" + e.supervisor + "</td>" +
+						"</tr>" +
+						"</tbody>" +
+						"</table>" +
+						"</div>" +
+						"<div class=\"modal-footer\">" +
+						"	<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>" +
+						"</div>" +
+						"</div>" +
+						"</div>" +
+						"</div>" +
+						"</td>"
+					if (date > begintime) {
+						res = res + "<td>未开始</td>";
+					} else if (date < begintime) {
+						if (date > endtime) {
+							res = res + "<td>已结束</td>";
+						} else if (date < endtime) {
+							res = res +
+								"<td> <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:location.href='/exam/studentExamPage.html?examId=" +
+								e.id + "'\">" +
+								"<span class=\"glyphicon glyphicon-pencil\"></span></button></td>"
+						}
+					}
+
+					res = res + "</tr>"
+
 				});
-				});
-			
-				function auto_list(str) {
-					//清空id=first的所有兄弟节点
-					$("#first").siblings().remove();
-					var res="";
-					var date = new Date();
-					$(str).each(function(index,e){
-						res = res + "<tr>";
-						res = res + "<td>"+e.courseId+"</td>";
-						res = res + "<td>"+e.id+"</td>";
-						var endtimestr = e.endtime;
-						var begintimestr = e.begintime;
-						var endtime = new Date(endtimestr.slice(0,4),endtimestr.slice(5,7),endtimestr.slice(8,10),endtimestr.slice(11,13),endtimestr.slice(14,16),endtimestr.slice(17,19));
-						var begintime = new Date(begintimestr.slice(0,4),begintimestr.slice(5,7),begintimestr.slice(8,10),begintimestr.slice(11,13),begintimestr.slice(14,16),begintimestr.slice(17,19));
-						if(date>begintime){
-							res = res + "<td>未开始</td>";
-						}
-						else if(date<begintime){
-							if(date>endtime){
-								res = res + "<td>已结束</td>";
-								alert(endtime)
-							}
-								
-							else if(date<endtime){
-								res = res + "<td>正在进行</td>";
-							}
-						}
-						res = res +"<td>"
-									+		"<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#moreModal\">"
-									+			"<span class=\"glyphicon glyphicon-list\"></span>"
-									+		"</button>"
-									+		"<div class=\"modal fade\" id=\"moreModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\""
-									+		" aria-hidden=\"true\">"
-									+			"<div class=\"modal-dialog\">"
-									+				"<div class=\"modal-content\">"
-									+					"<div class=\"modal-header\">"
-									+						"<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"
-									+						"<h4 class=\"modal-title\" id=\"myModalLabel\">考试详情</h4>"
-									+					"</div>"
-									+					"<div class=\"modal-body\">"
-									+						"<table class=\"table\">"
-									+							"<tbody>"
-									+								"<tr>"
-									+									"<td>课程</td>"
-									+									"<td>"+e.courseId+"</td>"
-									+								"</tr>"
-									+								"<tr class=\"success\">"
-									+									"<td>考试名</td>"
-									+									"<td>"+e.id+"</td>"
-									+								"</tr>"
-									+								"<tr>"
-									+									"<td>考试开始时间</td>"
-									+									"<td>"+e.begintime+"</td>"
-									+								"</tr>"
-									+								"<tr class=\"info\">"
-									+								"	<td>考试时长</td>"
-									+								"	<td>"+e.period+"分钟</td>"
-									+								"</tr>"
-									+								"<tr>"
-									+									"<td>考试结束时间</td>"
-									+									"<td>"+e.endtime+"</td>"
-									+								"</tr>"
-									+								"<tr class=\"danger\">"
-									+									"<td>考试试卷</td>"
-									+									"<td>"+e.papers.id+"</td>"
-									+								"</tr>"
-									+								"<tr>"
-									+									"<td>考试描述</td>"
-									+									"<td>"+e.discript+"</td>"
-									+								"</tr>"
-									+								"<tr class=\"warning\">"
-									+								"	<td>考场</td>"
-									+								"	<td>"+e.place+"</td>"
-									+								"</tr>"
-									+								"<tr>"
-									+								"	<td>监考教师</td>"
-									+								"	<td>"+e.supervisor+"</td>"
-									+								"</tr>"
-									+							"</tbody>"
-									+						"</table>"
-									+					"</div>"
-									+					"<div class=\"modal-footer\">"
-									+					"	<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>"
-									+					"</div>"
-									+				"</div>"
-									+			"</div>"
-									+		"</div>"
-									+	"</td>"
-						if(date>begintime){
-							res = res + "<td>未开始</td>";
-						}
-						else if(date<begintime){
-							if(date>endtime){
-								res = res + "<td>已结束</td>";
-							}
-								
-							else if(date<endtime){
-								res = res +"<td> <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:location.href='/exam/studentExamPage.html?examId="+e.id+"'\">"
-										  +			"<span class=\"glyphicon glyphicon-pencil\"></span></button></td>"
-							}
-						}
-						
-						res = res + "</tr>"
-						
-					});
-					var app = $(res);
-					$("#first").after(app);
+				var app = $(res);
+				$("#first").after(app);
+			}
+			$.ajax({
+				url: "http://localhost:8080/exam/query/stuname",
+				success: function(str) {
+					$("#stuname").html(str)
+				},
+				error: function(status) {
+
 				}
-				$.ajax({
-					url:"http://localhost:8080/exam/query/stuname",
-					success:function(str){
-						$("#stuname").html(str)
-					},
-					error:function(status){
-						
-					}
-				});	
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

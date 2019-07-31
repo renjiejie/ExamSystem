@@ -42,7 +42,7 @@
 		<style>
 			.middle{
 	 margin:0 auto; 
-	 width:350px; 
+	 width:410px; 
 	 height:100px; 
 	 } //border:1px solid #F00
 </style>
@@ -151,9 +151,12 @@
 							<form class="form-inline" id="searchForm">
 								<div class="form-group">
 									<div class="input-group">
-										<span class="input-group-addon" style="width:50px">
-											<span class="glyphicon glyphicon-book"></span>
-										</span>
+										<select class="form-control" style="width:120px" id="searchType">
+										  <option value="0">全部</option>
+										  <option value="1">正在进行</option>
+										  <option value="2">已结束</option>
+										  <option value="3">未开始</option>
+										</select>
 										<input type="text" class="form-control" placeholder="Exam Name" aria-describedby="basic-addon1" id="searchExam"
 										 style="width:200px">
 										<button type="button" class="btn btn-default" id="searchButton">
@@ -208,18 +211,10 @@
 													<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
 													 aria-expanded="false" style="height: 0px;">
 														<div class="mail-body">
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="A">A卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="B">B卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="C">C卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="D">D卷
-															</div>
+															<table>
+																<tr id="firstCheck">
+																</tr>
+															</table>
 														</div>
 													</div>
 												</div>
@@ -383,18 +378,10 @@
 													<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
 													 aria-expanded="false" style="height: 0px;">
 														<div class="mail-body">
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="A">A卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="B">B卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="C">C卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="D">D卷
-															</div>
+																<table>
+																<tr id="firstChangeCheck">
+																</tr>
+															</table>
 														</div>
 													</div>
 												</div>
@@ -652,6 +639,26 @@
 				var button = $(event.relatedTarget);
 				var exam = button.data("whatever");
 				$("#deleteExam").html(exam);
+				var queryURL = "/exam/admin/queryExam/" + exam;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
+						var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
+						var date = new Date();
+						if (start > date) {
+						} else if (end < date) {
+							alert("考试已结束无法修改");
+							$("#deleteModal").modal("hide");
+						} else {
+							alert("考试正在进行无法修改");
+							$("#deleteModal").modal("hide");
+						}
+					},
+					error: function() {}
+				});
 			});
 
 			$("#deleteButton").click(function() {
@@ -688,7 +695,7 @@
 					dataType: "json",
 					success: function(str) {
 						auto_list(str);
-						document.getElementById("searchForm").reset();
+						document.getElementById("searchExam").value = "";
 					},
 					error: function() {}
 				});
@@ -711,16 +718,57 @@
 						document.getElementById("changeEndTime").value = str[0].endtime;
 						document.getElementById("changePlace").value = str[0].place;
 						document.getElementById("changeSupervisor").value = str[0].supervisor;
+						var course = $("#changeExamCourse").val();
 						var checks = (str[0].ids).split(",");
-						var boxes = document.getElementsByName("changePaper");
-						for (var i = 0; i < boxes.length; i++) {
-							for (var j = 0; j < checks.length; j++) {
-								if (boxes[i].value == checks[j]) {
-									boxes[i].checked = true;
-									break;
-								}
-							}
+						var queryURL = "/exam/admin/queryPaperByCourse/" + course;
+						
+						var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
+						var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
+						var date = new Date();
+						if (start > date) {
+						} else if (end < date) {
+							alert("考试已结束无法修改");
+							$("#changeModal").modal("hide");
+						} else {
+							alert("考试正在进行无法修改");
+							$("#changeModal").modal("hide");
 						}
+						
+						$.ajax({
+							url: queryURL,
+							type: "GET",
+							dataType: "json",
+							contentType: "application/json;charset=UTF-8",
+							success: function(str) {
+								$("#firstChangeCheck").siblings().remove();
+								var res = "";
+								$(str).each(function(index,e){
+									var flag = false;
+									res = res + "<tr><td>";
+									for(var i=0;i<checks.length;i++) {
+										if(checks[i] == e)
+											{
+												flag = true;
+												break;
+											}
+									}
+									if(flag) {
+										res = res + "<input type='checkbox' name='changePaper' value='" + e + "' checked='checked'>";
+									} else {
+										res = res + "<input type='checkbox' name='changePaper' value='" + e + "'>";
+									}
+									res = res + "</td><td>"
+									res = res + e;
+									res = res +  "</td></tr>";
+								});
+								var app = $(res);
+								$("#firstChangeCheck").after(app);
+							},
+							error: function() {
+
+							}
+
+						});
 					},
 					error: function() {}
 				});
@@ -815,6 +863,33 @@
 				});
 			});
 
+			$("#addCourseName").change(function() {
+				var course = $("#addCourseName").val();
+				var queryURL = "/exam/admin/queryPaperByCourse/" + course;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					contentType: "application/json;charset=UTF-8",
+					success: function(str) {
+						$("#firstCheck").siblings().remove();
+						var res = "";
+						$(str).each(function(index,e){
+							res = res + "<tr><td>";
+							res = res + "<input type='checkbox' name='paper' value='" + e + "'>";
+							res = res + "</td><td>"
+							res = res + e;
+							res = res +  "</td></tr>";
+						});
+						var app = $(res);
+						$("#firstCheck").after(app);
+					},
+					error: function() {
+
+					}
+
+				});
+			});
 
 			$(document).ready(function() {
 				queryAll();
@@ -824,20 +899,39 @@
 				//清空id=first的所有兄弟节点
 				$("#first").siblings().remove();
 				var res = "";
+				var type = $("#searchType").val();
 				$(str)
 					.each(
 						function(index, e) {
-							res = res + "<tr>";
-							res = res + "<td>" + e.courseId + "</td>";
-							res = res + "<td>" + e.id + "</td>";
 							var start = new Date(Date.parse((e.begintime).replace(/-/g, "/")));
 							var end = new Date(Date.parse((e.endtime).replace(/-/g, "/")));
 							var date = new Date();
 							if (start > date) {
+								if(type != "0" && type != "3")
+									{
+									return true;
+									}
+								res = res + "<tr>";
+								res = res + "<td>" + e.courseId + "</td>";
+								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "未开始" + "</td>";
 							} else if (end < date) {
+								if(type != "0" && type != "2")
+								{
+								return true;
+								}
+								res = res + "<tr>";
+								res = res + "<td>" + e.courseId + "</td>";
+								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "已结束" + "</td>";
 							} else {
+								if(type != "0" && type != "1")
+								{
+								return true;
+								}
+								res = res + "<tr>";
+								res = res + "<td>" + e.courseId + "</td>";
+								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "正在进行" + "</td>";
 							}
 							res = res + "<td>";
