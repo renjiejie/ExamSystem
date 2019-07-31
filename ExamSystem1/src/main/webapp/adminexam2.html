@@ -636,6 +636,26 @@
 				var button = $(event.relatedTarget);
 				var exam = button.data("whatever");
 				$("#deleteExam").html(exam);
+				var queryURL = "/exam/admin/queryExam/" + exam;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
+						var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
+						var date = new Date();
+						if (start > date) {
+						} else if (end < date) {
+							alert("考试已结束无法修改");
+							$("#deleteModal").modal("hide");
+						} else {
+							alert("考试正在进行无法修改");
+							$("#deleteModal").modal("hide");
+						}
+					},
+					error: function() {}
+				});
 			});
 
 			$("#deleteButton").click(function() {
