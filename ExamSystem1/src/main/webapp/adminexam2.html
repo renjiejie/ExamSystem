@@ -208,18 +208,10 @@
 													<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
 													 aria-expanded="false" style="height: 0px;">
 														<div class="mail-body">
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="A">A卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="B">B卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="C">C卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="paper" value="D">D卷
-															</div>
+															<table>
+																<tr id="firstCheck">
+																</tr>
+															</table>
 														</div>
 													</div>
 												</div>
@@ -383,18 +375,10 @@
 													<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
 													 aria-expanded="false" style="height: 0px;">
 														<div class="mail-body">
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="A">A卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="B">B卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="C">C卷
-															</div>
-															<div class="checkbox">
-																<input type="checkbox" name="changePaper" value="D">D卷
-															</div>
+																<table>
+																<tr id="firstChangeCheck">
+																</tr>
+															</table>
 														</div>
 													</div>
 												</div>
@@ -711,16 +695,44 @@
 						document.getElementById("changeEndTime").value = str[0].endtime;
 						document.getElementById("changePlace").value = str[0].place;
 						document.getElementById("changeSupervisor").value = str[0].supervisor;
+						var course = $("#changeExamCourse").val();
 						var checks = (str[0].ids).split(",");
-						var boxes = document.getElementsByName("changePaper");
-						for (var i = 0; i < boxes.length; i++) {
-							for (var j = 0; j < checks.length; j++) {
-								if (boxes[i].value == checks[j]) {
-									boxes[i].checked = true;
-									break;
-								}
+						var queryURL = "/exam/admin/queryPaperByCourse/" + course;
+						$.ajax({
+							url: queryURL,
+							type: "GET",
+							dataType: "json",
+							contentType: "application/json;charset=UTF-8",
+							success: function(str) {
+								$("#firstChangeCheck").siblings().remove();
+								var res = "";
+								$(str).each(function(index,e){
+									var flag = false;
+									res = res + "<tr><td>";
+									for(var i=0;i<checks.length;i++) {
+										if(checks[i] == e)
+											{
+												flag = true;
+												break;
+											}
+									}
+									if(flag) {
+										res = res + "<input type='checkbox' name='changePaper' value='" + e + "' checked='checked'>";
+									} else {
+										res = res + "<input type='checkbox' name='changePaper' value='" + e + "'>";
+									}
+									res = res + "</td><td>"
+									res = res + e;
+									res = res +  "</td></tr>";
+								});
+								var app = $(res);
+								$("#firstChangeCheck").after(app);
+							},
+							error: function() {
+
 							}
-						}
+
+						});
 					},
 					error: function() {}
 				});
@@ -813,6 +825,38 @@
 
 					}
 				});
+			});
+
+			$("#addCourseName").change(function() {
+				var course = $("#addCourseName").val();
+				var queryURL = "/exam/admin/queryPaperByCourse/" + course;
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					contentType: "application/json;charset=UTF-8",
+					success: function(str) {
+						$("#firstCheck").siblings().remove();
+						var res = "";
+						$(str).each(function(index,e){
+							res = res + "<tr><td>";
+							res = res + "<input type='checkbox' name='paper' value='" + e + "'>";
+							res = res + "</td><td>"
+							res = res + e;
+							res = res +  "</td></tr>";
+						});
+						var app = $(res);
+						$("#firstCheck").after(app);
+					},
+					error: function() {
+
+					}
+
+				});
+			});
+			
+			$("#changeExamName").change(function() {
+	
 			});
 
 

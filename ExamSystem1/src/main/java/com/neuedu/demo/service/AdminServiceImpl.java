@@ -107,4 +107,9 @@ public class AdminServiceImpl implements AdminService {
 		mapper.updateExam(exam, course, description, start, duration, end, place, supervisor, paper);
 	}
 
+	@Override
+	public List<String> queryPaperByCourse(String course) {
+		return mapper.queryPaperByCourse(course);
+	}
+
 }

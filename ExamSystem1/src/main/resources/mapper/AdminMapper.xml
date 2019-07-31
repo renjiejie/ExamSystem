@@ -151,5 +151,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 SET exam_begintime=#{start},exam_period=#{duration},exam_endtime=#{end},exam_discript=#{description},exam_place=#{place},exam_supervisor=#{supervisor},paper_ids=#{paper}
 	 WHERE exam_id=#{exam} and course_id=#{course}
 	</update>
-
+	
+	<select id="queryPaperByCourse" parameterType="String" resultType="String">
+		SELECT paper_id
+		FROM paper_table
+		WHERE course_id=#{course}
+	</select>
 </mapper>
