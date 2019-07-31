@@ -26,8 +26,6 @@ public class UpdateStuController {
 	@RequestMapping("/updatetel")
 	public String updateStuTel(HttpServletRequest req,Integer telephone){
 		String account = (String) req.getSession().getAttribute("account");
-		System.out.println(account);
-		System.out.println(telephone);
 		updatestuservice.updateStuTel(account,telephone);
 		return"../blankStudentPage.html";
 	}

@@ -120,7 +120,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
 										<div class="user-name">
-											<p>Arcane</p>
+											<p id="stuname"></p>
 											<span>Student</span>
 										</div>
 										<i class="fa fa-angle-down lnr"></i>
@@ -191,6 +191,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			$("#sub").click(function(){
 				alert("提交成功");
 			});
+			$.ajax({
+				url:"http://localhost:8080/exam/query/stuname",
+				success:function(str){
+					$("#stuname").html(str)
+				},
+				error:function(status){
+					
+				}
+			});	
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

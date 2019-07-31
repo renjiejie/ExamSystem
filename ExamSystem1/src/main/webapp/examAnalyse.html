@@ -132,7 +132,7 @@
 							aria-expanded="false">
 								<div class="profile_img">
 									<div class="user-name">
-										<p>Vanoss</p>
+										<p id="teaname"></p>
 										<span>Teacher</span>
 									</div>
 									<i class="fa fa-angle-down lnr"></i> <i
@@ -280,6 +280,15 @@
 				}
 			});			
 		});
+		$.ajax({
+			url:"http://localhost:8080/exam/query/teaname",
+			success:function(str){
+				$("#teaname").html(str)
+			},
+			error:function(status){
+				
+			}
+		});	
 	</script>
 	<!--scrolling js-->
 	<script src="/exam/js/jquery.nicescroll.js"></script>
