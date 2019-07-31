@@ -48,7 +48,9 @@ public class StudentServiceImpl implements StudentService{
 				for(String id:examsDone) {
 					if(exams.get(i).getId().equals(id)) {
 						exams.remove(i);
-						i--;
+						if(i>0){
+							i--;
+						}
 					}
 				}
 			}
