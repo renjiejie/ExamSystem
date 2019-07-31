@@ -229,16 +229,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				$("button").click(function() {
 					var answerstr="";
 					$("input:radio:checked").each(function(index,e) {
-						answerstr+="单选"+e.value
+						answerstr+=e.value+"#"
 					});
 					$("input:checkbox:checked").each(function(index,e) {
-						answerstr+="多选"+e.value
+						answerstr+=e.value+"#"
 					});
 					$("input[name='fill']").each(function(index,e) {
-						answerstr+="填空"+e.value
+						answerstr+=e.value+"#"
 					});
 					$("input[name='short']").each(function(index,e) {
-						answerstr+="简答"+e.value
+						answerstr+=e.value+"#"
+					});
+					answerstr+='|';
+					$("p[name='qid']").each(function(index,e) {
+						answerstr+=e.text()+"#"
 					});
 					var queryURL = "/exam/student/input/" + examId+"/"+answerstr;
 					$.ajax({
@@ -265,9 +269,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				var mutiplecount = 0;
 				var fillcount = 0;
 				var shortcount = 0;
-
-
-
 				$(str).each(function(index, e) {
 					if (e.type == "单选") {
 						if (unitcount == 0) {
@@ -288,6 +289,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							'aria-expanded="true">' +
 							'	<div class="mail-body">' +
+							'<p name="qid">'+e.id+'</p>' +
 							'<p>' + e.stem + '</p>' +
 							'<form>' +
 							'<div class="radio-inline">' +
@@ -326,6 +328,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							'aria-expanded="true">' +
 							'	<div class="mail-body">' +
+							'<p name="qid">'+e.id+'</p>' +
 							'<p>' + e.stem + '</p>' +
 							'<form>' +
 							'<div class="checkbox-inline">' +
@@ -364,6 +367,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<div id="collapse9" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							' aria-expanded="true">' +
 							'<div class="mail-body">' +
+							'<p name="qid">'+e.id+'</p>' +
 							'	<p>' + e.stem + '</p>' +
 							'<form>' +
 							'	<input type="text" name="fill" placeholder="请输入答案">' +
@@ -391,6 +395,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							'<div id="collapse13" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"' +
 							'aria-expanded="true">' +
 							'	<div class="mail-body">' +
+							'<p name="qid">'+e.id+'</p>' +
 							'<p>' + e.stem + '</p>' +
 							'<form>' +
 							'<input type="text" name="short" placeholder="请输入答案">' +
