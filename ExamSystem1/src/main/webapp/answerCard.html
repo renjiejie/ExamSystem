@@ -164,40 +164,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="main-page">
 				<h3 class="title1">考试评阅</h3>
 				<div class="blank-page widget-shadow scroll" id="style-2 div1">
-						<figure class="highlight">
-							<h2>题目:</h2>
-							<p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML</p>
-							<h2>答案:</h2>
-							<p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML</p>
-						</figure>
-						<div class="form-group">
-							<label for="exampleInputEmail1">分数</label>
-							<input type="number" class="form-control" id="score" style="width:100px">
+					<div>
+						<div id="first">
+							
 						</div>
-						<figure class="highlight">
-							<h2>题目:</h2>
-							<p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML</p>
-							<h2>答案:</h2>
-							<p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML</p>
-						</figure>
-						<div class="form-group">
-							<label for="exampleInputEmail1">分数</label>
-							<input type="number" class="form-control" id="score" style="width:100px">
-						</div>
-						<figure class="highlight">
-							<h2>题目:</h2>
-							<p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML</p>
-							<h2>答案:</h2>
-							<p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML</p>
-						</figure>
-						<div class="form-group">
-							<label for="exampleInputEmail1">分数</label>
-							<input type="number" class="form-control" id="score" style="width:100px">
-						</div>
-						<div style = "text-align:right;">
-							<input class="btn btn-default" type="button" value="提交" id="submitbutton"
-								 style="width:100px">
-						</div>
+					</div>
+					<div style = "text-align:right;">
+						<input class="btn btn-default" type="button" value="提交" id="submitbutton"
+								style="width:100px">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -210,6 +185,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!-- Classie -->
 		<script src="/exam/js/classie.js"></script>
 		<script>
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);
+				return null;
+			};
+			
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
@@ -225,7 +207,63 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				if (button !== 'showLeftPush') {
 					classie.toggle(showLeftPush, 'disabled');
 				}
-			}
+			};
+			
+			$(document).ready(function() {
+				var answerId = getUrlParam("id");
+				var queryURL = "/exam/answer/subanswer/"+answerId;
+				$.ajax({
+					url:queryURL,
+					type:"GET",
+					dataType:"json",					
+					success:function(str){
+					//str-----json-----SchoolClass
+					//清空id=first的所有兄弟节点
+					$("#first").siblings().remove();
+					var res="";
+					$.each(str,function(key,value){
+						
+						res = res + '<div>';
+							res = res + '<figure class="highlight">';
+								res = res + '<h4>题目:</h4>';
+								res = res + '<p>'+key+'</p>';
+								res = res + '<h5>分值:</h5>';
+								res = res + '<p>'+value.question.point+'</p>';
+								res = res + '<h5>标准答案:</h5>';
+								res = res + '<p>'+value.question.answer+'</p>';
+								res = res + '</figure>';
+								res = res + '<figure class="highlight">';
+								res = res + '<h4>学生答案:</h4>';
+								res = res + '<p>'+value.answer+'</p>';
+							res = res + '</figure>';
+							res = res + '<div class="form-group">';
+								res = res + '<label for="exampleInputEmail1">分数</label>';
+								res = res + '<input type="number" class="form-control" id="score" style="width:100px">';
+							res = res + '</div>';
+						res = res + '</div>';
+					});
+					var app = $(res);
+					$("#first").after(app);
+					$(str).each(function(index,e){
+						$(document).on('click','#delete'+e.id,function(){
+							window.location.href="/exam/question/delete/"+e.id;
+						})
+						});
+						$(str).each(function(index,e){
+							$(document).on('click','#change'+e.id,function(){
+								$("#question-id").val(e.id);
+								$("#form-course").val($("#course").val());
+								$("#type").val(e.type);
+								$("#stem").val(e.stem);
+								$("#answer").val(e.answer);
+								$("#point").val(e.point);
+							})
+						});
+					},
+					error:function(){
+					}
+				}); 
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

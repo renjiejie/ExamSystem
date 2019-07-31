@@ -11,4 +11,5 @@ import com.neuedu.demo.domain.RealAnswer;
 @Mapper
 public interface AnswerMapper {
 	public List<RealAnswer> getAnswers(@Param("examId") String examId);
+	public RealAnswer getAnswerById(@Param("answerId") String answerId);
 }
