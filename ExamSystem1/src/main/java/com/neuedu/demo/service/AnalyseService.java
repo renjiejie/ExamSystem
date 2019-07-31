@@ -6,4 +6,5 @@ import com.neuedu.demo.domain.Analyse;
 
 public interface AnalyseService {
 	public List<Analyse> query(String courseId );
+	public List<Analyse> queryByExam(String exam);
 }

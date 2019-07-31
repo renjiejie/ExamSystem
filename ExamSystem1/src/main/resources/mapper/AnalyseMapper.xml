@@ -18,5 +18,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="exam_average" property="examAverage"/>
 		<result column="course_id" property="courseId"/>
 	</resultMap>
+	
+	<select id="queryByExam" parameterType="String" resultMap="analyse">
+		SELECT *
+		FROM exam_result_table
+		<where>
+			<if test="exam!=null and exam!=''">
+				and exam_id LIKE "%"#{exam}"%"
+			</if>
+		</where>
+	</select>
 
 </mapper>

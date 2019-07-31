@@ -536,7 +536,7 @@
 		<!-- Bootstrap Core JavaScript -->
 		<script src="/exam/js/bootstrap.js"> </script>
 
-		<script>	
+		<script>
 			$("#addButton").click(function() {
 				var exam = $("#addExamName").val();
 				var course = $("#addCourseName").val();
@@ -620,7 +620,7 @@
 					}
 				});
 			});
-			
+
 			$("#addModal").on("hidden.bs.modal", function() {
 				document.getElementById("addForm").reset();
 			});
@@ -725,11 +725,11 @@
 					error: function() {}
 				});
 			});
-			
-			$("#changeModal").on("hidden.bs.modal", function (){
+
+			$("#changeModal").on("hidden.bs.modal", function() {
 				document.getElementById("changeForm").reset();
 			});
-			
+
 			$("#changeButton").click(function() {
 				var exam = $("#changeExamName").val();
 				var course = $("#changeExamCourse").val();
@@ -795,7 +795,8 @@
 						}
 					}
 				}
-				var changeURL = "/exam/admin/updateExam/" + exam + "/" + course + "/" + description + "/" + start + "/" + duration +
+				var changeURL = "/exam/admin/updateExam/" + exam + "/" + course + "/" + description + "/" + start + "/" +
+					duration +
 					"/" + end + "/" +
 					place + "/" + supervisor + "/" + paper;
 				$.ajax({
@@ -809,11 +810,11 @@
 						queryAll();
 					},
 					error: function() {
-				
+
 					}
 				});
 			});
-			
+
 
 			$(document).ready(function() {
 				queryAll();

@@ -18,5 +18,9 @@ public class AnalyseServiceImpl implements AnalyseService {
 		
 		return mapper.query(courseId);
 	}
+	@Override
+	public List<Analyse> queryByExam(String exam) {
+		return mapper.queryByExam(exam);
+	}
 
 }
