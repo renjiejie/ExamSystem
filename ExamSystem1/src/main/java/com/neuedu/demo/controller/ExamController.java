@@ -33,9 +33,10 @@ public class ExamController {
 	}
 	
 	@RequestMapping(value="/check/{examId}")
+	@ResponseBody
 	public String Redirect(@PathVariable("examId")String examId){
 		System.out.println("redirect "+examId);
-		return "redirect:../../answercardList.html?id="+examId;
+		return "/exam/answercardList.html";
 	}
 	
 	@RequestMapping(value="/getPaperPoint/{examId}")

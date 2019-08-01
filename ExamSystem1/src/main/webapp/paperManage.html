@@ -525,7 +525,7 @@
 							res = res + '</button>';
 							res = res + '</td>';
 							res = res + '<td>';
-							res = res + '<button type="button" class="btn btn-default">';
+							res = res + '<button type="button" class="btn btn-default" id="delete' + e.id + '">';
 							res = res + '<span class="glyphicon glyphicon-remove"></span>';
 							res = res + '</button>';
 							res = res + '</td>';
@@ -534,13 +534,17 @@
 						var app = $(res);
 						$("#first").after(app);
 						$(str).each(function(index, e) {
+							$(document).on('click', '#delete' + e.id, function() {
+								window.location.href = "/exam/paper/delete/" + e.id;
+							})
+						});
+						$(str).each(function(index, e) {
 							$(document).on('click', '#changeBtn' + e.id, function() {
 								$.ajax({
 									url: "/exam/paper/change/"+e.id,
 									type: "GET",
 									dataType: "text",
 									success: function(str) {
-										alert(str+"?id="+encodeURI(e.id));
 										window.location.href = str+"?id="+encodeURI(encodeURI(e.id));
 									},
 									error: function() {}
@@ -622,7 +626,7 @@
 									type: "GET",
 									dataType: "text",
 									success: function(str) {
-										window.location.href = str+"?id="+encodeURI(e.id);
+										window.location.href = str+"?id="+encodeURI(encodeURI(e.id));
 									},
 									error: function() {}
 								});

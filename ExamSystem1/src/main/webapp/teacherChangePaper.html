@@ -559,7 +559,6 @@
 			
 			$(document).ready(function() {
 				var paperId = getUrlParam("id");
-				alert(paperId);
 				var queryURL = "/exam/paper/questions/"+paperId;
 				$.ajax({
 					url: queryURL,
@@ -594,7 +593,15 @@
 						$("#first").after(app);
 						$(str).each(function(index, e) {
 							$(document).on('click', '#delete' + e.id, function() {
-								window.location.href = "/exam/paper/deleteQuestion/" +paperId+"/"+e.id;
+								$.ajax({
+									url: "/exam/paper/deleteQuestion/" +paperId+"/"+e.id,
+									type: "GET",
+									dataType: "text",
+									success: function(str) {
+										window.location.href = str+"?id="+encodeURI(paperId);
+									},
+									error: function() {}
+								});
 							})
 						});
 						var courseId = '';
@@ -639,7 +646,7 @@
 						contentType:"application/json;charset=UTF-8",
 						success:function(str){
 							alert("修改成功");
-							window.location.href= "/exam/teacherChangePaper.html?id="+paperId;
+							window.location.href= "/exam/teacherChangePaper.html?id="+encodeURI(paperId);
 						},
 						error:function(){
 						}
@@ -668,7 +675,15 @@
 				$("#add-form-submit").click(function(){
 					var paperId = getUrlParam("id");
 					var questionId = $("#question-name").val();
-					window.location.href="/exam/paper/addQuestion/"+paperId+"/"+questionId;				
+					$.ajax({
+						url: "/exam/paper/addQuestion/"+paperId+"/"+questionId,
+						type: "GET",
+						dataType: "text",
+						success: function(str) {
+							window.location.href = str+"?id="+encodeURI(paperId);
+						},
+						error: function() {}
+					});			
 				});
 				$.ajax({
 					url:"http://localhost:8080/exam/query/teaname",

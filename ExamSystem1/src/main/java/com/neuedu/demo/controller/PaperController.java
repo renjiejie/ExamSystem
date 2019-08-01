@@ -71,14 +71,16 @@ public class PaperController {
 	}
 	
 	@RequestMapping(value="/deleteQuestion/{paperId}/{questionId}")
+	@ResponseBody
 	public String deleteQuestion(@PathVariable("paperId")String paperId,@PathVariable("questionId")String questionId){
 		pService.deletePaperQuestion(paperId, questionId);
-		return "redirect:../../../teacherChangePaper.html?id="+paperId;
+		return "/exam/teacherChangePaper.html";
 	}
 	
 	@RequestMapping(value="/addQuestion/{paperId}/{questionId}")
+	@ResponseBody
 	public String addQuestion(@PathVariable("paperId")String paperId,@PathVariable("questionId")String questionId){
 		pService.addPaperQuestion(paperId, questionId);
-		return "redirect:../../../teacherChangePaper.html?id="+paperId;
+		return "/exam/teacherChangePaper.html";
 	}
 }

@@ -253,17 +253,31 @@
 										res = res + '<td>'+e.id+'</td>';
 										res = res + '<td>'+e.begintime+'</td>';
 										res = res + '<td>'+e.courseId+'</td>';
-										res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'">查看</button></td>';
+										res = res + '<td> <button type="button" class="btn btn-default" id="check'+e.id+'">查看</button></td>';
 									res = res + '</tr>';
 						});
 						var app = $(res);
 						$("#first").after(app);
+						$(str).each(function(index,e){
+							$(document).on('click', '#check' + e.id, function() {
+								$.ajax({
+									url: "/exam/exams/check/"+e.id,
+									type: "GET",
+									dataType: "text",
+									success: function(str) {
+										window.location.href = str+"?id="+encodeURI(encodeURI(e.id));
+									},
+									error: function() {}
+								});
+							})
+						});
 						},
 						error:function(){
 							alert("失败");
 						}
 					}); 
 				});
+			/* 	onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'" */
 			$(document).ready(function() {
 				var queryURL = "/exam/exams/queryAll/All";
 				$.ajax({
@@ -280,11 +294,24 @@
 									res = res + '<td>'+e.id+'</td>';
 									res = res + '<td>'+e.begintime+'</td>';
 									res = res + '<td>'+e.courseId+'</td>';
-									res = res + '<td> <button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/exams/check/'+e.id+'\'">查看</button></td>';
+									res = res + '<td> <button type="button" class="btn btn-default" id="check'+e.id+'">查看</button></td>';
 								res = res + '</tr>';
 					});
 					var app = $(res);
 					$("#first").after(app);
+					$(str).each(function(index,e){
+						$(document).on('click', '#check' + e.id, function() {
+							$.ajax({
+								url: "/exam/exams/check/"+e.id,
+								type: "GET",
+								dataType: "text",
+								success: function(str) {
+									window.location.href = str+"?id="+encodeURI(encodeURI(e.id));
+								},
+								error: function() {}
+							});
+						})
+					});
 					},
 					error:function(){
 						alert("失败");

@@ -92,6 +92,7 @@ public class AnswerServiceImpl implements AnswerService {
 			}
 		}
 		amapper.updateScore(answerId,result);
+		amapper.updateResult(answerId, score);
 		return ""+score;
 	}
 
@@ -102,7 +103,7 @@ public class AnswerServiceImpl implements AnswerService {
 	    points += scoreText;
 	    ra.setPoints(points);
 	    String[] scores = points.split("\\*");
-	    int result = 0;
+	    int result = ra.getResult();
 	    for(int i=0;i<scores.length;i++){
 			String str = scores[i];
 			if(str!=null&&!str.equals("")){
