@@ -171,7 +171,8 @@
 							<div class="input-group">
 								<span class="input-group-addon"> <span class="glyphicon glyphicon-book"></span>
 								</span> 
-								<input type="text" class="form-control" placeholder="Exam Course" aria-describedby="basic-addon1" id="course" style="width:400px">
+								<select class="form-control" id="course" name="course" style="width: 100px;">
+								</select>
 							</div>
 						</div>
 						<div class="inbox-page">
@@ -298,14 +299,16 @@
 					type: "GET",
 					dataType: "json",
 					success: function(str) {
+						var m = 0;
 						$(str).each(function(index, e) {
 							if ($("#id" + index).prop('checked')) {
 								fullpoint = fullpoint + e.point;
-							}
-							if (index === 0) {
-								questions = questions + e.id;
-							} else {
-								questions = questions + ","  + e.id;
+								if (m === 0) {
+									questions = questions + e.id;
+									m++;
+								} else {
+									questions = questions + ","  + e.id;
+								}
 							}
 						});
 						var submiturl = "/exam/paper/add";
@@ -348,45 +351,62 @@
 					error: function() {}
 				});
 			});
-
+			
 			$(document).ready(function() {
-				var courseId = $("#course").val();
-				var queryURL = "/exam/question/query/All/" + courseId;
+				var queryURL = "/exam/course/queryAll"
 				$.ajax({
 					url: queryURL,
 					type: "GET",
 					dataType: "json",
 					success: function(str) {
-						$("#first").siblings().remove();
+						$("#course").children().remove();
 						var res = "";
 						$(str).each(function(index, e) {
-							res = res +
-								'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">';
-							res = res + '<div class="mail "> <input type="checkbox" class="checkbox" name="question" value="' + e.id +
-								'" id="id' + index + '"> </div>';
-							res = res + '<div class="mail mail-name">';
-							res = res + '<h6>' + e.id + '</h6>';
-							res = res + '</div>';
-							res = res + '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + index +
-								'" aria-expanded="true"';
-							res = res + 'aria-controls="collapse' + index + '">';
-							res = res + '<div class="mail">';
-							res = res + '<p>' + courseId + e.type + '题</p>';
-							res = res + '</div>';
-							res = res + '</a>';
-							res = res + '<div class="clearfix"> </div>';
-							res = res + '<div id="collapse' + index +
-								'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading' + index + '">';
-							res = res + '<div class="mail-body">';
-							res = res + '<p>题干:' + e.stem + '</p>';
-							res = res + '<p>答案:' + e.answer + '</p>';
-							res = res + '</div>';
-							res = res + '</div>';
-							res = res + '</div>';
+							res = res + "<option>"+e+"</option>";
 						});
 						var app = $(res);
-						$("#first").after(app);
-
+						$("#course").append(app);
+						var courseId = $("#course").val();
+						var queryURL = "/exam/question/query/All/" + courseId;
+						$.ajax({
+							url: queryURL,
+							type: "GET",
+							dataType: "json",
+							success: function(str) {
+								$("#first").siblings().remove();
+								var res = "";
+								$(str).each(function(index, e) {
+									res = res +
+										'<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">';
+									res = res + '<div class="mail "> <input type="checkbox" class="checkbox" name="question" value="' + e.id +
+										'" id="id' + index + '"> </div>';
+									res = res + '<div class="mail mail-name">';
+									res = res + '<h6>' + e.id + '</h6>';
+									res = res + '</div>';
+									res = res + '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + index +
+										'" aria-expanded="true"';
+									res = res + 'aria-controls="collapse' + index + '">';
+									res = res + '<div class="mail">';
+									res = res + '<p>' + courseId + e.type + '题</p>';
+									res = res + '</div>';
+									res = res + '</a>';
+									res = res + '<div class="clearfix"> </div>';
+									res = res + '<div id="collapse' + index +
+										'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading' + index + '">';
+									res = res + '<div class="mail-body">';
+									res = res + '<p>题干:' + e.stem + '</p>';
+									res = res + '<p>答案:' + e.answer + '</p>';
+									res = res + '<p>分值:' + e.point + '</p>';
+									res = res + '</div>';
+									res = res + '</div>';
+									res = res + '</div>';
+								});
+								var app = $(res);
+								$("#first").after(app);
+						
+							},
+							error: function() {}
+						});
 					},
 					error: function() {}
 				});
@@ -423,6 +443,7 @@
 							res = res + '<div class="mail-body">';
 							res = res + '<p>题干:' + e.stem + '</p>';
 							res = res + '<p>答案:' + e.answer + '</p>';
+							res = res + '<p>分值:' + e.point + '</p>';
 							res = res + '</div>';
 							res = res + '</div>';
 							res = res + '</div>';

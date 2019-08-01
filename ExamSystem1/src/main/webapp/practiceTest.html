@@ -146,7 +146,6 @@
 					<h3 class="title1" >模拟考试</h3>
 					<form>
 						<div class="inbox-page">
-							<h4>单选</h4>
 							<!-- 单选题模版-->
 							<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
 								<div class="mail mail-name">
@@ -155,7 +154,7 @@
 								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
 								 aria-controls="collapseOne">
 									<div class="mail">
-										<p>题目名</p>
+										<p id="id">题目名</p>
 									</div>
 								</a>
 								<div class="clearfix"> </div>
@@ -258,10 +257,12 @@
 					type: "GET",
 					dataType: "json",
 					success: function(str) {
+						document.getElementById("id").innerHTML = $(str)[index].id;
 						document.getElementById("stem").innerHTML = $(str)[index].stem;
 						document.getElementById("answer").innerHTML = $(str)[index].answer;
 						$("#next").click(function(){
 							index+=1
+							document.getElementById("id").innerHTML = $(str)[index].id;
 							document.getElementById("stem").innerHTML = $(str)[index].stem;
 							document.getElementById("answer").innerHTML = $(str)[index].answer;
 						});

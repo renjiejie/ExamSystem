@@ -176,7 +176,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 													<label>课程：</label>
 													<div class="input-group">
 														<span class="input-group-addon"> <span class="glyphicon glyphicon-book"></span>
-														</span> <select class="form-control" name="course" style="width: 100px;">
+														</span> <select class="form-control" name="course" style="width: 100px;" id="course">
 															<option>数学</option>
 															<option>语文</option>
 															<option>英语</option>
@@ -280,6 +280,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					
 				}
 			});	
+			$(document).ready(function() {
+				var queryURL = "/exam/course/queryAll"
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						$("#course").children().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res + "<option>"+e+"</option>";
+						});
+						var app = $(res);
+						$("#course").append(app);
+					},
+					error: function() {}
+				});
+			});
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

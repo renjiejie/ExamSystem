@@ -235,7 +235,7 @@
 			}
 			$("#searchButton").click(function() {
 				var courseId = $("#searchCourse").val();
-				if(courseId == null || course == "") {
+				if(courseId == null || courseId == "") {
 					courseId = "All";
 				}
 					var queryURL = "/exam/exams/queryAll/"+courseId;;
@@ -258,11 +258,6 @@
 						});
 						var app = $(res);
 						$("#first").after(app);
-						/* $(str).each(function(index,e){
-							$(document).on('click','#delete'+e.id,function(){
-								window.location.href="/exam/question/delete/"+e.id;
-							})
-							}); */
 						},
 						error:function(){
 							alert("失败");
@@ -290,18 +285,13 @@
 					});
 					var app = $(res);
 					$("#first").after(app);
-					/* $(str).each(function(index,e){
-						$(document).on('click','#delete'+e.id,function(){
-							window.location.href="/exam/question/delete/"+e.id;
-						})
-						}); */
 					},
 					error:function(){
 						alert("失败");
 					}
 				}); 
 			});
-			$.ajax({
+ 			$.ajax({
 				url:"http://localhost:8080/exam/query/teaname",
 				success:function(str){
 					$("#teaname").html(str)
@@ -309,7 +299,7 @@
 				error:function(status){
 					
 				}
-			});	
+			});	 
 		</script>
 		<!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>

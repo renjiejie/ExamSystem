@@ -1,8 +1,11 @@
 package com.neuedu.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Teacher {
 	private User user;
 	private String name;
+	@JsonIgnore
 	private Integer telephone;
 	public User getUser() {
 		return user;
@@ -30,7 +33,6 @@ public class Teacher {
 	}
 	public Teacher() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 }

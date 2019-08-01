@@ -38,12 +38,16 @@ public class PaperServiceImpl implements PaperService{
 
 	@Override
 	public List<Question> showQuestions(String paperId) {
+		System.out.println("show"+paperId);
 		Paper paper = mapper.queryById(paperId);
+		System.out.println(paper.getQuestionStr());
 		String[] questions = paper.getQuestionStr().split(",");
 		List<Question> results= new ArrayList<>(); 
 		for(String str:questions){
-			Question question = qmapper.queryById(str);
-			results.add(question);
+			if(str!=null&&!str.equals("")){
+				Question question = qmapper.queryById(str);
+				results.add(question);
+			}
 		}
 		return results;
 	}

@@ -373,11 +373,6 @@
 										<div class="dropdown">
 											<label>课程：</label>
 											<select class="form-control" id="course" name="course" style="width: 100px;">
-												<option>数学</option>
-												<option>语文</option>
-												<option>英语</option>
-												<option>物理</option>
-												<option>化学</option>
 											</select>
 										</div>
 									</div>
@@ -525,9 +520,7 @@
 							res = res + '<td>' + e.passPoint + '</td>';
 							res = res + '<td>' + e.producer.user.account + '</td>';
 							res = res + '<td>';
-							res = res +
-								'<button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/paper/change/' + e.id +
-								'\'">';
+							res = res + '<button type="button" class="btn btn-default" id="changeBtn' + e.id +'">';
 							res = res + '<span class="glyphicon glyphicon-pencil"></span>';
 							res = res + '</button>';
 							res = res + '</td>';
@@ -540,6 +533,38 @@
 						});
 						var app = $(res);
 						$("#first").after(app);
+						$(str).each(function(index, e) {
+							$(document).on('click', '#changeBtn' + e.id, function() {
+								$.ajax({
+									url: "/exam/paper/change/"+e.id,
+									type: "GET",
+									dataType: "text",
+									success: function(str) {
+										window.location.href = str+"?id="+e.id;
+									},
+									error: function() {}
+								});
+							})
+						});
+					},
+					error: function() {}
+				});
+			});
+			
+			$(document).ready(function() {
+				var queryURL = "/exam/course/queryAll"
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						$("#course").children().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res + "<option>"+e+"</option>";
+						});
+						var app = $(res);
+						$("#course").append(app);
 					},
 					error: function() {}
 				});
@@ -571,8 +596,7 @@
 							res = res + '<td>' + e.producer.user.account + '</td>';
 							res = res + '<td>';
 							res = res +
-								'<button type="button" class="btn btn-default" onclick="javascript:location.href=\'/exam/paper/change/' + e.id +
-								'\'">';
+								'<button type="button" class="btn btn-default" id="changeBtn' + e.id +'">';
 							res = res + '<span class="glyphicon glyphicon-pencil"></span>';
 							res = res + '</button>';
 							res = res + '</td>';
@@ -590,6 +614,19 @@
 								window.location.href = "/exam/paper/delete/" + e.id;
 							})
 						});
+						$(str).each(function(index, e) {
+							$(document).on('click', '#changeBtn' + e.id, function() {
+								$.ajax({
+									url: "/exam/paper/change/"+e.id,
+									type: "GET",
+									dataType: "text",
+									success: function(str) {
+										window.location.href = str+"?id="+e.id;
+									},
+									error: function() {}
+								});
+							})
+						});
 					},
 					error: function() {}
 				});
@@ -603,6 +640,9 @@
 					
 				}
 			});
+			
+			/* onclick="javascript:location.href=\'/exam/paper/change/' + e.id +
+			'\'">'; */
 		</script>
 		<!--scrolling js-->
 		<script src="/exam/js/jquery.nicescroll.js"></script>

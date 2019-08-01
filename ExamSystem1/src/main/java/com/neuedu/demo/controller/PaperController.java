@@ -58,9 +58,10 @@ public class PaperController {
 	}
 	
 	@RequestMapping(value="/change/{paperId}")
+	@ResponseBody
 	public String Redirect(@PathVariable("paperId")String paperId){
 		System.out.println("change"+paperId);
-		return "redirect:../../teacherChangePaper.html?id="+paperId;
+		return "/exam/teacherChangePaper.html";
 	}
 	
 	@RequestMapping(value="/questions/{paperId}")
