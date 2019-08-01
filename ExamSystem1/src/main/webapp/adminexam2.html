@@ -152,10 +152,10 @@
 								<div class="form-group">
 									<div class="input-group">
 										<select class="form-control" style="width:100px" id="searchType">
-										  <option value="0">全部</option>
-										  <option value="1">进行中</option>
-										  <option value="2">已结束</option>
-										  <option value="3">未开始</option>
+											<option value="0">全部</option>
+											<option value="1">进行中</option>
+											<option value="2">已结束</option>
+											<option value="3">未开始</option>
 										</select>
 										<input type="text" class="form-control" placeholder="Exam Name" aria-describedby="basic-addon1" id="searchExam"
 										 style="width:200px">
@@ -172,8 +172,9 @@
 						<!-- 搜索框 -->
 
 						<!-- 添加模态框 -->
-						<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
+						<div class="modal fade bs-example-modal-sm" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+						 aria-hidden="true">
+							<div class="modal-dialog modal-sm">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -195,28 +196,6 @@
 														<span class="glyphicon glyphicon-book"></span>
 													</span>
 													<input type="text" class="form-control" placeholder="Course Name" aria-describedby="basic-addon1" id="addCourseName">
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
-													<div class="mail mail-name">
-													</div>
-													<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-													 aria-controls="collapseTwo" class="collapsed">
-														<div class="mail">
-															<p>考试试卷</p>
-														</div>
-													</a>
-													<div class="clearfix"> </div>
-													<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
-													 aria-expanded="false" style="height: 0px;">
-														<div class="mail-body">
-															<table>
-																<tr id="firstCheck">
-																</tr>
-															</table>
-														</div>
-													</div>
 												</div>
 											</div>
 											<div class="form-group">
@@ -267,6 +246,20 @@
 													<input type="text" class="form-control" placeholder="Supervisors" aria-describedby="basic-addon1" id="addSupervisor">
 												</div>
 											</div>
+											<div class="form-group">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th>选用</th>
+															<th>试卷</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr id="firstCheck">
+														</tr>
+													</tbody>
+												</table>
+											</div>
 										</form>
 									</div>
 									<div class="modal-footer">
@@ -287,9 +280,9 @@
 										<h4 class="modal-title" id="myModalLabel">考试详情</h4>
 									</div>
 									<div class="modal-body">
-										<table class="table">
+										<table class="table table-striped">
 											<tbody>
-												<tr class="active">
+												<tr>
 													<td>考试</td>
 													<td id="moreExamName"></td>
 												</tr>
@@ -301,7 +294,7 @@
 													<td>考试开始时间</td>
 													<td id="moreExamStart"></td>
 												</tr>
-												<tr class="info">
+												<tr>
 													<td>考试时长</td>
 													<td id="moreExamDuration"></td>
 												</tr>
@@ -309,7 +302,7 @@
 													<td>考试结束时间</td>
 													<td id="moreExamEnd"></td>
 												</tr>
-												<tr class="danger">
+												<tr>
 													<td>考试试卷</td>
 													<td id="moreExamPaper"></td>
 												</tr>
@@ -317,7 +310,7 @@
 													<td>考试描述</td>
 													<td id="moreExamDescription"></td>
 												</tr>
-												<tr class="warning">
+												<tr>
 													<td>考场</td>
 													<td id="moreExamPlace"></td>
 												</tr>
@@ -337,8 +330,8 @@
 						<!-- 详细信息模态框 -->
 
 						<!-- 修改信息模态框 -->
-						<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
+						<div class="modal fade bs-example-modal-sm" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -362,28 +355,6 @@
 													</span>
 													<input type="text" class="form-control" placeholder="Course Name" aria-describedby="basic-addon1" id="changeExamCourse"
 													 disabled>
-												</div>
-											</div>
-											<div style="padding-bottom: 20px;">
-												<div class="inbox-row widget-shadow" id="accordion" role="tablist" aria-multiselectable="true">
-													<div class="mail mail-name">
-													</div>
-													<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
-													 aria-controls="collapseOne" class="collapsed">
-														<div class="mail">
-															<p>考试试卷</p>
-														</div>
-													</a>
-													<div class="clearfix"> </div>
-													<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
-													 aria-expanded="false" style="height: 0px;">
-														<div class="mail-body">
-																<table>
-																<tr id="firstChangeCheck">
-																</tr>
-															</table>
-														</div>
-													</div>
 												</div>
 											</div>
 											<div class="form-group">
@@ -433,6 +404,21 @@
 													</span>
 													<input type="text" class="form-control" placeholder="Supervisors" aria-describedby="basic-addon1" id="changeSupervisor">
 												</div>
+											</div>
+
+											<div class="form-group">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th>选用</th>
+															<th>试卷</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr id="firstChangeCheck">
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</form>
 									</div>
@@ -640,8 +626,8 @@
 				var exam = button.data("whatever");
 				$("#deleteExam").html(exam);
 			});
-			
-			$("#deleteModal").on("shown.bs.modal",function(event){
+
+			$("#deleteModal").on("shown.bs.modal", function(event) {
 				var button = $(event.relatedTarget);
 				var exam = button.data("whatever");
 				var queryURL = "/exam/admin/queryExam/" + exam;
@@ -650,17 +636,16 @@
 					type: "GET",
 					dataType: "json",
 					success: function(str) {
-							var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
-							var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
-							var date = new Date();
-							if (start > date) {
-							} else if (end < date) {
-								alert("考试已结束无法删除");
-								$("#deleteModal").modal("hide");
-							} else {
-								alert("考试正在进行无法删除");
-								$("#deleteModal").modal("hide");
-							}
+						var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
+						var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
+						var date = new Date();
+						if (start > date) {} else if (end < date) {
+							alert("考试已结束无法删除");
+							$("#deleteModal").modal("hide");
+						} else {
+							alert("考试正在进行无法删除");
+							$("#deleteModal").modal("hide");
+						}
 					},
 					error: function() {}
 				});
@@ -734,24 +719,23 @@
 							success: function(str) {
 								$("#firstChangeCheck").siblings().remove();
 								var res = "";
-								$(str).each(function(index,e){
+								$(str).each(function(index, e) {
 									var flag = false;
 									res = res + "<tr><td>";
-									for(var i=0;i<checks.length;i++) {
-										if(checks[i] == e)
-											{
-												flag = true;
-												break;
-											}
+									for (var i = 0; i < checks.length; i++) {
+										if (checks[i] == e) {
+											flag = true;
+											break;
+										}
 									}
-									if(flag) {
+									if (flag) {
 										res = res + "<input type='checkbox' name='changePaper' value='" + e + "' checked='checked'>";
 									} else {
 										res = res + "<input type='checkbox' name='changePaper' value='" + e + "'>";
 									}
 									res = res + "</td><td>"
 									res = res + e;
-									res = res +  "</td></tr>";
+									res = res + "</td></tr>";
 								});
 								var app = $(res);
 								$("#firstChangeCheck").after(app);
@@ -765,13 +749,12 @@
 					error: function() {}
 				});
 			});
-			
+
 			$("#changeModal").on("shown.bs.modal", function(event) {
 				var start = new Date(Date.parse(($("#changeStartTime").val()).replace(/-/g, "/")));
 				var end = new Date(Date.parse(($("#changeEndTime").val()).replace(/-/g, "/")));
 				var date = new Date();
-				if (start > date) {
-				} else if (end < date) {
+				if (start > date) {} else if (end < date) {
 					alert("考试已结束无法修改");
 					$("#changeModal").modal("hide");
 				} else {
@@ -872,6 +855,7 @@
 			$("#addCourseName").change(function() {
 				var course = $("#addCourseName").val();
 				var queryURL = "/exam/admin/queryPaperByCourse/" + course;
+				$("#firstCheck").siblings().remove();
 				$.ajax({
 					url: queryURL,
 					type: "GET",
@@ -880,12 +864,12 @@
 					success: function(str) {
 						$("#firstCheck").siblings().remove();
 						var res = "";
-						$(str).each(function(index,e){
+						$(str).each(function(index, e) {
 							res = res + "<tr><td>";
 							res = res + "<input type='checkbox' name='paper' value='" + e + "'>";
 							res = res + "</td><td>"
 							res = res + e;
-							res = res +  "</td></tr>";
+							res = res + "</td></tr>";
 						});
 						var app = $(res);
 						$("#firstCheck").after(app);
@@ -913,27 +897,24 @@
 							var end = new Date(Date.parse((e.endtime).replace(/-/g, "/")));
 							var date = new Date();
 							if (start > date) {
-								if(type != "0" && type != "3")
-									{
+								if (type != "0" && type != "3") {
 									return true;
-									}
+								}
 								res = res + "<tr>";
 								res = res + "<td>" + e.courseId + "</td>";
 								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "未开始" + "</td>";
 							} else if (end < date) {
-								if(type != "0" && type != "2")
-								{
-								return true;
+								if (type != "0" && type != "2") {
+									return true;
 								}
 								res = res + "<tr>";
 								res = res + "<td>" + e.courseId + "</td>";
 								res = res + "<td>" + e.id + "</td>";
 								res = res + "<td>" + "已结束" + "</td>";
 							} else {
-								if(type != "0" && type != "1")
-								{
-								return true;
+								if (type != "0" && type != "1") {
+									return true;
 								}
 								res = res + "<tr>";
 								res = res + "<td>" + e.courseId + "</td>";
