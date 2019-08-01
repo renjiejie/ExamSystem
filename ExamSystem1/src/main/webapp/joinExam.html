@@ -218,6 +218,7 @@
 				$("#first").siblings().remove();
 				var res = "";
 				var date = new Date();
+				var index = 0;
 				$(str).each(function(index, e) {
 					res = res + "<tr>";
 					res = res + "<td>" + e.courseId + "</td>";
@@ -239,10 +240,10 @@
 						}
 					}
 					res = res + "<td>" +
-						"<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#moreModal\">" +
+						"<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#moreModal"+index+"\">" +
 						"<span class=\"glyphicon glyphicon-list\"></span>" +
 						"</button>" +
-						"<div class=\"modal fade\" id=\"moreModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"" +
+						"<div class=\"modal fade\" id=\"moreModal"+index+"\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"" +
 						" aria-hidden=\"true\">" +
 						"<div class=\"modal-dialog\">" +
 						"<div class=\"modal-content\">" +
