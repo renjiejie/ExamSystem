@@ -225,11 +225,12 @@
 					res = res + "<td>" + e.id + "</td>";
 					var endtimestr = e.endtime;
 					var begintimestr = e.begintime;
-					var endtime = new Date(endtimestr.slice(0, 4), endtimestr.slice(5, 7), endtimestr.slice(8, 10), endtimestr.slice(
+					var endtime = new Date(endtimestr.slice(0, 4), endtimestr.slice(5, 7)-1, endtimestr.slice(8, 10), endtimestr.slice(
 						11, 13), endtimestr.slice(14, 16), endtimestr.slice(17, 19));
-					var begintime = new Date(begintimestr.slice(0, 4), begintimestr.slice(5, 7), begintimestr.slice(8, 10),
+					var begintime = new Date(begintimestr.slice(0, 4), begintimestr.slice(5, 7)-1, begintimestr.slice(8, 10),
 						begintimestr.slice(11, 13), begintimestr.slice(14, 16), begintimestr.slice(17, 19));
 					if (date < begintime) {
+	
 						res = res + "<td>未开始</td>";
 					} else if (date >= begintime) {
 						if (date > endtime) {
