@@ -144,6 +144,7 @@
 			<div id="page-wrapper">
 				<div class="main-page">
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+						
 						<!-- 搜索框 -->
 						<div class="middle">
 							<form class="form-inline" id="searchForm">
@@ -164,6 +165,7 @@
 						<!-- 搜索框 -->
 
 						<!-- 列表 -->
+						<div style="position:relative; height:600px; overflow-y:auto">
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -179,8 +181,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<!-- 列表 -->
-						
+						<!-- 列表 -->	
 					</div>
 				</div>
 			</div>
@@ -271,118 +272,7 @@
 			});			
 		}); */
 
-			$("#searchButton").click(function() {
-				var courseId = $("#searchCourse").val();
-				if (courseId == null || courseId == "") {
-					courseId = "All";
-				}
-				var queryURL = "/exam/exams/queryAll/" + courseId;
-				$.ajax({
-					url: queryURL,
-					type: "GET",
-					dataType: "json",
-					success: function(str1) {
-						$("#first").siblings().remove();
-						$(str1).each(function(index, e) {
-							var queryURL = "/exam/answer/query/" + e.id;
-							$.ajax({
-								url: queryURL,
-								type: "GET",
-								dataType: "json",
-								success: function(str2) {
-									var queryURL = "/exam/exams/getPaperPoint/" + e.id;
-									$.ajax({
-										url: queryURL,
-										type: "GET",
-										dataType: "text",
-										success: function(str3) {
-											var res = "";
-											var sumPoints = 0;
-											var number = 0;
-											var passnum = 0;
-											var fullpoint = parseInt(str3);
-											var passpoint = parseInt(str3) * 0.6;
-											$(str2).each(function(index, answer) {
-												number++;
-												sumPoints += answer.result;
-												if (answer.result >= passpoint) {
-													passnum++;
-												}
-
-											});
-											res = res + "<tr>";
-											res = res + "<td>" + e.id + "</td>";
-											res = res + "<td>" + number + "</td>";
-											res = res + "<td>" + passnum + "</td>";
-											res = res + "<td>" + sumPoints / number + "</td>";
-											res = res + "</tr>"
-											var app = $(res);
-											$("#first").after(app);
-										},
-										error: function() {}
-									});
-								},
-								error: function() {}
-							});
-						});
-					},
-					error: function() {}
-				});
-			});
-			$(document).ready(function() {
-				var queryURL = "/exam/exams/queryAll/All";
-				$.ajax({
-					url: queryURL,
-					type: "GET",
-					dataType: "json",
-					success: function(str1) {
-						$("#first").siblings().remove();
-						$(str1).each(function(index, e) {
-							var queryURL = "/exam/answer/query/" + e.id;
-							$.ajax({
-								url: queryURL,
-								type: "GET",
-								dataType: "json",
-								success: function(str2) {
-									var queryURL = "/exam/exams/getPaperPoint/" + e.id;
-									$.ajax({
-										url: queryURL,
-										type: "GET",
-										dataType: "text",
-										success: function(str3) {
-											var res = "";
-											var sumPoints = 0;
-											var number = 0;
-											var passnum = 0;
-											var fullpoint = parseInt(str3);
-											var passpoint = parseInt(str3) * 0.6;
-											$(str2).each(function(index, answer) {
-												number++;
-												sumPoints += answer.result;
-												if (answer.result >= passpoint) {
-													passnum++;
-												}
-
-											});
-											res = res + "<tr>";
-											res = res + "<td>" + e.id + "</td>";
-											res = res + "<td>" + number + "</td>";
-											res = res + "<td>" + passnum + "</td>";
-											res = res + "<td>" + sumPoints / number + "</td>";
-											res = res + "</tr>"
-											var app = $(res);
-											$("#first").after(app);
-										},
-										error: function() {}
-									});
-								},
-								error: function() {}
-							});
-						});
-					},
-					error: function() {}
-				});
-			});
+			
 			/* $(document).ready(function() {
 				var courseId = $("#course-name").val();
 				var queryURL = "/exam/analyse/query/" + courseId;
@@ -429,5 +319,119 @@
 		<!--//scrolling js-->
 		<!-- Bootstrap Core JavaScript -->
 		<script src="/exam/js/bootstrap.js"></script>
+		<script>
+		$("#searchButton").click(function() {
+			var courseId = $("#searchCourse").val();
+			if (courseId == null || courseId == "") {
+				courseId = "All";
+			}
+			var queryURL = "/exam/exams/queryAll/" + courseId;
+			$.ajax({
+				url: queryURL,
+				type: "GET",
+				dataType: "json",
+				success: function(str1) {
+					$("#first").siblings().remove();
+					$(str1).each(function(index, e) {
+						var queryURL = "/exam/answer/query/" + e.id;
+						$.ajax({
+							url: queryURL,
+							type: "GET",
+							dataType: "json",
+							success: function(str2) {
+								var queryURL = "/exam/exams/getPaperPoint/" + e.id;
+								$.ajax({
+									url: queryURL,
+									type: "GET",
+									dataType: "text",
+									success: function(str3) {
+										var res = "";
+										var sumPoints = 0;
+										var number = 0;
+										var passnum = 0;
+										var fullpoint = parseInt(str3);
+										var passpoint = parseInt(str3) * 0.6;
+										$(str2).each(function(index, answer) {
+											number++;
+											sumPoints += answer.result;
+											if (answer.result >= passpoint) {
+												passnum++;
+											}
+
+										});
+										res = res + "<tr>";
+										res = res + "<td>" + e.id + "</td>";
+										res = res + "<td>" + number + "</td>";
+										res = res + "<td>" + passnum + "</td>";
+										res = res + "<td>" + sumPoints / number + "</td>";
+										res = res + "</tr>"
+										var app = $(res);
+										$("#first").after(app);
+									},
+									error: function() {}
+								});
+							},
+							error: function() {}
+						});
+					});
+				},
+				error: function() {}
+			});
+		});
+		$(document).ready(function() {
+			var queryURL = "/exam/exams/queryAll/All";
+			$.ajax({
+				url: queryURL,
+				type: "GET",
+				dataType: "json",
+				success: function(str1) {
+					$("#first").siblings().remove();
+					$(str1).each(function(index, e) {
+						var queryURL = "/exam/answer/query/" + e.id;
+						$.ajax({
+							url: queryURL,
+							type: "GET",
+							dataType: "json",
+							success: function(str2) {
+								var queryURL = "/exam/exams/getPaperPoint/" + e.id;
+								$.ajax({
+									url: queryURL,
+									type: "GET",
+									dataType: "text",
+									success: function(str3) {
+										var res = "";
+										var sumPoints = 0;
+										var number = 0;
+										var passnum = 0;
+										var fullpoint = parseInt(str3);
+										var passpoint = parseInt(str3) * 0.6;
+										$(str2).each(function(index, answer) {
+											number++;
+											sumPoints += answer.result;
+											if (answer.result >= passpoint) {
+												passnum++;
+											}
+
+										});
+										res = res + "<tr>";
+										res = res + "<td>" + e.id + "</td>";
+										res = res + "<td>" + number + "</td>";
+										res = res + "<td>" + passnum + "</td>";
+										res = res + "<td>" + sumPoints / number + "</td>";
+										res = res + "</tr>"
+										var app = $(res);
+										$("#first").after(app);
+									},
+									error: function() {}
+								});
+							},
+							error: function() {}
+						});
+					});
+				},
+				error: function() {}
+			});
+		});
+		</script>
 	</body>
 </html>
