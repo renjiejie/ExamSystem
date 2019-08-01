@@ -95,7 +95,8 @@
 						</a>
 					</div>
 					<!--//logo-->
-					<!--search-box-->
+					
+<!-- 					search-box
 					<div class="search-box">
 						<form class="input">
 							<input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
@@ -106,7 +107,8 @@
 							</label>
 						</form>
 					</div>
-					<!--//end-search-box-->
+					<!--//end-search-box --> 
+	
 					<div class="clearfix"> </div>
 				</div>
 				<div class="header-right">
@@ -158,7 +160,6 @@
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
-					<h3 class="title1">学生成绩</h3>
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
 
 						<!-- 搜索框 -->
@@ -284,7 +285,7 @@
 					dataType: "json",
 					success: function(str) {
 						auto_list(str);
-						document.getElementById("searchForm").reset();
+						//document.getElementById("searchForm").reset();
 					},
 					error: function() {}
 				});

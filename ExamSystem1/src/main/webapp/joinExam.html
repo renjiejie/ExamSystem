@@ -88,7 +88,7 @@
 						</a>
 					</div>
 					<!--//logo-->
-					<!--search-box-->
+<!-- 					search-box
 					<div class="search-box">
 						<form class="input">
 							<input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
@@ -99,7 +99,7 @@
 							</label>
 						</form>
 					</div>
-					<!--//end-search-box-->
+					<!--//end-search-box--> 
 					<div class="clearfix"> </div>
 				</div>
 				<div class="header-right">
@@ -151,8 +151,9 @@
 			<!-- main content start-->
 			<div id="page-wrapper">
 				<div class="main-page">
-					<h3 class="title1">参加考试</h3>
+					<!--<h3 class="title1">参加考试</h3> -->
 					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+						<!-- 列表 -->
 						<div style="position:relative; height:600px; overflow-y:auto">
 							<table class="table table-striped">
 								<thead>
@@ -171,7 +172,7 @@
 								</tbody>
 							</table>
 						</div>
-
+						<!-- 列表 -->
 					</div>
 				</div>
 			</div>
@@ -225,26 +226,28 @@
 					res = res + "<td>" + e.id + "</td>";
 					var endtimestr = e.endtime;
 					var begintimestr = e.begintime;
-					var endtime = new Date(endtimestr.slice(0, 4), endtimestr.slice(5, 7)-1, endtimestr.slice(8, 10), endtimestr.slice(
+					var endtime = new Date(endtimestr.slice(0, 4), endtimestr.slice(5, 7) - 1, endtimestr.slice(8, 10), endtimestr.slice(
 						11, 13), endtimestr.slice(14, 16), endtimestr.slice(17, 19));
-					var begintime = new Date(begintimestr.slice(0, 4), begintimestr.slice(5, 7)-1, begintimestr.slice(8, 10),
+					var begintime = new Date(begintimestr.slice(0, 4), begintimestr.slice(5, 7) - 1, begintimestr.slice(8, 10),
 						begintimestr.slice(11, 13), begintimestr.slice(14, 16), begintimestr.slice(17, 19));
 					if (date < begintime) {
-	
+
 						res = res + "<td>未开始</td>";
 					} else if (date >= begintime) {
 						if (date > endtime) {
 							res = res + "<td>已结束</td>";
 							alert(endtime)
-						} else{
+						} else {
 							res = res + "<td>正在进行</td>";
 						}
 					}
 					res = res + "<td>" +
-						"<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#moreModal"+index+"\">" +
+						"<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#moreModal" + index +
+						"\">" +
 						"<span class=\"glyphicon glyphicon-list\"></span>" +
 						"</button>" +
-						"<div class=\"modal fade\" id=\"moreModal"+index+"\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"" +
+						"<div class=\"modal fade\" id=\"moreModal" + index +
+						"\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"" +
 						" aria-hidden=\"true\">" +
 						"<div class=\"modal-dialog\">" +
 						"<div class=\"modal-content\">" +
@@ -306,7 +309,7 @@
 					} else if (date >= begintime) {
 						if (date > endtime) {
 							res = res + "<td>已结束</td>";
-						} else{
+						} else {
 							res = res +
 								"<td> <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:location.href='/exam/studentExamPage.html?examId=" +
 								e.id + "'\">" +
