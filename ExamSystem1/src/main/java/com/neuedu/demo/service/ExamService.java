@@ -8,4 +8,6 @@ public interface ExamService {
 	public List<Exam> getExams(String courseId);
 
 	public String getExamTime(String examId);
+
+	public String getPaperPoint(String examId);
 }

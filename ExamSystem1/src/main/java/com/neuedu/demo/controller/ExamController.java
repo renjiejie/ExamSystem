@@ -35,4 +35,11 @@ public class ExamController {
 		return "redirect:../../answercardList.html?id="+examId;
 	}
 	
+	@RequestMapping(value="/getPaperPoint/{examId}")
+	@ResponseBody
+	public String getPaperPoint(@PathVariable("examId")String examId){
+		System.out.println("getExamPoint "+examId);
+		return examService.getPaperPoint(examId);
+	}
+	
 }

@@ -75,4 +75,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="paper_id" property="paperId"/>
 		<result column="course_id" property="courseId"/>
 	</resultMap>
-</mapper>
+</mapper> 
