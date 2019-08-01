@@ -140,76 +140,79 @@
 				<div class="clearfix"> </div>
 			</div>
 			<!-- //header-ends -->
-		<!-- main content start-->
-		<div id="page-wrapper">
-			<div class="main-page">
-				<h3 class="title1">成绩分析</h3>
-					<div class="form-group">
-						<label>课程：</label>
-						<div class="input-group">
-							<span class="input-group-addon"> <span class="glyphicon glyphicon-book"></span>
-							</span>
-							<select class="form-control" id="course-name" name="courseId" style="width: 100px;">
-								<option>数学</option>
-								<option>语文</option>
-								<option>英语</option>
-								<option>物理</option>
-								<option>化学</option>
-							</select>
+			<!-- main content start-->
+			<div id="page-wrapper">
+				<div class="main-page">
+					<div class="blank-page widget-shadow scroll" id="style-2 div1">
+						<!-- 搜索框 -->
+						<div class="middle">
+							<form class="form-inline" id="searchForm">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon" style="width:50px">
+											<span class="glyphicon glyphicon-book"></span>
+										</span>
+										<input type="text" class="form-control" placeholder="Course Name" aria-describedby="basic-addon1" id="searchCourse"
+										 style="width:200px">
+										<button type="button" class="btn btn-default" id="searchButton">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</div>
+								</div>
+							</form>
 						</div>
+						<!-- 搜索框 -->
+
+						<!-- 列表 -->
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>考试名称</th>
+									<th>考试人数</th>
+									<th>及格人数</th>
+									<th>平均分</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="first">
+
+								</tr>
+							</tbody>
+						</table>
+						<!-- 列表 -->
+						
 					</div>
-
-
-
-				<div class="blank-page widget-shadow scroll" id="style-2 div1">
-
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>考试名称</th>
-								<th>考试人数</th>
-								<th>及格人数</th>
-								<th>平均分</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr id="first">
-
-							</tr>
-
-						</tbody>
-					</table>
 				</div>
-
 			</div>
 		</div>
-	</div>
-	<!--footer-->
-	<div class="footer">
-		<p>学生考试系统</p>
-	</div>
-	<!--//footer-->
-	
-	<!-- Classie -->
-	<script src="/exam/js/classie.js"></script>
-	<script>
-		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
-				.getElementById('showLeftPush'), body = document.body;
+		<!--footer-->
+		<div class="footer">
+			<p>学生考试系统</p>
+		</div>
+		<!--//footer-->
 
-		showLeftPush.onclick = function() {
-			classie.toggle(this, 'active');
-			classie.toggle(body, 'cbp-spmenu-push-toright');
-			classie.toggle(menuLeft, 'cbp-spmenu-open');
-			disableOther('showLeftPush');
-		};
+		<!-- Classie -->
+		<script src="/exam/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById('cbp-spmenu-s1'),
+				showLeftPush = document
+				.getElementById('showLeftPush'),
+				body = document.body;
 
-		function disableOther(button) {
-			if (button !== 'showLeftPush') {
-				classie.toggle(showLeftPush, 'disabled');
+			showLeftPush.onclick = function() {
+				classie.toggle(this, 'active');
+				classie.toggle(body, 'cbp-spmenu-push-toright');
+				classie.toggle(menuLeft, 'cbp-spmenu-open');
+				disableOther('showLeftPush');
+			};
+
+			function disableOther(button) {
+				if (button !== 'showLeftPush') {
+					classie.toggle(showLeftPush, 'disabled');
+				}
 			}
-		}
-		
-		/* //查询
+
+			/* //查询
 		$("#course-name").change(function() {
 			var courseId = $("#course-name").val();
 			var queryURL = "/exam/analyse/query/" + courseId;
@@ -267,172 +270,165 @@
 				}
 			});			
 		}); */
-			
-		$("#course-name").change(function() {
-			var courseId = $("#course-name").val();
-			var queryURL = "/exam/exams/queryAll/" + courseId;		
-			$.ajax({
-				url : queryURL,
-				type : "GET",
-				dataType : "json",
-				success : function(str1) {
-		
-					$("#first").siblings().remove();
-					$(str1).each(function(index, e) {
-						var queryURL = "/exam/answer/query/" + e.id;
-						$.ajax({
-							url : queryURL,
-							type : "GET",
-							dataType : "json",
-							success : function(str2) {
-								var queryURL = "/exam/exams/getPaperPoint/" + e.id;
-								$.ajax({
-									url : queryURL,
-									type : "GET",
-									dataType : "text",
-									success : function(str3) {
-										var res = "";
-										var sumPoints = 0;
-										var number = 0;
-										var passnum = 0;
-										var fullpoint = parseInt(str3);
-										var passpoint = parseInt(str3)*0.6;
-										$(str2).each(function(index, answer) {
-											number++;
-											sumPoints+=answer.result;
-											if(answer.result>=passpoint){
-												passnum++;
-											}
-											
-										});
-										res = res + "<tr>";
-										res = res + "<td>" + e.id + "</td>";
-										res = res + "<td>" + number + "</td>";
-										res = res + "<td>" + passnum + "</td>";
-										res = res + "<td>" + sumPoints/number + "</td>";
-										res = res + "</tr>"
-										var app = $(res);
-										$("#first").after(app);
-									},
-									error : function() {
-									}
-								}); 
-							},
-							error : function() {
-							}
-						}); 
-					});
-				},
-				error : function() {
+
+			$("#searchButton").click(function() {
+				var courseId = $("#searchCourse").val();
+				if (courseId == null || courseId == "") {
+					courseId = "All";
 				}
-			}); 
-		});
-		$(document).ready(function() {
-			var courseId = $("#course-name").val();
-				var queryURL = "/exam/exams/queryAll/" + courseId;		
+				var queryURL = "/exam/exams/queryAll/" + courseId;
+				alert(courseId);
 				$.ajax({
-					url : queryURL,
-					type : "GET",
-					dataType : "json",
-					success : function(str1) {
-			
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str1) {
 						$("#first").siblings().remove();
 						$(str1).each(function(index, e) {
 							var queryURL = "/exam/answer/query/" + e.id;
 							$.ajax({
-								url : queryURL,
-								type : "GET",
-								dataType : "json",
-								success : function(str2) {
+								url: queryURL,
+								type: "GET",
+								dataType: "json",
+								success: function(str2) {
 									var queryURL = "/exam/exams/getPaperPoint/" + e.id;
 									$.ajax({
-										url : queryURL,
-										type : "GET",
-										dataType : "text",
-										success : function(str3) {
+										url: queryURL,
+										type: "GET",
+										dataType: "text",
+										success: function(str3) {
 											var res = "";
 											var sumPoints = 0;
 											var number = 0;
 											var passnum = 0;
 											var fullpoint = parseInt(str3);
-											var passpoint = parseInt(str3)*0.6;
+											var passpoint = parseInt(str3) * 0.6;
 											$(str2).each(function(index, answer) {
 												number++;
-												sumPoints+=answer.result;
-												if(answer.result>=passpoint){
+												sumPoints += answer.result;
+												if (answer.result >= passpoint) {
 													passnum++;
 												}
-												
+
 											});
 											res = res + "<tr>";
 											res = res + "<td>" + e.id + "</td>";
 											res = res + "<td>" + number + "</td>";
 											res = res + "<td>" + passnum + "</td>";
-											res = res + "<td>" + sumPoints/number + "</td>";
+											res = res + "<td>" + sumPoints / number + "</td>";
 											res = res + "</tr>"
 											var app = $(res);
 											$("#first").after(app);
 										},
-										error : function() {
-										}
-									}); 
+										error: function() {}
+									});
 								},
-								error : function() {
-								}
-							}); 
+								error: function() {}
+							});
 						});
+					},
+					error: function() {}
+				});
+			});
+			$(document).ready(function() {
+				var queryURL = "/exam/exams/queryAll/All";
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str1) {
+						$("#first").siblings().remove();
+						$(str1).each(function(index, e) {
+							var queryURL = "/exam/answer/query/" + e.id;
+							$.ajax({
+								url: queryURL,
+								type: "GET",
+								dataType: "json",
+								success: function(str2) {
+									var queryURL = "/exam/exams/getPaperPoint/" + e.id;
+									$.ajax({
+										url: queryURL,
+										type: "GET",
+										dataType: "text",
+										success: function(str3) {
+											var res = "";
+											var sumPoints = 0;
+											var number = 0;
+											var passnum = 0;
+											var fullpoint = parseInt(str3);
+											var passpoint = parseInt(str3) * 0.6;
+											$(str2).each(function(index, answer) {
+												number++;
+												sumPoints += answer.result;
+												if (answer.result >= passpoint) {
+													passnum++;
+												}
+
+											});
+											res = res + "<tr>";
+											res = res + "<td>" + e.id + "</td>";
+											res = res + "<td>" + number + "</td>";
+											res = res + "<td>" + passnum + "</td>";
+											res = res + "<td>" + sumPoints / number + "</td>";
+											res = res + "</tr>"
+											var app = $(res);
+											$("#first").after(app);
+										},
+										error: function() {}
+									});
+								},
+								error: function() {}
+							});
+						});
+					},
+					error: function() {}
+				});
+			});
+			/* $(document).ready(function() {
+				var courseId = $("#course-name").val();
+				var queryURL = "/exam/analyse/query/" + courseId;
+				
+				$.ajax({
+					url : queryURL,
+					type : "GET",
+					dataType : "json",
+					success : function(str) {
+		
+						$("#first").siblings().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res + "<tr>";
+							res = res + "<td>" + e.examId + "</td>";
+							res = res + "<td>" + e.examPeople + "</td>";
+							res = res + "<td>" + e.examPassPeople + "</td>";
+							res = res + "<td>" + e.examAverage + "</td>";
+							res = res + "</tr>"
+		
+						});
+						var app = $(res);
+						$("#first").after(app);
 					},
 					error : function() {
 					}
-				}); 
+				});			
 			});
-		/* $(document).ready(function() {
-			var courseId = $("#course-name").val();
-			var queryURL = "/exam/analyse/query/" + courseId;
-			
+		
+		
 			$.ajax({
-				url : queryURL,
-				type : "GET",
-				dataType : "json",
-				success : function(str) {
-		
-					$("#first").siblings().remove();
-					var res = "";
-					$(str).each(function(index, e) {
-						res = res + "<tr>";
-						res = res + "<td>" + e.examId + "</td>";
-						res = res + "<td>" + e.examPeople + "</td>";
-						res = res + "<td>" + e.examPassPeople + "</td>";
-						res = res + "<td>" + e.examAverage + "</td>";
-						res = res + "</tr>"
-		
-					});
-					var app = $(res);
-					$("#first").after(app);
+				url:"http://localhost:8080/exam/query/teaname",
+				success:function(str){
+					$("#teaname").html(str)
 				},
-				error : function() {
+				error:function(status){
+					
 				}
-			});			
-		});
-		
-		
-		$.ajax({
-			url:"http://localhost:8080/exam/query/teaname",
-			success:function(str){
-				$("#teaname").html(str)
-			},
-			error:function(status){
-				
-			}
-		});	 */
-	</script>
-	<!--scrolling js-->
-	<script src="/exam/js/jquery.nicescroll.js"></script>
-	<script src="/exam/js/scripts.js"></script>
-	<!--//scrolling js-->
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/exam/js/bootstrap.js">
-		
-	</script>
-</body>
+			});	 */
+		</script>
+		<!--scrolling js-->
+		<script src="/exam/js/jquery.nicescroll.js"></script>
+		<script src="/exam/js/scripts.js"></script>
+		<!--//scrolling js-->
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/exam/js/bootstrap.js"></script>
+	</body>
 </html>

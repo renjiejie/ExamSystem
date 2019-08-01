@@ -20,6 +20,9 @@ public class ExamController {
 	@RequestMapping("/queryAll/{courseId}")
 	@ResponseBody
 	public List<Exam> getExams(@PathVariable("courseId")String courseId){
+		if(courseId.equals("All")) {
+			courseId = null;
+		}
 		return examService.getExams(courseId);
 	}
 	
