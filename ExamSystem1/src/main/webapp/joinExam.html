@@ -231,11 +231,11 @@
 						begintimestr.slice(11, 13), begintimestr.slice(14, 16), begintimestr.slice(17, 19));
 					if (date < begintime) {
 						res = res + "<td>未开始</td>";
-					} else if (date > begintime) {
+					} else if (date >= begintime) {
 						if (date > endtime) {
 							res = res + "<td>已结束</td>";
 							alert(endtime)
-						} else if (date < endtime) {
+						} else{
 							res = res + "<td>正在进行</td>";
 						}
 					}
@@ -302,10 +302,10 @@
 						"</td>"
 					if (date < begintime) {
 						res = res + "<td>未开始</td>";
-					} else if (date > begintime) {
+					} else if (date >= begintime) {
 						if (date > endtime) {
 							res = res + "<td>已结束</td>";
-						} else if (date < endtime) {
+						} else{
 							res = res +
 								"<td> <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:location.href='/exam/studentExamPage.html?examId=" +
 								e.id + "'\">" +
