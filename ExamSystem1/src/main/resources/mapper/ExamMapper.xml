@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		from exam_table 
  		<where>
  			<if test="courseId != null and courseId !=''">
- 			 and course_id = #{courseId}
+ 			 and course_id LIKE "%"#{courseId}"%"
  			</if>
  		</where>
 	</select>
