@@ -151,9 +151,9 @@
 							<form class="form-inline" id="searchForm">
 								<div class="form-group">
 									<div class="input-group">
-										<select class="form-control" style="width:120px" id="searchType">
+										<select class="form-control" style="width:100px" id="searchType">
 										  <option value="0">全部</option>
-										  <option value="1">正在进行</option>
+										  <option value="1">进行中</option>
 										  <option value="2">已结束</option>
 										  <option value="3">未开始</option>
 										</select>
@@ -639,23 +639,28 @@
 				var button = $(event.relatedTarget);
 				var exam = button.data("whatever");
 				$("#deleteExam").html(exam);
+			});
+			
+			$("#deleteModal").on("shown.bs.modal",function(event){
+				var button = $(event.relatedTarget);
+				var exam = button.data("whatever");
 				var queryURL = "/exam/admin/queryExam/" + exam;
 				$.ajax({
 					url: queryURL,
 					type: "GET",
 					dataType: "json",
 					success: function(str) {
-						var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
-						var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
-						var date = new Date();
-						if (start > date) {
-						} else if (end < date) {
-							alert("考试已结束无法修改");
-							$("#deleteModal").modal("hide");
-						} else {
-							alert("考试正在进行无法修改");
-							$("#deleteModal").modal("hide");
-						}
+							var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
+							var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
+							var date = new Date();
+							if (start > date) {
+							} else if (end < date) {
+								alert("考试已结束无法删除");
+								$("#deleteModal").modal("hide");
+							} else {
+								alert("考试正在进行无法删除");
+								$("#deleteModal").modal("hide");
+							}
 					},
 					error: function() {}
 				});
@@ -721,19 +726,6 @@
 						var course = $("#changeExamCourse").val();
 						var checks = (str[0].ids).split(",");
 						var queryURL = "/exam/admin/queryPaperByCourse/" + course;
-						
-						var start = new Date(Date.parse((str[0].begintime).replace(/-/g, "/")));
-						var end = new Date(Date.parse((str[0].endtime).replace(/-/g, "/")));
-						var date = new Date();
-						if (start > date) {
-						} else if (end < date) {
-							alert("考试已结束无法修改");
-							$("#changeModal").modal("hide");
-						} else {
-							alert("考试正在进行无法修改");
-							$("#changeModal").modal("hide");
-						}
-						
 						$.ajax({
 							url: queryURL,
 							type: "GET",
@@ -772,6 +764,20 @@
 					},
 					error: function() {}
 				});
+			});
+			
+			$("#changeModal").on("shown.bs.modal", function(event) {
+				var start = new Date(Date.parse(($("#changeStartTime").val()).replace(/-/g, "/")));
+				var end = new Date(Date.parse(($("#changeEndTime").val()).replace(/-/g, "/")));
+				var date = new Date();
+				if (start > date) {
+				} else if (end < date) {
+					alert("考试已结束无法修改");
+					$("#changeModal").modal("hide");
+				} else {
+					alert("考试正在进行无法修改");
+					$("#changeModal").modal("hide");
+				}
 			});
 
 			$("#changeModal").on("hidden.bs.modal", function() {
