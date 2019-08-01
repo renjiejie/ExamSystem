@@ -540,7 +540,8 @@
 									type: "GET",
 									dataType: "text",
 									success: function(str) {
-										window.location.href = str+"?id="+e.id;
+										alert(str+"?id="+encodeURI(e.id));
+										window.location.href = str+"?id="+encodeURI(encodeURI(e.id));
 									},
 									error: function() {}
 								});
@@ -621,7 +622,7 @@
 									type: "GET",
 									dataType: "text",
 									success: function(str) {
-										window.location.href = str+"?id="+e.id;
+										window.location.href = str+"?id="+encodeURI(e.id);
 									},
 									error: function() {}
 								});
