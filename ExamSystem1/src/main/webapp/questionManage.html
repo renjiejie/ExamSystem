@@ -612,6 +612,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					}
 				}); 
 			});
+			$(document).ready(function() {
+				var queryURL = "/exam/course/queryAll"
+				$.ajax({
+					url: queryURL,
+					type: "GET",
+					dataType: "json",
+					success: function(str) {
+						$("#form-course").children().remove();
+						var res = "";
+						$(str).each(function(index, e) {
+							res = res + "<option>"+e+"</option>";
+						});
+						var app = $(res);
+						$("#form-course").append(app);
+						},
+								error:function(){
+								}
+							}); });
 			
 			$(document).ready(function() {
 				$(document).ready(function() {
